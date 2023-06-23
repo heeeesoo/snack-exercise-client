@@ -1,5 +1,5 @@
 ---
-name: refactor-template
+name: Refactor template
 about: Descrefactor-templateribe this issue template's purpose here.
 title: ''
 labels: ''

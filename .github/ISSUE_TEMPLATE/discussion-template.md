@@ -1,5 +1,5 @@
 ---
-name: discussion-template
+name: Discussion template
 about: Describe this issue template's purpose here.
 title: ''
 labels: ''
