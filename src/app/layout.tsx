@@ -22,7 +22,7 @@ export default function RootLayout({
         flex 
         flex-col
         items-center	
-        bg-slate-400 
+        bg-grayScreen
         w-screen
         max-w-[390px]
         h-screen
