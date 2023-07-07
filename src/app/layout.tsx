@@ -24,7 +24,7 @@ export default function RootLayout({
         items-center	
         bg-grayScreen
         w-screen
-        max-w-[390px]
+        max-w-[400px]
         h-screen
         m-auto
         '>
