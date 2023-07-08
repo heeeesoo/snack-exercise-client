@@ -12,9 +12,8 @@ export default function Home() {
 
   return (
     <div className='flex flex-col items-center w-full'>
-      main
       <MissionCard />
-
+      <div className='py-2'></div>
       <Button type='normal' label='랜덤 스낵 운동 받기' onClick={handleClick}/>
     </div>
   )
