@@ -26,7 +26,7 @@ export default function RootLayout({
           <main className='pb-[60px] w-screen max-w-[400px] min-h-screen m-auto'>
             {children}
           </main>
-          <div className='fixed bottom-0 max-w-[400px]'>
+          <div className='sticky bottom-0 w-full'>
             <Footer/>
           </div>
         </div>
