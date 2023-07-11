@@ -13,7 +13,7 @@ const KakaoLogin = () => {
     }
 
     return (
-        <button onClick={handleClick}>
+        <button className='w-3/4 h-10 bg-yellow-300 rounded-md' onClick={handleClick}>
             카카오 로그인
         </button>
     );
