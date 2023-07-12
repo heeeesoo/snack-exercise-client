@@ -1,8 +1,9 @@
 'use client';
-import Image from 'next/image'
-import MissionCard from '@/components/card/MissionCard'
-import Button from '@/components/Button'
-import ClientOnly from '@/components/ClientOnly'
+import Image from 'next/image';
+import MissionCard from '@/components/card/MissionCard';
+import Button from '@/components/Button';
+import ClientOnly from '@/components/ClientOnly';
+import KakaoLogin from '@/components/auth/KakaoLogin';
 
 export default function Home() {
 
@@ -15,6 +16,8 @@ export default function Home() {
       <MissionCard />
       <div className='py-2'></div>
       <Button type='normal' label='랜덤 스낵 운동 받기' onClick={handleClick}/>
+      <div className='py-2'></div>
+      <KakaoLogin />
     </div>
   )
 }
