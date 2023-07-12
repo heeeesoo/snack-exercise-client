@@ -1,11 +1,12 @@
 'use client';
  
-import { useSearchParams } from "next/navigation";
-
-
 const page = () => {
-    const searchParams = useSearchParams();
-    console.log(searchParams.get('code'));
+
+    if (typeof window !== "undefined") {
+        // Client-side-only code
+        const code = new URL(window.location.href).searchParams.get("code");
+        console.log(code);
+    }
 
     return (
         <div>
