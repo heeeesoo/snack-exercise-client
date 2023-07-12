@@ -1,14 +1,12 @@
-'use client';
- 
 const page = () => {
     if (typeof window !== "undefined") {
         // Client-side-only code
-        const code = new URL(window.location.href).searchParams.get("code");
+        const code = new URL(window.location.href);
         console.log(code);
     }
     return (
         <div>
-            카카오 로그인 중
+            groupname
         </div>
     );
 };
