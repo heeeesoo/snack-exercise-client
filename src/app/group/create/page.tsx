@@ -1,5 +1,5 @@
 'use client';
-import {InputBox} from "@/components/Input";
+import {InputBox} from "@/components/InputBox";
 
 const page = () => {
 
