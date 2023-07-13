@@ -17,7 +17,7 @@ export function InputBox({
     placeholder
  } : InputProps) {
     return (
-        <div className="flex flex-col w-4/5 text-[16px]">
+        <div className="flex flex-col w-4/5 text-[16px] text-SystemGray2">
             <div className="flex ">
                 <label htmlFor={name}>{title}</label>
                 <div>{subtitle}</div>
@@ -26,7 +26,7 @@ export function InputBox({
                 type={type} 
                 id={id} 
                 name={name} 
-                className="rounded-xl h-[60px] mt-[10px] pl-[14px]"
+                className="rounded-xl h-[60px] mt-[10px] pl-[14px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
                 placeholder={placeholder}
             />
         </div>
@@ -69,7 +69,7 @@ export function SelectInputBox({
  } : InputProps) {
     return (
         <div className="flex flex-col w-4/5 text-[16px]">
-            <div className="flex ">
+            <div className="flex">
                 <label htmlFor={name}>{title}</label>
                 <div>{subtitle}</div>
             </div>
