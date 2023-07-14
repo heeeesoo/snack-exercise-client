@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-const Logo = () => {
+const Header = () => {
     return (
-        <div className="text-[35px] px-3">
+        <div className="flex items-center justify-center h-[60px] w-full bg-grayScreen">
             <Image
             src="/logo/logo_small.svg"
             width={108}
@@ -13,4 +13,4 @@ const Logo = () => {
     );
 };
 
-export default Logo;
+export default Header;
