@@ -57,8 +57,8 @@ const page = () => {
                 </div>
             </div>
             <SelectInputBox value="" radioname="penalty" inputname="penaltyOther" placeholder="벌칙 직접 입력"/>
-            <RadioSelectBox value="아웃백" name="penalty" children="아웃백 쏘기"/>
-            <RadioSelectBox value="아이스크림" name="penalty" children="아이스크림 쏘기"/>
+            <RadioSelectBox value="아웃백" name="penalty" checkvalue="아웃백 쏘기"/>
+            <RadioSelectBox value="아이스크림" name="penalty" checkvalue="아이스크림 쏘기"/>
             <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
             <SelectBox type="text" id="color" name="color" title="미션 독촉 알림 시간 간격을 선택해주세요" placeholder="미션 독촉 알림 시간 간격"/>
             <div className="mb-[40px]"></div>
