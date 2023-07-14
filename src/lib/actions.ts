@@ -2,7 +2,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const serverUrl = isProduction ? process.env.NEXT_PUBLIC_SERVER_URL : 'http://localhost:3000';
 
 const fetchAuthCode = async (AuthCode : string) => {
- 
+
     // Get data from the form.
     const data = {
         AuthCode: AuthCode
@@ -33,7 +33,7 @@ const fetchAuthCode = async (AuthCode : string) => {
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
     return result;
-  }
-
 }
+
+
 
