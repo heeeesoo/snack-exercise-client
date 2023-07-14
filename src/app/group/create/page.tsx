@@ -1,5 +1,5 @@
 'use client';
-import {InputBox} from "@/components/InputBox";
+import {InputBox, SelectInputBox} from "@/components/InputBox";
 
 const page = () => {
 
@@ -8,7 +8,7 @@ const page = () => {
      
         const data = {
             groupname: event.currentTarget.groupname.value,
-            last: event.currentTarget.last.value,
+            penalty: event.currentTarget.penalty.value
         }
         
         console.log(data);
@@ -34,13 +34,30 @@ const page = () => {
     return (
         <form action="/api/form" method="post" className="flex flex-col items-center" onSubmit={handleSubmit}>
             <InputBox type="text" id="groupname" name="groupname" title="그룹명을 입력해주세요" placeholder="그룹명"/>
+            <div className="mb-[40px]"></div>
             <InputBox type="text" id="color" name="color" title="그룹 색상을 선택해주세요"/>
+            <div className="mb-[40px]"></div>
             <InputBox type="text" id="maxMemberNum" name="maxMemberNum" title="제한 인원수를 입력해주세요" subtitle="제한 6명" placeholder="제한 인원 수"/>
+            <div className="mb-[40px]"></div>
             <InputBox type="text" id="goalRelayPeriod" name="goalRelayPeriod" title="목표 릴레이 기간은 입력해주세요" placeholder="목표 릴레이 기간"/>
+            <div className="mb-[40px]"></div>
             <InputBox type="text" id="goalRelayCount" name="goalRelayCount" title="목표 릴레이 횟수를 입력해주세요" placeholder="제한 인원 수"/>
-            <InputBox type="text" id="starttime" name="starttime" title="시작 시간을 입력해주세요"/>
-            <InputBox type="text" id="endtime" name="endtime" title="끝 시간을 입력해주세요"/>
-        
+            <div className="mb-[40px]"></div>
+            <InputBox type="text" id="starttime" name="starttime" title="시작 시간을 입력해주세요" placeholder="시작 시간"/>
+            <div className="mb-[40px]"></div>
+            <InputBox type="text" id="endtime" name="endtime" title="끝 시간을 입력해주세요" placeholder="끝 시간"/>
+            <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
+            <div className="flex flex-col w-4/5">
+                <div className="text-left text-SystemGray2 text-[16px]">
+                    벌칙을 선택해주세요
+                </div>
+                <div className="text-SystemGray3 text-[12px]">
+                    미션 기간이 끝나고난 후 미션 할당 받고 수행까지의 시간이 
+                    평균적으로 가장 오래 걸린 사람이 벌칙을 받습니다.
+                </div>
+            </div>
+            <SelectInputBox value="아웃백" name="penalty" children="아웃백 쏘기"/>
+            <SelectInputBox value="아이스크림" name="penalty" children="아이스크림 쏘기"/>
             <button type="submit">Submit</button>
         </form>
     );
