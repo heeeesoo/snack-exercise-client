@@ -1,5 +1,5 @@
 'use client';
-import {InputBox, SelectInputBox, RadioSelectBox} from "@/components/InputBox";
+import {InputBox, SelectBox, SelectInputBox, RadioSelectBox} from "@/components/InputBox";
 
 const page = () => {
 
@@ -35,7 +35,7 @@ const page = () => {
         <form action="/api/form" method="post" className="flex flex-col items-center" onSubmit={handleSubmit}>
             <InputBox type="text" id="groupname" name="groupname" title="그룹명을 입력해주세요" placeholder="그룹명"/>
             <div className="mb-[40px]"></div>
-            <InputBox type="text" id="color" name="color" title="그룹 색상을 선택해주세요"/>
+            <SelectBox type="text" id="color" name="color" title="그룹 색상을 선택해주세요"/>
             <div className="mb-[40px]"></div>
             <InputBox type="text" id="maxMemberNum" name="maxMemberNum" title="제한 인원수를 입력해주세요" subtitle="제한 6명" placeholder="제한 인원 수"/>
             <div className="mb-[40px]"></div>
@@ -59,6 +59,10 @@ const page = () => {
             <SelectInputBox value="" radioname="penalty" inputname="penaltyOther" placeholder="벌칙 직접 입력"/>
             <RadioSelectBox value="아웃백" name="penalty" children="아웃백 쏘기"/>
             <RadioSelectBox value="아이스크림" name="penalty" children="아이스크림 쏘기"/>
+            <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
+            <SelectBox type="text" id="color" name="color" title="미션 독촉 알림 시간 간격을 선택해주세요" placeholder="미션 독촉 알림 시간 간격"/>
+            <div className="mb-[40px]"></div>
+            <InputBox type="text" id="endtime" name="endtime" title="미션 독촉 알림 최대 횟수를 입력해주세요" placeholder="미션 독촉 알림 최대 횟수"/>
             <button type="submit">Submit</button>
         </form>
     );
