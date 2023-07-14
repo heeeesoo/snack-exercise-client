@@ -1,5 +1,5 @@
 'use client'
-import Button from "../Button";
+import Button from "../common/Button";
 
 const MissionCard = () => {
 

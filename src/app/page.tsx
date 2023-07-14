@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import MissionCard from '@/components/card/MissionCard';
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import ClientOnly from '@/components/ClientOnly';
 import KakaoLogin from '@/components/auth/KakaoLogin';
 import Link from 'next/link';
