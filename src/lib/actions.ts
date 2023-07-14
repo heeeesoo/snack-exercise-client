@@ -34,3 +34,6 @@ const fetchAuthCode = async (AuthCode : string) => {
     const result = await response.json();
     return result;
   }
+
+}
+
