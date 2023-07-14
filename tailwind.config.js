@@ -32,6 +32,9 @@ module.exports = {
         SystemYellow: '#F7CD3A',
         SystemLightYellow: '#FEFAEB'
       },
+      backgroundImage: {
+        'exercise-example': "url('/imageEx/mission.svg')",
+      }
     },
   },
   plugins: [],
