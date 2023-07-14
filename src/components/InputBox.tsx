@@ -21,7 +21,7 @@ interface RadioSelectBoxProps {
     name: string;
     defaultChecked?: boolean;
     disabled?: boolean;
-    children: string;
+    checkvalue: string;
 }
 
 
@@ -108,11 +108,11 @@ export function RadioSelectBox({
     name,
     defaultChecked,
     disabled,
-    children
+    checkvalue
  } : RadioSelectBoxProps) {
     return (
         <div className="flex items-center justify-between w-4/5 text-[16px] rounded-xl h-[60px] mt-[10px] pl-[14px] bg-white text-SystemGray2">
-            {children}
+            {checkvalue}
             <input
                 className="w-[16px] h-[16px] m-[20px]"
                 type="radio"
