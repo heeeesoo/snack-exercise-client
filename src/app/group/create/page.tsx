@@ -1,14 +1,14 @@
 'use client';
-import {InputBox, SelectInputBox} from "@/components/InputBox";
+import {InputBox, SelectInputBox, RadioSelectBox} from "@/components/InputBox";
 
 const page = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+        event.preventDefault();
      
         const data = {
             groupname: event.currentTarget.groupname.value,
-            penalty: event.currentTarget.penalty.value
+            penalty: event.currentTarget.penalty.value ? event.currentTarget.penalty.value : event.currentTarget.penaltyOther.value
         }
         
         console.log(data);
@@ -56,8 +56,9 @@ const page = () => {
                     평균적으로 가장 오래 걸린 사람이 벌칙을 받습니다.
                 </div>
             </div>
-            <SelectInputBox value="아웃백" name="penalty" children="아웃백 쏘기"/>
-            <SelectInputBox value="아이스크림" name="penalty" children="아이스크림 쏘기"/>
+            <SelectInputBox value="" radioname="penalty" inputname="penaltyOther" placeholder="벌칙 직접 입력"/>
+            <RadioSelectBox value="아웃백" name="penalty" children="아웃백 쏘기"/>
+            <RadioSelectBox value="아이스크림" name="penalty" children="아이스크림 쏘기"/>
             <button type="submit">Submit</button>
         </form>
     );
