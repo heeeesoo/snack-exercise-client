@@ -30,8 +30,12 @@ module.exports = {
         SystemGreen: '#47E121',
         SystemLightGreen: '#EDFCE9',
         SystemYellow: '#F7CD3A',
-        SystemLightYellow: '#FEFAEB'
+        SystemLightYellow: '#FEFAEB',
+        SystemGray7_20: 'hsla(240, 100%, 99%, 0.2)'
       },
+      backgroundImage: {
+        'exercise-example': "url('/imageEx/mission.svg')",
+      }
     },
   },
   plugins: [],

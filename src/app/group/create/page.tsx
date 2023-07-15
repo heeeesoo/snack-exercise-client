@@ -1,5 +1,5 @@
 'use client';
-import {InputBox, SelectBox, SelectInputBox, RadioSelectBox} from "@/components/InputBox";
+import {InputBox, SelectBox, SelectInputBox, RadioSelectBox} from "@/components/common/InputBox";
 
 const page = () => {
 

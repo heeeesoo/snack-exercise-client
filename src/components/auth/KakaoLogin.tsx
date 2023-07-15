@@ -1,5 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
+import { Kakao } from '@/constant/icon';
+import Image from 'next/image';
 
 const KakaoLogin = () => {
     const router = useRouter();
@@ -13,9 +15,23 @@ const KakaoLogin = () => {
     }
 
     return (
-        <button className='w-3/4 h-10 bg-yellow-300 rounded-md' onClick={handleClick}>
-            카카오 로그인
-        </button>
+        <div className='flex flex-col items-center justify-center bg-white h-[152px] rounded-[36px]'>
+            <div className='font-normal text-[14px] text-SystemGray3 pb-[16px]'>
+                로그인하여 스낵을 100% 활용해보세요!
+            </div>
+            <button className='flex px-[22px] items-center w-4/5 h-[56px] bg-yellow-300 rounded-[16px]' onClick={handleClick}>
+                <Image
+                    src={Kakao}
+                    width={24}
+                    height={24}
+                    alt="Kakao"
+                />
+                <div className='flex-1 font-semibold'>
+                    카카오로 로그인하기
+                </div>
+                <div className='w-[24px]'></div>
+            </button>
+        </div>
     );
 };
 
