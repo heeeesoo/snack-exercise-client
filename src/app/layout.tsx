@@ -17,6 +17,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const isLogin = false;
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -29,7 +31,7 @@ export default function RootLayout({
             {children}
           </main>
           <div className='sticky bottom-0 w-full'>
-            <Footer/>
+            {isLogin ? <Footer/> : null}
           </div>
         </div>
       </body>
