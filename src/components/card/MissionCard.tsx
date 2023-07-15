@@ -13,8 +13,7 @@ const MissionCard = () => {
 
     return (
         // <div className="flex flex-col items-center justify-evenly h-[320px] w-4/5 mt-[50px] bg-[url('/imageEx/mission.svg')]">
-        <div className="flex flex-col items-center justify-evenly h-[320px] w-4/5 mt-[50px] bg-[url('/imageEx/mission.svg')] bg-center rounded-[16px]">
-            <Button label="미션 수행 go" type="mission" onClick={handleClick}/>
+        <div className="flex flex-col pt-[200px] items-center justify-evenly h-[320px] w-4/5 mt-[50px] bg-[url('/imageEx/mission.svg')] bg-center rounded-[16px]">
             <BlurTitleButton title="3분 동안 스쿼트" subtitle="미션 수행하기" onClick={handleBlurTitleButtonClick}/>
         </div>
     );
