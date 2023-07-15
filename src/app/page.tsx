@@ -7,7 +7,7 @@ import KakaoLogin from '@/components/auth/KakaoLogin';
 import Link from 'next/link';
 
 export default function Home() {
-  const isLogin = false;
+  const isLogin = true;
 
   const handleClick = () => {
     console.log('click');
