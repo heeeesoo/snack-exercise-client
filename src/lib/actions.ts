@@ -1,9 +1,26 @@
 const isProduction = process.env.NODE_ENV === 'production';
 const serverUrl = isProduction ? process.env.NEXT_PUBLIC_SERVER_URL : 'http://localhost:3000';
 
+const fetchLogin = async () => {
+    const endpoint = '/api/form';
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    
+    const response = await fetch(endpoint, options);
+
+    const result = await response.json();
+    console.log(result);
+    return result;
+}
+
 const fetchAuthCode = async (AuthCode : string) => {
 
-    // Get data from the form.
+    // Get data from the for`m.
     const data = {
         AuthCode: AuthCode
     }
@@ -32,6 +49,7 @@ const fetchAuthCode = async (AuthCode : string) => {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
+    console.log(result);
     return result;
 }
 
