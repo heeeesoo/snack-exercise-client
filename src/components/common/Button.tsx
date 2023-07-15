@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowRight, ArrowShuffle } from "@/constant/incon";
 
 interface ButtonProps {
     label: string;
@@ -9,6 +10,11 @@ interface ButtonProps {
 interface BlurTitleButtonProps {
     title: string;
     subtitle: string;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+interface IconHorizontalButton {
+    title: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -44,10 +50,31 @@ export function BlurTitleButton({
             </div>
             <div className="bg-SystemBrand w-[40px] h-[40px] flex items-center justify-center rounded-[100px]">
                 <Image
-                    src="/icons/common/ArrowRight.svg"
+                    src={ArrowRight}
                     width={24}
                     height={24}
                     alt="ArrowRight"
+                />
+            </div>
+        </button>
+    )
+}
+
+export function IconHorizontalButton({
+    title,
+    onClick
+} : IconHorizontalButton){
+    return(
+        <button onClick={onClick} className="flex justify-between px-[20px] items-center w-4/5 bg-white rounded-[12px] h-[68px]">
+            <div>
+                {title}
+            </div>
+            <div className="bg-SystemGray6 w-[40px] h-[40px] flex items-center justify-center rounded-[100px]">
+                <Image
+                    src={ArrowShuffle}
+                    width={20}
+                    height={20}
+                    alt="ArrowShuffle"
                 />
             </div>
         </button>
