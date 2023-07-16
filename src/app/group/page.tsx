@@ -2,6 +2,8 @@
 
 import MissionCard from "@/components/card/MissionCard";
 import { IconVerticalButton } from "@/components/common/Button";
+import GuideSwiper from "@/components/card/GuideSwiper";
+
 const page = () => {
     const handleClick = () => {
         console.log('!')
@@ -14,11 +16,15 @@ const page = () => {
             <div className="text-[20px] font-bold w-9xl pb-[16px]">
                 그룹 가이드
             </div>
-            <div className="flex justify-between w-9xl">
-                <IconVerticalButton title="title" onClick={handleClick} />
-                <IconVerticalButton title="title" onClick={handleClick} />
+            <div className="flex items-center">
+                <GuideSwiper />
             </div>
-            <div className="text-[20px] font-bold w-9xl pb-[16px]">
+            <div className="pb-[40px]"></div>
+            <div className="flex justify-between w-9xl">
+                <IconVerticalButton title="그룹 만들기" onClick={handleClick} />
+                <IconVerticalButton title={"dd <br/> dsd"} onClick={handleClick} />
+            </div>
+            <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
                 랜덤으로 운동 미션 받기
             </div>
             <MissionCard />
