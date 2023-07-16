@@ -35,7 +35,10 @@ module.exports = {
       },
       backgroundImage: {
         'exercise-example': "url('/imageEx/mission.svg')",
-      }
+      },
+      spacing: {
+        '9xl': '85%',
+      },
     },
   },
   plugins: [],

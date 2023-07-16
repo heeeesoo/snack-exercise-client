@@ -34,7 +34,7 @@ export function InputBox({
     placeholder
  } : InputProps) {
     return (
-        <div className="flex flex-col w-4/5 text-[16px] text-SystemGray">
+        <div className="flex flex-col w-9xl text-[16px] text-SystemGray2">
             <div className="flex items-center justify-between">
                 <label htmlFor={name}>{title}</label>
                 <div className="text-SystemBrand text-[12px]">{subtitle}</div>
@@ -59,7 +59,7 @@ export function SelectBox({
     placeholder
  } : InputProps) {
     return (
-        <div className="flex flex-col w-4/5 text-[16px] text-SystemGray2">
+        <div className="flex flex-col w-9xl text-[16px] text-SystemGray2">
             <div className="flex ">
                 <label htmlFor={name}>{title}</label>
                 <div>{subtitle}</div>
@@ -85,7 +85,7 @@ export function SelectInputBox({
     placeholder
  } : SelectInputBoxProps) {
     return (
-        <div className="flex justify-between w-4/5 text-[16px] rounded-xl h-[60px] mt-[10px] pl-[14px] bg-white">
+        <div className="flex justify-between w-9xl text-[16px] rounded-xl h-[60px] mt-[10px] pl-[14px] bg-white">
             <input 
                 className="text-SystemGray1 placeholder-SystemGray4 outline-white"
                 name={inputname}
@@ -111,7 +111,7 @@ export function RadioSelectBox({
     checkvalue
  } : RadioSelectBoxProps) {
     return (
-        <div className="flex items-center justify-between w-4/5 text-[16px] rounded-xl h-[60px] mt-[10px] pl-[14px] bg-white text-SystemGray2">
+        <div className="flex items-center justify-between w-9xl text-[16px] rounded-xl h-[60px] mt-[10px] pl-[14px] bg-white text-SystemGray2">
             {checkvalue}
             <input
                 className="w-[16px] h-[16px] m-[20px]"
@@ -134,7 +134,7 @@ export function SearchBox({
     placeholder
  } : InputProps) {
     return (
-        <div className="flex flex-col w-4/5 text-[16px]">
+        <div className="flex flex-col w-9xl text-[16px]">
             <div className="flex ">
                 <label htmlFor={name}>{title}</label>
                 <div>{subtitle}</div>

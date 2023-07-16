@@ -13,8 +13,14 @@ interface BlurTitleButtonProps {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-interface IconHorizontalButton {
+interface IconHorizontalButtonProps {
     title: string;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+interface IconVerticalButtonProps {
+    title: string;
+    imglink: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -25,7 +31,7 @@ export function Button({
     onClick
  } : ButtonProps) {
     return (
-        <div className={`${type==='mission' ? 'w-32' : 'w-3/4'} h-10 leading-10 text-center rounded-md bg-cyan-300`}>
+        <div className={`${type==='mission' ? 'w-32' : 'w-9xl'} h-10 leading-10 text-center rounded-md bg-cyan-300`}>
             <button onClick={onClick}>
                 {label}
             </button> 
@@ -63,9 +69,9 @@ export function BlurTitleButton({
 export function IconHorizontalButton({
     title,
     onClick
-} : IconHorizontalButton){
+} : IconHorizontalButtonProps){
     return(
-        <button onClick={onClick} className="flex justify-between px-[20px] items-center w-4/5 bg-white rounded-[12px] h-[68px]">
+        <button onClick={onClick} className="flex justify-between px-[20px] items-center w-9xl bg-white rounded-[12px] h-[68px]">
             <div className="text-[16px] font-bold">
                 {title}
             </div>
@@ -74,6 +80,28 @@ export function IconHorizontalButton({
                     src={ArrowShuffle}
                     width={20}
                     height={20}
+                    alt="ArrowShuffle"
+                />
+            </div>
+        </button>
+    )
+}
+
+export function IconVerticalButton({
+    title,
+    imglink,
+    onClick
+} : IconVerticalButtonProps){
+    return(
+        <button onClick={onClick} className="flex flex-col justify-around px-[20px] items-center w-[48%] bg-white rounded-[12px] h-[170px]">
+            <div className="text-[16px] font-bold mr-auto whitespace-pre-line">
+                {title}
+            </div>
+            <div className="bg-SystemGray6 w-[60px] h-[60px] flex items-center justify-center rounded-[100px] ml-auto">
+                <Image
+                    src={imglink}
+                    width={28}
+                    height={28}
                     alt="ArrowShuffle"
                 />
             </div>
