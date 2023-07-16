@@ -16,7 +16,10 @@ const GuideSwiper = () => {
         <div className="">
           <Slider {...settings} className="w-screen max-w-[400px] px-[7.5%]">
             {
-                GuideCards.map(card => <GuideSwiperCard title={card.title} text={card.text} num={card.num} />)
+                GuideCards.map(card => 
+                <div key={card.num}>
+                    <GuideSwiperCard title={card.title} text={card.text} num={card.num} />
+                </div> )
             }
           </Slider>
         </div>

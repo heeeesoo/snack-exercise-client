@@ -20,6 +20,7 @@ interface IconHorizontalButtonProps {
 
 interface IconVerticalButtonProps {
     title: string;
+    imglink: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -88,18 +89,19 @@ export function IconHorizontalButton({
 
 export function IconVerticalButton({
     title,
+    imglink,
     onClick
 } : IconVerticalButtonProps){
     return(
         <button onClick={onClick} className="flex flex-col justify-around px-[20px] items-center w-[48%] bg-white rounded-[12px] h-[170px]">
-            <div className="text-[16px] font-bold mr-auto">
+            <div className="text-[16px] font-bold mr-auto whitespace-pre-line">
                 {title}
             </div>
-            <div className="bg-SystemGray6 w-[40px] h-[40px] flex items-center justify-center rounded-[100px] ml-auto">
+            <div className="bg-SystemGray6 w-[60px] h-[60px] flex items-center justify-center rounded-[100px] ml-auto">
                 <Image
-                    src={ArrowShuffle}
-                    width={20}
-                    height={20}
+                    src={imglink}
+                    width={28}
+                    height={28}
                     alt="ArrowShuffle"
                 />
             </div>

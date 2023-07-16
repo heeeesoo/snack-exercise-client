@@ -4,6 +4,9 @@ import MissionCard from "@/components/card/MissionCard";
 import { IconVerticalButton } from "@/components/common/Button";
 import GuideSwiper from "@/components/card/GuideSwiper";
 
+import { People } from "@/constant/icon";
+import { Mail } from "@/constant/icon";
+
 const page = () => {
     const handleClick = () => {
         console.log('!')
@@ -21,8 +24,8 @@ const page = () => {
             </div>
             <div className="pb-[40px]"></div>
             <div className="flex justify-between w-9xl">
-                <IconVerticalButton title="그룹 만들기" onClick={handleClick} />
-                <IconVerticalButton title={"dd <br/> dsd"} onClick={handleClick} />
+                <IconVerticalButton title="그룹 만들기" onClick={handleClick} imglink={People}/>
+                <IconVerticalButton title="초대 코드" onClick={handleClick} imglink={Mail}/>
             </div>
             <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
                 랜덤으로 운동 미션 받기

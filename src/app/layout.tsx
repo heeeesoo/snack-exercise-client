@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -17,17 +16,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const isLogin = false;
+  const isLogin = true;
 
   return (
     <html lang="en">
       <body className={inter.className}>
 
         <div className='flex flex-col items-center bg-grayScreen w-screen max-w-[400px] min-h-screen m-auto'>
-          <div className='sticky top-0 w-full'>
+          <div className='sticky top-0 w-full max-w-[400px]'>
             <Header/>
           </div>
-          <main className='pb-[60px] w-screen max-w-[400px] min-h-screen m-auto'>
+          <main className='pb-[60px] w-screen max-w-[400px] min-h-screen m-auto py-[60px]'>
             {children}
           </main>
           <div className='sticky bottom-0 w-full'>
