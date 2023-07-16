@@ -1,11 +1,23 @@
-import React from 'react';
+// CounterStore.tsx
+import {create} from "zustand";
 
-const page = () => {
-    return (
-        <div>
-            calendar
-        </div>
-    );
+type State = {
+    isLogin: boolean;
 };
 
-export default page;
+type Actions = {
+    userLogin: () => void;
+    userLogout: () => void;
+};
+
+const initialState: State = {
+    isLogin: false,
+};
+
+const useUserStore = create<State & Actions>((set) => ({
+    ...initialState,
+    userLogin: () => set((state) => ({ isLogin: true })),
+    userLogout: () => set((state) => ({ isLogin: false })),
+}));
+
+export default useUserStore;
