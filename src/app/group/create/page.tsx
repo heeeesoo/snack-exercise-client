@@ -1,5 +1,6 @@
 'use client';
 import {InputBox, SelectBox, SelectInputBox, RadioSelectBox} from "@/components/common/InputBox";
+import { BasicButton } from "@/components/common/Button";
 
 const page = () => {
 
@@ -63,7 +64,7 @@ const page = () => {
             <SelectBox type="text" id="color" name="color" title="미션 독촉 알림 시간 간격을 선택해주세요" placeholder="미션 독촉 알림 시간 간격"/>
             <div className="mb-[40px]"></div>
             <InputBox type="text" id="endtime" name="endtime" title="미션 독촉 알림 최대 횟수를 입력해주세요" placeholder="미션 독촉 알림 최대 횟수"/>
-            <button type="submit">Submit</button>
+            <BasicButton type="submit" label="그룹 만들기"/>
         </form>
     );
 };
