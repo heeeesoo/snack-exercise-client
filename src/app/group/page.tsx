@@ -35,7 +35,7 @@ const page = () => {
             <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
                 랜덤으로 운동 미션 받기
             </div>
-            <MissionCard />
+            <MissionCard title="3분 동안 스쿼트" subtitle='미션 수행하기' />
         </div>
     );
 };
