@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
    
-  console.log(useUserStore.getState().isLogin);
+  console.log('layout:',useUserStore.getState().isLogin);
   
 
   return (
