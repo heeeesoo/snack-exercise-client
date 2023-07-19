@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useGetFromStore = <T, F>(
+const GetFromStore = <T, F>(
     store: (callback: (state: T) => unknown) => unknown,
     callback: (state: T) => F
 ) => {
@@ -14,4 +14,4 @@ const useGetFromStore = <T, F>(
     return data
 };
 
-export default useGetFromStore;
+export default GetFromStore;
