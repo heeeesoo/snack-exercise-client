@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
+import useUserStore from '@/store/userStore'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -16,7 +18,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const isLogin = true;
+   
+  console.log('layout:',useUserStore.getState().isLogin);
+  
 
   return (
     <html lang="en">
@@ -30,7 +34,8 @@ export default function RootLayout({
             {children}
           </main>
           <div className='sticky bottom-0 w-full'>
-            {isLogin ? <Footer/> : null}
+            <Footer/>
+            {/* {useUserStore.getState().isLogin ? <Footer/> : null} */}
           </div>
         </div>
       </body>
