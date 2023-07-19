@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import useUserStore from "@/store/UserStore";
-import useGetFromStore from '@/store/ZustandHook'
+import useGetFromStore from "@/store/ZustandHook";
 
 const Footer = () => {
     const pathname = usePathname();
