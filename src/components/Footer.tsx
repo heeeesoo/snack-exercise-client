@@ -4,8 +4,8 @@ import { NavLinks } from "@/constant";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
-import useUserStore from "@/store/userStore";
-import useGetFromStore from '@/store/zustandHook'
+import useUserStore from "@/store/UserStore";
+import useGetFromStore from '@/store/ZustandHook'
 
 const Footer = () => {
     const pathname = usePathname();

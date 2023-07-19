@@ -1,18 +1,18 @@
 'use client'
 import useCounterStore from "@/store/CounterStore";
-import { testStore } from "@/store/testStore";
-import useGetFromStore from "@/store/zustandHook";
+import useTestStore from "@/store/TestStore";
+import useGetFromStore from "@/store/ZustandHook";
 
 const page = () => {
     const {count, increment, decrement} = useCounterStore();
-    const [increasePopulation, decreasePopulation] =  testStore(
+    const [increasePopulation, decreasePopulation] =  useTestStore(
         (state) => [
             state.increasePopulation, 
             state.decreasePopulation
         ]
     );
 
-    const bears = useGetFromStore(testStore, (state): any => state.bears)
+    const bears = useGetFromStore(useTestStore, (state): any => state.bears)
 
     return (
         <div className="flex flex-col">
