@@ -11,7 +11,7 @@ type Actions = {
     removeAllBears: () => void;
 };
 
-export const testStore = create<State & Actions>()(
+const useTestStore = create<State & Actions>()(
     persist(
         (set) => ({
             bears: 0,
@@ -21,3 +21,5 @@ export const testStore = create<State & Actions>()(
         }),
     {name : "global", storage: createJSONStorage(() => sessionStorage)}
 ))
+
+export default useTestStore;
