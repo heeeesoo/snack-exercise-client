@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { Kakao } from '@/constant/icon';
 import Image from 'next/image';
-import useUserStore from '@/store/userStore';
+import useUserStore from '@/store/UserStore';
 
 const KakaoLogin = () => {
     const router = useRouter();
