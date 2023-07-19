@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
 
-const page = () => {
+const Page = () => {
     const router = useRouter();
     const handleClick = () => {
         console.log('!')
@@ -40,4 +40,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
