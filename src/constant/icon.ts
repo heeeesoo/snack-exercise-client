@@ -5,3 +5,9 @@ export const Kakao = "/icons/button/Kakao.svg";
 
 export const People = "/icons/button/People.svg";
 export const Mail = "/icons/button/Mail.svg";
+
+export const Flash = "/icons/button/Flash.svg";
+export const PersonAdd = "/icons/button/PersonAdd.svg";
+
+export const mission = "/imageEx/mission.svg";
+export const mission2 = "/imageEx/mission2.svg";

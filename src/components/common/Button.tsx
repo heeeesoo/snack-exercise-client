@@ -7,6 +7,12 @@ interface ButtonProps {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+interface BasicButtonProps {
+    label: string;
+    type: "button" | "submit" | "reset" | undefined;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 interface BlurTitleButtonProps {
     title: string;
     subtitle: string;
@@ -31,11 +37,23 @@ export function Button({
     onClick
  } : ButtonProps) {
     return (
-        <div className={`${type==='mission' ? 'w-32' : 'w-9xl'} h-10 leading-10 text-center rounded-md bg-cyan-300`}>
+        <div className={`${type==='mission' ? 'w-32' : 'w-9xl'} h-10 leading-10 text-center rounded-md bg-SystemBrand`}>
             <button onClick={onClick}>
                 {label}
             </button> 
         </div>
+    );
+}
+
+export function BasicButton({ 
+    label,
+    type,
+    onClick
+ } : BasicButtonProps) {
+    return (
+        <button type={type} onClick={onClick} className="h-[56px] font-bold leading-10 text-center text-white rounded-[16px] w-9xl bg-SystemBrand">
+            {label}
+        </button> 
     );
 }
 
