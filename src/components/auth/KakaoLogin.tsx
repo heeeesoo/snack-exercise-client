@@ -14,9 +14,8 @@ const KakaoLogin = () => {
 
     const handleClick = () => {
         // router.push(kakaoURL);
-        router.push('/group');
+        router.replace('/');
         userLogin();
-
     }
 
     return (
