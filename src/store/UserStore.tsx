@@ -14,7 +14,7 @@ const initialState: State = {
     isLogin: false,
 };
 
-const useUserStore = create<State & Actions>()(
+const UserStore = create<State & Actions>()(
     persist(
         (set) => ({
             ...initialState,
@@ -25,4 +25,4 @@ const useUserStore = create<State & Actions>()(
     )
 );
 
-export default useUserStore;
+export default UserStore;

@@ -2,11 +2,11 @@
 import { useRouter } from 'next/navigation';
 import { Kakao } from '@/constant/icon';
 import Image from 'next/image';
-import useUserStore from '@/store/UserStore';
+import UserStore from '@/store/UserStore';
 
 const KakaoLogin = () => {
     const router = useRouter();
-    const {isLogin, userLogin, userLogout} = useUserStore();
+    const {isLogin, userLogin, userLogout} = UserStore();
     const REST_API_KEY=process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID;
     const KAKAO_REDIRECT_URL=process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL;
 
@@ -14,9 +14,8 @@ const KakaoLogin = () => {
 
     const handleClick = () => {
         // router.push(kakaoURL);
-        router.push('/group');
+        router.replace('/');
         userLogin();
-
     }
 
     return (
