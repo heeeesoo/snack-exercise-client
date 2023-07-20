@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
    
-  console.log('layout:',useUserStore.getState().isLogin);
+  // console.log('layout:',useUserStore.getState().isLogin);
   
 
   return (
@@ -35,7 +35,6 @@ export default function RootLayout({
           </main>
           <div className='sticky bottom-0 w-full'>
             <Footer/>
-            {/* {useUserStore.getState().isLogin ? <Footer/> : null} */}
           </div>
         </div>
       </body>
