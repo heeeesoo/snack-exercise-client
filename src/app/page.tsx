@@ -9,8 +9,11 @@ import { useEffect } from "react";
 import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
 
+import UserStore from "@/store/UserStore";
+
+
 const Page = () => {
-    const isLogin = false;
+    const {isLogin, userLogin, userLogout} = UserStore();
     const router = useRouter();
     const handleClick = () => {
         console.log('!')
@@ -21,6 +24,7 @@ const Page = () => {
 
     useEffect(()=>{
       if(!isLogin){
+        console.log(isLogin);
         router.replace('/login')
       }
     },[])
