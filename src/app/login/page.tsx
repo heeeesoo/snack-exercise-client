@@ -3,7 +3,7 @@ import MissionCard from '@/components/card/MissionCard';
 import { IconHorizontalButton } from '@/components/common/Button';
 import KakaoLogin from '@/components/auth/KakaoLogin';
 
-export default function Home() {
+export default function Page() {
 
   const handleClick = () => {
     console.log('click');

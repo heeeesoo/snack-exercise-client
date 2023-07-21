@@ -3,7 +3,7 @@ import UserStore from "@/store/UserStore";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
     const {isLogin, userLogin, userLogout} = UserStore();
     const router = useRouter();
 
@@ -20,4 +20,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
