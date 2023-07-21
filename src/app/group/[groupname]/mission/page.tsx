@@ -1,7 +1,7 @@
 'use client'
 
 import YouTube, { YouTubeProps } from "react-youtube";
-const page = () => {
+const Page = () => {
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
         event.target.pauseVideo();
     }
@@ -20,4 +20,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
