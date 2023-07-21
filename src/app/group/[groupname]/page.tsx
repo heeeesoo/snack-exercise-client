@@ -7,7 +7,7 @@ import { IconVerticalButton } from "@/components/common/Button";
 import { Flash } from "@/constant/icon";
 import { PersonAdd } from "@/constant/icon";
 
-const page = ({ params }: { params: { groupname: string } }) => {
+const Page = ({ params }: { params: { groupname: string } }) => {
     // if (typeof window !== "undefined") {
     //     // Client-side-only code
     //     const code = new URL(window.location.href);
@@ -36,4 +36,4 @@ const page = ({ params }: { params: { groupname: string } }) => {
     );
 };
 
-export default page;
+export default Page;
