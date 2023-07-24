@@ -6,11 +6,13 @@ import { useRef } from 'react';
 interface ActionSheetProps {
     open: boolean;
     onClose: () => void;
+    text: string;
 }
 
 const ActionSheet = ({
     open,
     onClose,
+    text
 }:ActionSheetProps) => {
 
     return (
@@ -18,7 +20,7 @@ const ActionSheet = ({
             <Sheet isOpen={open} onClose={onClose} snapPoints={[500, 400, 100, 0]}>
                 <Sheet.Container>
                     <Sheet.Header />
-                    <Sheet.Content>test</Sheet.Content>
+                    <Sheet.Content>{text}</Sheet.Content>
                 </Sheet.Container>
                 <Sheet.Backdrop />
             </Sheet>

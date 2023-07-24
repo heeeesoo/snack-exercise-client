@@ -2,6 +2,7 @@
 
 import Sheet from 'react-modal-sheet';
 import { useState, useRef } from 'react';
+import { RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 interface InputProps {
     type: string;
@@ -21,6 +22,16 @@ interface SelectInputBoxProps {
     placeholder?: string;
 }
 
+interface SelectBoxProps {
+    type: string;
+    id: string;
+    name: string;
+    title: string;
+    subtitle?: string;
+    placeholder?: string;
+    onOpen: () => void;
+    onClose: () => void;
+}
 
 interface RadioSelectBoxProps {
     value: string;
@@ -37,7 +48,7 @@ export function InputBox({
     name, 
     title,
     subtitle,
-    placeholder
+    placeholder,
  } : InputProps) {
     return (
         <div className="flex flex-col w-9xl text-[16px] text-SystemGray2">
@@ -54,17 +65,6 @@ export function InputBox({
             />
         </div>
     );
-}
-
-interface SelectBoxProps {
-    type: string;
-    id: string;
-    name: string;
-    title: string;
-    subtitle?: string;
-    placeholder?: string;
-    onOpen: () => void;
-    onClose: () => void;
 }
 
 export function SelectBox({ 
