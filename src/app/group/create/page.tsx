@@ -3,7 +3,7 @@ import {InputBox, SelectBox, SelectInputBox, RadioSelectBox} from "@/components/
 import { BasicButton } from "@/components/common/Button";
 import { useRouter } from "next/navigation";
 
-const Page = () => {
+const GroupCreate = () => {
     const router = useRouter();
 
     const handlePush = () => {
@@ -75,4 +75,4 @@ const Page = () => {
     );
 };
 
-export default Page;
+export default GroupCreate;
