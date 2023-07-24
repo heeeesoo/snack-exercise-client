@@ -2,9 +2,38 @@
 import {InputBox, SelectBox, SelectInputBox, RadioSelectBox} from "@/components/common/InputBox";
 import { BasicButton } from "@/components/common/Button";
 import { useRouter } from "next/navigation";
+import { useRef, useState, useEffect } from "react";
+import ActionSheet from "@/components/common/ActionSheet";
 
 const GroupCreate = () => {
     const router = useRouter();
+    const testRef = useRef<HTMLInputElement>(null);
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+    const handleOpenModal = () => {
+        setModalOpen(true);
+    };
+    
+      const handleCloseModal = () => {
+        setModalOpen(false);
+    };
+
+    useEffect(() => {
+        const clickOutside = (e: MouseEvent) => {
+          const target = e.target as HTMLElement; 
+          // 모달이 열려 있고 모달의 바깥쪽을 눌렀을 때 창 닫기
+          if (modalOpen && testRef.current && testRef.current.contains(target)) {
+            handleCloseModal();
+          }
+        };
+      
+        document.addEventListener("click", clickOutside);
+      
+        return () => {
+          // Cleanup the event listener
+          document.removeEventListener("click", clickOutside);
+        };
+    }, [modalOpen]);
 
     const handlePush = () => {
         router.push('/group/title');
@@ -39,10 +68,12 @@ const GroupCreate = () => {
     }
 
     return (
+        <div ref={testRef}>
         <form action="/api/form" method="post" className="flex flex-col items-center" onSubmit={handleSubmit}>
             <InputBox type="text" id="groupname" name="groupname" title="그룹명을 입력해주세요" placeholder="그룹명"/>
             <div className="mb-[40px]"></div>
-            <SelectBox type="text" id="color" name="color" title="그룹 색상을 선택해주세요"/>
+            <SelectBox type="text" id="color" name="color" title="그룹 색상을 선택해주세요" onOpen={handleOpenModal} onClose={handleCloseModal}/>
+            <ActionSheet open={modalOpen} onClose={handleCloseModal}/>
             <div className="mb-[40px]"></div>
             <InputBox type="text" id="maxMemberNum" name="maxMemberNum" title="제한 인원수를 입력해주세요" subtitle="제한 6명" placeholder="제한 인원 수"/>
             <div className="mb-[40px]"></div>
@@ -67,11 +98,12 @@ const GroupCreate = () => {
             <RadioSelectBox value="아웃백" name="penalty" checkvalue="아웃백 쏘기"/>
             <RadioSelectBox value="아이스크림" name="penalty" checkvalue="아이스크림 쏘기"/>
             <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
-            <SelectBox type="text" id="color" name="color" title="미션 독촉 알림 시간 간격을 선택해주세요" placeholder="미션 독촉 알림 시간 간격"/>
+            {/* <SelectBox type="text" id="color" name="color" title="미션 독촉 알림 시간 간격을 선택해주세요" placeholder="미션 독촉 알림 시간 간격"/> */}
             <div className="mb-[40px]"></div>
             <InputBox type="text" id="endtime" name="endtime" title="미션 독촉 알림 최대 횟수를 입력해주세요" placeholder="미션 독촉 알림 최대 횟수"/>
             <BasicButton type="submit" label="그룹 만들기" onClick={handlePush}/>
         </form>
+        </div>
     );
 };
 
