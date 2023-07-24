@@ -40,7 +40,7 @@ const Page = () => {
     useEffect(()=>{
       if(!isLogin){
         console.log(isLogin);
-        router.replace('/login')
+        router.replace('/login');
       }
     },[])
 
@@ -51,6 +51,7 @@ const Page = () => {
         const response = await fetch('https://dev.snackexercise.com/api/exgroups/2');
         const json = await response.json();
         setData(json);
+        console.log(data, json);
         }
         fetchData();
     }, []);
