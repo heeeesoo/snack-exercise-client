@@ -6,6 +6,7 @@ interface RadioSelectBoxProps {
   checked: boolean;
   onChange: (value: string) => void;
   isOther?: boolean;
+  error?: string;
 }
 
 const RadioSelectBox: React.FC<RadioSelectBoxProps> = ({

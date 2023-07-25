@@ -1,8 +1,8 @@
 'use client';
-import {SelectBox} from "@/components/common/InputBox";
 import InputBox from "@/components/common/inputBox/InputBox";
 import RadioSelectBox from "@/components/common/inputBox/RadioSelectBox";
 import SelectInputBox from "@/components/common/inputBox/SelectInputBox";
+import SelectBox from "@/components/common/inputBox/SelectBox";
 import { BasicButton } from "@/components/common/Button";
 import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
@@ -19,9 +19,6 @@ interface FormData {
     penalty: string;
     missionIntervalTime: number;
     checkMaxNum: number;
-    lastName: string;
-    email: string;
-
     radioOption: string;
     otherValue?: string;
 }
@@ -41,7 +38,7 @@ const GroupCreate = () => {
         watch
     } = useForm<FormData>(); 
 
-    const radioOptions = [
+    const radioPenaltyOptions = [
         { label: '아웃백 쏘기', value: '아웃백 쏘기' },
         { label: '아이스크림 쏘기', value: '아이스크림 쏘기' },
         { label: '직접 입력', value: 'other', isOther: true },
@@ -146,7 +143,9 @@ const GroupCreate = () => {
                 <InputBox title="그룹명을 입력해주세요" label="name" name="name" register={register} error={errors.name?.message} defaultValue="스낵스낵" placeholder="그룹명"/>
                 <div className="mb-[40px]"></div>
                 <SelectBox type="text" id="color" name="color" title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor} onClose={handleCloseModalColor}/>
-                <ActionSheet open={modalcolorOpen} onClose={handleCloseModalColor} text="color"/>
+                <ActionSheet open={modalcolorOpen} onClose={handleCloseModalColor}>
+                    df
+                </ActionSheet>
                 <div className="mb-[40px]"></div>
                 <InputBox title="제한 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명"/>
                 <div className="mb-[40px]"></div>
@@ -167,7 +166,7 @@ const GroupCreate = () => {
                         평균적으로 가장 오래 걸린 사람이 벌칙을 받습니다.
                     </div>
                 </div>
-                {radioOptions.map((option) => (
+                {radioPenaltyOptions.map((option) => (
                     <div key={option.value}>
                     <Controller
                         name="radioOption"
@@ -189,9 +188,14 @@ const GroupCreate = () => {
                 {showOtherInput && (
                     <SelectInputBox title="" label="name" name="otherValue" register={register} placeholder="Please enter your option"/>
                 )}
+                <div className='text-red-500 text-[12px]'>
+                    {errors.radioOption && <span>X {errors.radioOption?.message}</span>}
+                </div>
                 <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
                 <SelectBox type="text" id="alarm" name="alarm" title="미션 독촉 알림 시간 간격을 선택해주세요" placeholder="미션 독촉 알림 시간 간격" onOpen={handleOpenModalAlarm} onClose={handleCloseModalAlarm}/>
-                <ActionSheet open={modalalarmOpen} onClose={handleCloseModalAlarm} text="alarm"/>
+                <ActionSheet open={modalalarmOpen} onClose={handleCloseModalAlarm}>
+                    alarms
+                </ActionSheet>
                 <div className="mb-[40px]"></div>
                 <InputBox title="미션 독촉 알림 최대 횟수를 입력해주세요" label="checkMaxNum" name="checkMaxNum" register={register} error={errors.checkMaxNum?.message} defaultValue={3} placeholder="미션 독촉 알림 최대 횟수" unit="번"/>
                 <div className="mb-[40px]"></div>
