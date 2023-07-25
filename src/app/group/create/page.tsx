@@ -17,9 +17,9 @@ interface FormData {
     startTime: string;
     endTime: string;
     penalty: string;
-    missionIntervalTime: number;
+    checkIntervalTime: number;
     checkMaxNum: number;
-    radioOption: string;
+    penaltyOption: string;
     otherValue?: string;
     colorOption: string;
     intervalOption: string;
@@ -27,6 +27,7 @@ interface FormData {
 
 const GroupCreate = () => {
     const router = useRouter();
+    const SERVER_URL= process.env.NEXT_PUBLIC_SERVER_URL;
     const wholeRef = useRef<HTMLInputElement>(null);
     const [modalcolorOpen, setModalColorOpen] = useState<boolean>(false);
     const [modalalarmOpen, setModalAlarmOpen] = useState<boolean>(false);
@@ -59,12 +60,24 @@ const GroupCreate = () => {
     const onSubmit = async (data: FormData) => {
         try {
             console.log(data);
-            const apiUrl = 'https://example.com/api/submit-form';
+            const apiUrl = `${SERVER_URL}api/exgroups`;
         
             const formDataToSend = {
-                radioOption: data.radioOption,
-                otherValue: data.otherValue,
+                name: data.name,
+                emozi: 'default',
+                color: data.colorOption,
+                description: 'default',
+                maxMemberNum: data.maxMemberNum,
+                goalRelayNum: data.goalRelayNum,
+                startTime: parseInt(data.startTime)<10 ? `0${data.startTime}:00:00` : `${data.startTime}:00:00`,
+                endTime: parseInt(data.endTime)<10 ? `0${data.startTime}:00:00` : `${data.startTime}:00:00`,
+                penalty: data.penaltyOption === "other" ? data.otherValue : data.penaltyOption,
+                checkIntervalTime: data.intervalOption,
+                checkMaxNum: data.checkMaxNum,
+                existDays: data.existDays
             };
+
+            console.log(formDataToSend)
         
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -88,7 +101,7 @@ const GroupCreate = () => {
     };
 
     const handleRadioPenaltyChange = (value: string) => {
-        setValue('radioOption', value);
+        setValue('penaltyOption', value);
         setShowOtherInput(value === 'other');
     };
 
@@ -211,7 +224,7 @@ const GroupCreate = () => {
                 {radioPenaltyOptions.map((option) => (
                     <div key={option.value}>
                     <Controller
-                        name="radioOption"
+                        name="penaltyOption"
                         control={control}
                         defaultValue="아웃백 쏘기"
                         rules={{ required: 'Please select an option' }}
@@ -231,7 +244,7 @@ const GroupCreate = () => {
                     <SelectInputBox title="" label="name" name="otherValue" register={register} placeholder="Please enter your option"/>
                 )}
                 <div className='text-red-500 text-[12px]'>
-                    {errors.radioOption && <span>X {errors.radioOption?.message}</span>}
+                    {errors.penaltyOption && <span>X {errors.penaltyOption?.message}</span>}
                 </div>
                 <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
                 <SelectBox name="alarm" title="미션 독촉 알림 시간 간격을 선택해주세요" value={watchRadioIntervalOption} onOpen={handleOpenModalAlarm}/>
