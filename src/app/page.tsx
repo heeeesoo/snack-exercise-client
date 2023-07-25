@@ -48,7 +48,7 @@ const Page = () => {
 
     useEffect(() => {
         async function fetchData() {
-        const response = await fetch('https://dev.snackexercise.com/api/exgroups/2');
+        const response = await fetch('https://dev-api.snackexercise.com/api/exgroups/2');
         const json = await response.json();
         setData(json);
         console.log(data, json);

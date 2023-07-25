@@ -21,6 +21,8 @@ interface FormData {
     checkMaxNum: number;
     radioOption: string;
     otherValue?: string;
+    colorOption: string;
+    intervalOption: string;
 }
 
 const GroupCreate = () => {
@@ -44,16 +46,62 @@ const GroupCreate = () => {
         { label: '직접 입력', value: 'other', isOther: true },
     ];
 
-    const onSubmit: SubmitHandler<FormData> = (data) => {
-        console.log(data);
+    const radioColorOptions = [
+        { label: '빨강', value: '빨강' },
+        { label: '파랑', value: '파랑' },
+    ];
+
+    const radioIntervalOptions = [
+        { label: '5분', value: '5분' },
+        { label: '10분', value: '10분' },
+    ];
+
+    const onSubmit = async (data: FormData) => {
+        try {
+            console.log(data);
+            const apiUrl = 'https://example.com/api/submit-form';
+        
+            const formDataToSend = {
+                radioOption: data.radioOption,
+                otherValue: data.otherValue,
+            };
+        
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formDataToSend),
+            });
+        
+            if (!response.ok) {
+                throw new Error('Failed to submit form data');
+            }
+        
+            const responseData = await response.json();
+            console.log('Server response:', responseData);
+            alert('Form data submitted successfully!');
+            } catch (error) {
+            console.error('Error while submitting form data:', error);
+            alert('Failed to submit form data. Please try again.');
+        }
     };
 
-    const handleRadioChange = (value: string) => {
+    const handleRadioPenaltyChange = (value: string) => {
         setValue('radioOption', value);
         setShowOtherInput(value === 'other');
     };
 
-    const watchRadioOption = watch('radioOption');
+    const handleRadioColorChange = (value: string) => {
+        setValue('colorOption', value);
+    };
+
+    const handleRadioIntervalChange = (value: string) => {
+        setValue('intervalOption', value);
+    };
+
+    const watchRadioColorOption = watch('colorOption');
+    const watchRadioIntervalOption = watch('intervalOption');
 
     const handleOpenModalColor = () => {
         setModalColorOpen(true);
@@ -70,6 +118,11 @@ const GroupCreate = () => {
     const handleCloseModalAlarm = () => {
         setModalAlarmOpen(false);
     };
+
+    useEffect(() => {
+        setValue('colorOption', '빨강');
+        setValue('intervalOption', '10분');
+    }, [setValue])
 
     useEffect(() => {
         const clickOutside = (e: MouseEvent) => {
@@ -109,53 +162,42 @@ const GroupCreate = () => {
         router.push('/group/title');
     }
 
-    const handleSubmitTest = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-     
-        const data = {
-            groupname: event.currentTarget.groupname.value,
-            penalty: event.currentTarget.penalty.value ? event.currentTarget.penalty.value : event.currentTarget.penaltyOther.value
-        }
-        
-        console.log(data);
-        
-        // const JSONdata = JSON.stringify(data)
-     
-        // const endpoint = '/api/form'
-     
-        // const options = {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSONdata,
-        // }
-     
-        // const response = await fetch(endpoint, options)
-     
-        // const result = await response.json()
-        // alert(`Is this your full name: ${result.data}`)
-    }
-
     return (
         <div ref={wholeRef}>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center">
                 <InputBox title="그룹명을 입력해주세요" label="name" name="name" register={register} error={errors.name?.message} defaultValue="스낵스낵" placeholder="그룹명"/>
                 <div className="mb-[40px]"></div>
-                <SelectBox type="text" id="color" name="color" title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor} onClose={handleCloseModalColor}/>
+                <SelectBox name="color" value={watchRadioColorOption} title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor}/>
                 <ActionSheet open={modalcolorOpen} onClose={handleCloseModalColor}>
-                    df
+                    {radioColorOptions.map((option) => (
+                        <div key={option.value}>
+                        <Controller
+                            name="colorOption"
+                            control={control}
+                            defaultValue="빨강"
+                            rules={{ required: 'Please select an option' }}
+                            render={({ field }) => (
+                            <RadioSelectBox
+                                label={option.label}
+                                value={option.value}
+                                checked={field.value === option.value}
+                                onChange={(value) => handleRadioColorChange(value)}
+                            />
+                            )}
+                        />
+                        </div>
+                    ))}
                 </ActionSheet>
                 <div className="mb-[40px]"></div>
-                <InputBox title="제한 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명"/>
+                <InputBox title="제한 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명" type="number"/>
                 <div className="mb-[40px]"></div>
-                <InputBox title="목표 릴레이 기간은 입력해주세요" placeholder="목표 릴레이 기간" label="existDays" name="existDays" register={register} error={errors.existDays?.message} defaultValue={14} unit="일"/>
+                <InputBox title="목표 릴레이 기간은 입력해주세요" placeholder="목표 릴레이 기간" label="existDays" name="existDays" register={register} error={errors.existDays?.message} defaultValue={14} unit="일" type="number"/>
                 <div className="mb-[40px]"></div>
-                <InputBox  title="목표 릴레이 횟수를 입력해주세요" placeholder="목표 릴레이 횟수" label="goalRelayNum" name="goalRelayNum" register={register} error={errors.goalRelayNum?.message} defaultValue={14} unit="회"/>
+                <InputBox  title="목표 릴레이 횟수를 입력해주세요" placeholder="목표 릴레이 횟수" label="goalRelayNum" name="goalRelayNum" register={register} error={errors.goalRelayNum?.message} defaultValue={14} unit="회" type="number"/>
                 <div className="mb-[40px]"></div>
-                <InputBox  title="시작 시간을 입력해주세요" placeholder="시작 시간" label="startTime" name="startTime" register={register} error={errors.startTime?.message} defaultValue={9} unit="시" />
+                <InputBox  title="시작 시간을 입력해주세요" placeholder="시작 시간" label="startTime" name="startTime" register={register} error={errors.startTime?.message} defaultValue={9} unit="시" type="number" min={0} max={24} />
                 <div className="mb-[40px]"></div>
-                <InputBox  title="끝 시간을 입력해주세요" placeholder="끝 시간" label="endTime" name="endTime" register={register} error={errors.endTime?.message} defaultValue={23} unit="시"  />
+                <InputBox  title="끝 시간을 입력해주세요" placeholder="끝 시간" label="endTime" name="endTime" register={register} error={errors.endTime?.message} defaultValue={23} unit="시"  type="number" min={0} max={24} />
                 <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
                 <div className="flex flex-col w-4/5">
                     <div className="text-left text-SystemGray2 text-[16px]">
@@ -171,14 +213,14 @@ const GroupCreate = () => {
                     <Controller
                         name="radioOption"
                         control={control}
-                        defaultValue=""
+                        defaultValue="아웃백 쏘기"
                         rules={{ required: 'Please select an option' }}
                         render={({ field }) => (
                         <RadioSelectBox
                             label={option.label}
                             value={option.value}
                             checked={field.value === option.value}
-                            onChange={(value) => handleRadioChange(value)}
+                            onChange={(value) => handleRadioPenaltyChange(value)}
                             isOther={option.isOther}
                         />
                         )}
@@ -192,9 +234,26 @@ const GroupCreate = () => {
                     {errors.radioOption && <span>X {errors.radioOption?.message}</span>}
                 </div>
                 <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
-                <SelectBox type="text" id="alarm" name="alarm" title="미션 독촉 알림 시간 간격을 선택해주세요" placeholder="미션 독촉 알림 시간 간격" onOpen={handleOpenModalAlarm} onClose={handleCloseModalAlarm}/>
+                <SelectBox name="alarm" title="미션 독촉 알림 시간 간격을 선택해주세요" value={watchRadioIntervalOption} onOpen={handleOpenModalAlarm}/>
                 <ActionSheet open={modalalarmOpen} onClose={handleCloseModalAlarm}>
-                    alarms
+                    {radioIntervalOptions.map((option) => (
+                        <div key={option.value}>
+                        <Controller
+                            name="intervalOption"
+                            control={control}
+                            defaultValue="10분"
+                            rules={{ required: 'Please select an option' }}
+                            render={({ field }) => (
+                            <RadioSelectBox
+                                label={option.label}
+                                value={option.value}
+                                checked={field.value === option.value}
+                                onChange={(value) => handleRadioIntervalChange(value)}
+                            />
+                            )}
+                        />
+                        </div>
+                    ))}
                 </ActionSheet>
                 <div className="mb-[40px]"></div>
                 <InputBox title="미션 독촉 알림 최대 횟수를 입력해주세요" label="checkMaxNum" name="checkMaxNum" register={register} error={errors.checkMaxNum?.message} defaultValue={3} placeholder="미션 독촉 알림 최대 횟수" unit="번"/>
