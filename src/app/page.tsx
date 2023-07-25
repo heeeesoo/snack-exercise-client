@@ -4,16 +4,31 @@ import MissionCard from "@/components/card/MissionCard";
 import { IconVerticalButton } from "@/components/common/Button";
 import GuideSwiper from "@/components/card/GuideSwiper";
 import { useRouter } from 'next/navigation';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
 
 import UserStore from "@/store/UserStore";
 
+async function getData() {
+    const res = await fetch('https://api.example.com/...')
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
+   
+    // Recommendation: handle errors
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data')
+    }
+   
+    return res.json()
+}
+
 
 const Page = () => {
     const {isLogin, userLogin, userLogout} = UserStore();
+    
     const router = useRouter();
     const handleClick = () => {
         console.log('!')
@@ -25,9 +40,25 @@ const Page = () => {
     useEffect(()=>{
       if(!isLogin){
         console.log(isLogin);
-        router.replace('/login')
+        router.replace('/login');
       }
     },[])
+
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        async function fetchData() {
+        const response = await fetch('https://dev-api.snackexercise.com/api/exgroups/2');
+        const json = await response.json();
+        setData(json);
+        console.log(data, json);
+        }
+        fetchData();
+    }, []);
+
+    if (!data) {
+        return <div>Loading data...</div>;
+    }
     
     return (
         <div className="flex flex-col items-center">
