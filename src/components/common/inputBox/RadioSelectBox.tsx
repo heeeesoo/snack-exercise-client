@@ -1,37 +1,35 @@
-'use client';
-
-import { RegisterOptions, UseFormRegister } from 'react-hook-form';
+import React, { useState, ChangeEvent } from 'react';
 
 interface RadioSelectBoxProps {
-    value: string;
-    name: string;
-    register: UseFormRegister<any>; // 또는 UseFormRegister<FormData> 등 필요한 타입으로 지정
-    error?: string;
-    defaultChecked?: boolean;
-    disabled?: boolean;
-    checkvalue: string;
+  label: string;
+  value: string;
+  checked: boolean;
+  onChange: (value: string) => void;
+  isOther?: boolean;
 }
 
-export default function RadioSelectBox({ 
-    value,
-    name,
-    register,
-    error,
-    defaultChecked,
-    disabled,
-    checkvalue
- } : RadioSelectBoxProps) {
-    return (
+const RadioSelectBox: React.FC<RadioSelectBoxProps> = ({
+  label,
+  value,
+  checked,
+  onChange,
+  isOther,
+}) => {
+
+  return (
+    <div className='flex items-center justify-center w-screen' >
         <div className="flex items-center justify-between w-9xl text-[16px] rounded-xl h-[60px] mt-[10px] pl-[14px] bg-white text-SystemGray2">
-            {checkvalue}
+            {label}
             <input
-                className="w-[16px] h-[16px] m-[20px]"
                 type="radio"
-                {...register(name, {
-                })}
-                defaultChecked={defaultChecked}
-                disabled={disabled}
+                value={value}
+                checked={checked}
+                onChange={() => onChange(value)}
+                className="w-[16px] h-[16px] m-[20px]"
             />
         </div>
-    );
-}
+    </div>
+  );
+};
+
+export default RadioSelectBox;
