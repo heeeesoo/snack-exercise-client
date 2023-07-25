@@ -15,7 +15,7 @@ const Footer = () => {
     return (
         <div>
         {
-            pathname === '/login' ?
+            pathname === '/login' || pathname === '/group/create' ?
             null
             :
             <div className="flex items-center h-[60px] w-full px-[10px] bg-white">

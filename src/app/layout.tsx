@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 
 import useUserStore from '@/store/UserStore'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], preload: true })
 
 export const metadata = {
   title: 'Snack Exercise',
