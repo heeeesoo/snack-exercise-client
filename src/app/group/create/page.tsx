@@ -94,6 +94,7 @@ const GroupCreate = () => {
             const responseData = await response.json();
             console.log('Server response:', responseData);
             alert('Form data submitted successfully!');
+            router.push('/group/');
             } catch (error) {
             console.error('Error while submitting form data:', error);
             alert('Failed to submit form data. Please try again.');
@@ -171,9 +172,6 @@ const GroupCreate = () => {
         };
     }, [modalalarmOpen]);
 
-    const handlePush = () => {
-        router.push('/group/title');
-    }
 
     return (
         <div ref={wholeRef}>
