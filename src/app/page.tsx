@@ -44,21 +44,21 @@ const Page = () => {
       }
     },[])
 
-    const [data, setData] = useState(null);
+    // const [data, setData] = useState(null);
 
-    useEffect(() => {
-        async function fetchData() {
-        const response = await fetch('https://dev-api.snackexercise.com/api/exgroups/2');
-        const json = await response.json();
-        setData(json);
-        console.log(data, json);
-        }
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     async function fetchData() {
+    //     const response = await fetch('https://dev-api.snackexercise.com/api/exgroups/2');
+    //     const json = await response.json();
+    //     setData(json);
+    //     console.log(data, json);
+    //     }
+    //     fetchData();
+    // }, []);
 
-    if (!data) {
-        return <div>Loading data...</div>;
-    }
+    // if (!data) {
+    //     return <div>Loading data...</div>;
+    // }
     
     return (
         <div className="flex flex-col items-center">

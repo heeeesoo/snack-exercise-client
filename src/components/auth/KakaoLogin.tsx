@@ -10,12 +10,14 @@ const KakaoLogin = () => {
     const REST_API_KEY=process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID;
     const KAKAO_REDIRECT_URL=process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL;
 
-    const kakaoURL=`https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
+    const kakaoURLAuthCode=`https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
+    const kakaoURL=`https://dev-api.snackexercise.com/login/oauth2/code/`;
+    const kakaoURL2=`http://dev-api.snackexercise.com/oauth2/authorization/kakao`;
 
     const handleClick = () => {
-        // router.push(kakaoURL);
-        router.replace('/');
-        userLogin();
+        // router.replace('/');
+        router.replace(kakaoURL2);
+        // userLogin();
     }
 
     return (
