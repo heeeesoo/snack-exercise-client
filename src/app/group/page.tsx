@@ -7,11 +7,11 @@ import { useState, useEffect } from "react";
 import { use } from "react";
 import GroupStore from "@/store/GroupStore";
 
-const getPosts = async (): Promise<any> => {
-    const groups = await getAllGroups();
+// const getPosts = async (): Promise<any> => {
+//     const groups = await getAllGroups();
   
-    return groups;
-};
+//     return groups;
+// };
 
 // function 이름 -> getGroups() 접근자 신경써서 붙이기
 export default function Group() {
@@ -21,36 +21,35 @@ export default function Group() {
 
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const groups = await getAllGroups();
-                setData(groups);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const groups = await getAllGroups();
+    //             setData(groups);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+    //     fetchData();
+    // }, []);
 
     const handleIdChange = (newId : number) => {
         setId(newId);
     };
 
+    
 
     return (
         <div className="flex flex-col items-center">
-            <div className="flex flex-row overflow-x-scroll">
-            {arrGroup.map((group : any) => {
-                return (
-                    <div key={group.id} className="text-white bg-[#212131] mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center">
-                        <p>
+            <section className="flex h-[36px]">
+                {arrGroup.map((group : any) => {
+                    return (
+                        <div key={group.id} className="text-white bg-[#212131] mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center">
                             <button onClick={() => handleIdChange(group.id)}>{group.name}</button>
-                        </p>
-                    </div>
-                )
-            })}
-            </div>
+                        </div>
+                    )
+                })}
+            </section>
             <GroupBox groupId={id}/>
         </div>
     );
