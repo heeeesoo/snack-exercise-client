@@ -27,7 +27,7 @@ async function getData() {
 
 
 const Page = () => {
-    const {isLogin, userLogin, userLogout} = UserStore();
+    const {isLoggedIn, login, logout} = UserStore();
     
     const router = useRouter();
     const handleClick = () => {
@@ -38,10 +38,10 @@ const Page = () => {
     }
 
     useEffect(()=>{
-      if(!isLogin){
-        console.log(isLogin);
+      if(!isLoggedIn){
+        console.log(isLoggedIn);
         router.replace('/login');
-      }
+    }
     },[])
 
     // const [data, setData] = useState(null);

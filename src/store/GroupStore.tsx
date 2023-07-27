@@ -19,6 +19,7 @@ const initialState: State = {
   arrGroup: []
 };
 
+// 그룹 name, id 저장
 const GroupStore = create<State & Actions>()(
   persist(
     (set) => ({
