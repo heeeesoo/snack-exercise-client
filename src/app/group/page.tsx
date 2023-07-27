@@ -6,6 +6,7 @@ import GroupBox from "@/components/group/GroupBox";
 import { useState, useEffect } from "react";
 import { use } from "react";
 import GroupStore from "@/store/GroupStore";
+import GroupNav from "@/components/group/GroupNav";
 
 // const getPosts = async (): Promise<any> => {
 //     const groups = await getAllGroups();
@@ -41,7 +42,7 @@ export default function Group() {
 
     return (
         <div className="flex flex-col items-center">
-            <section className="flex h-[36px]">
+            {/* <section className="flex h-[36px]">
                 {arrGroup.map((group : any) => {
                     return (
                         <div key={group.id} className="text-white bg-[#212131] mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center">
@@ -49,7 +50,8 @@ export default function Group() {
                         </div>
                     )
                 })}
-            </section>
+            </section> */}
+            <GroupNav />
             <GroupBox groupId={id}/>
         </div>
     );
