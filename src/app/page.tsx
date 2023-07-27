@@ -41,7 +41,7 @@ const Page = () => {
       if(!isLoggedIn){
         console.log(isLoggedIn);
         router.replace('/login');
-    }
+        }
     },[])
 
     // const [data, setData] = useState(null);

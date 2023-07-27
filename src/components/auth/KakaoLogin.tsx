@@ -26,7 +26,7 @@ const KakaoLogin = () => {
         login();
 
         // 사용자가 참여하고 있는 group id, name 받아옴
-        const newArray = [{id: 2, name: '운동하자'}, {id: 3, name: '짧고 굵게'}]
+        const newArray = [{id: 2, name: '운동하자'}, {id: 3, name: '짧고 굵게'},{id: 4, name: '운동하자'}, {id: 5, name: '짧고 굵게'},{id: 6, name: '운동하자'}, {id: 7, name: '짧고 굵게'}]
         setGroup(newArray);
     }
 

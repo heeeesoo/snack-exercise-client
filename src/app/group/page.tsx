@@ -39,17 +39,18 @@ export default function Group() {
 
 
     return (
-        <div>
-            Group
+        <div className="flex flex-col items-center">
+            <div className="flex flex-row overflow-x-scroll">
             {arrGroup.map((group : any) => {
                 return (
-                    <div key={group.id}>
+                    <div key={group.id} className="text-white bg-[#212131] mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center">
                         <p>
                             <button onClick={() => handleIdChange(group.id)}>{group.name}</button>
                         </p>
                     </div>
                 )
             })}
+            </div>
             <GroupBox groupId={id}/>
         </div>
     );
