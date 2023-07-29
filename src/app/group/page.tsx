@@ -21,6 +21,13 @@ export default function Group() {
     const [id, setId] = useState(1);
 
     const [data, setData] = useState([]);
+    const [mounted, setMounted] = useState<boolean>(false);
+
+    // html 매칭 문제 해결
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
 
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -41,18 +48,28 @@ export default function Group() {
     
 
     return (
+        mounted &&
         <div className="flex flex-col items-center">
-            {/* <section className="flex h-[36px]">
-                {arrGroup.map((group : any) => {
-                    return (
-                        <div key={group.id} className="text-white bg-[#212131] mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center">
-                            <button onClick={() => handleIdChange(group.id)}>{group.name}</button>
-                        </div>
-                    )
-                })}
-            </section> */}
-            <GroupNav />
-            <GroupBox groupId={id}/>
+            
+            {/* <GroupNav handleIdChange={handleIdChange}/> */}
+            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto">
+                <section className="flex flex-row h-[36px]">
+                    {arrGroup.map((group : any) => {
+                        return (
+                            <div key={group.id} className="text-white bg-[#212131] mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center">
+                                <button onClick={() => handleIdChange(group.id)}>{group.name}</button>
+                            </div>
+                        )
+                    })}
+                </section>
+            </div>
+            <div>
+                <div className="overflow-visible">
+
+                    <GroupBox groupId={id}/>
+                </div>
+
+            </div>
         </div>
     );
 };
