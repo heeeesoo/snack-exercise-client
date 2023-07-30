@@ -11,10 +11,12 @@ import { useState, useEffect } from 'react'
 
 interface GroupBoxProps {
     groupId : number;
+    groupName: string;
 }
 
 export default function GroupBox({
-    groupId
+    groupId,
+    groupName
 } : GroupBoxProps) {
     const router = useRouter();
 
@@ -71,7 +73,8 @@ export default function GroupBox({
         <div className="flex flex-col w-screen max-w-[400px]">
             <div className="flex items-center mx-m_5 pt-[32px] pb-[16px] justify-between">
                 <div className="font-bold text-[20px]">
-                   {data.result.data.name}
+                   {/* {data.result.data.name} */}
+                   {groupName}
                 </div>
                 <button className="text-SystemGray4 text-[14px]"> 멤버 상세정보 ＞</button>
             </div>

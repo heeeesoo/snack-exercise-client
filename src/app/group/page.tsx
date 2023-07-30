@@ -19,6 +19,7 @@ export default function Group() {
     // const groups = use(getPosts());
     const {arrGroup, setGroup, removeGroup} = GroupStore();
     const [gruopId, setGroupId] = useState<number>(1);
+    const [gruopName, setGroupName] = useState<string>('');
     const [mounted, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
@@ -26,11 +27,13 @@ export default function Group() {
         console.log('hey')
         setMounted(true);
         setGroupId(arrGroup[0]?.id);
+        setGroupName(arrGroup[0]?.name)
     }, []);
 
 
-    const handleIdChange = (newId : number) => {
+    const handleIdChange = (newId : number, newName: string) => {
         setGroupId(newId);
+        setGroupName(newName);
     };
 
     
@@ -39,19 +42,19 @@ export default function Group() {
         mounted &&
         <div className="flex flex-col items-center">
             {/* <GroupNav handleIdChange={handleIdChange}/> */}
-            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto ml-[10%] no-scrollbar">
-                <section className="flex flex-row h-[36px]">
+            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
+                <section className="flex flex-row h-[36px] ml-[5%]">
                     {arrGroup.map((group : any) => {
                         return (
                             <div key={group.id} className={`${group.id === gruopId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center`}>
-                                <button onClick={() => handleIdChange(group.id)}>{group.name}</button>
+                                <button onClick={() => handleIdChange(group.id ,group.name)}>{group.name}</button>
                             </div>
                         )
                     })}
                 </section>
             </div>
             <div>
-                <GroupBox groupId={gruopId}/>
+                <GroupBox groupId={gruopId} groupName={gruopName}/>
             </div>
         </div>
     );
