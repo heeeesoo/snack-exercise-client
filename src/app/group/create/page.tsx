@@ -60,7 +60,8 @@ const GroupCreate = () => {
     const onSubmit = async (data: FormData) => {
         try {
             console.log(data);
-            const apiUrl = `${SERVER_URL}api/exgroups`;
+            // const apiUrl = `${SERVER_URL}api/exgroups`;
+            const apiUrl = `https://dev-api.snackexercise.com/api/exgroups`;
         
             const formDataToSend = {
                 name: data.name,
@@ -77,6 +78,21 @@ const GroupCreate = () => {
                 existDays: data.existDays
             };
 
+            const testData = {
+                name: "string",
+                emozi: "string",
+                color: "string",
+                description: "string",
+                maxMemberNum: 0,
+                goalRelayNum: 0,
+                startTime: "04:48:02",
+                endTime: "04:48:02",
+                penalty: "string",
+                missionIntervalTime: 0,
+                checkIntervalTime: 0,
+                checkMaxNum: 0
+            }
+
             console.log(formDataToSend)
         
             const response = await fetch(apiUrl, {
@@ -84,7 +100,7 @@ const GroupCreate = () => {
                 headers: {
                 'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formDataToSend),
+                body: JSON.stringify(testData),
             });
         
             if (!response.ok) {

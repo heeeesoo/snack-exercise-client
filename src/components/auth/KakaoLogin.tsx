@@ -3,19 +3,31 @@ import { useRouter } from 'next/navigation';
 import { Kakao } from '@/constant/icon';
 import Image from 'next/image';
 import UserStore from '@/store/UserStore';
+import GroupStore from '@/store/GroupStore';
 
 const KakaoLogin = () => {
     const router = useRouter();
-    const {isLogin, userLogin, userLogout} = UserStore();
+    const {isLoggedIn, login, logout} = UserStore();
+    const {arrGroup, setGroup, removeGroup} = GroupStore();
     const REST_API_KEY=process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID;
     const KAKAO_REDIRECT_URL=process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL;
 
-    const kakaoURL=`https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
+    const kakaoURLAuthCode=`https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
+    const kakaoURL=`https://dev-api.snackexercise.com/login/oauth2/code/`;
+    const kakaoURL2=`http://dev-api.snackexercise.com/oauth2/authorization/kakao`;
 
     const handleClick = () => {
-        // router.push(kakaoURL);
         router.replace('/');
-        userLogin();
+
+        // 서버 자체 토큰 받아오는 redirect url
+        // router.replace(kakaoURL2);
+
+        // 로그인 성공하면 user login 상태 true로 변경
+        login();
+
+        // 사용자가 참여하고 있는 group id, name 받아옴
+        const newArray = [{id: 2, name: '운동하자'}, {id: 3, name: '스낵 운동'},{id: 4, name: '오하이'}, {id: 5, name: '화이팅'},{id: 6, name: '운동운동'}, {id: 7, name: '스낵팟'}]
+        setGroup(newArray);
     }
 
     return (
