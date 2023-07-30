@@ -11,3 +11,5 @@ export const PersonAdd = "/icons/button/PersonAdd.svg";
 
 export const mission = "/imageEx/mission.svg";
 export const mission2 = "/imageEx/mission2.svg";
+
+export const nextIcon = "/icons/button/Next.svg";

@@ -82,6 +82,7 @@ export default function GroupBox({
                 <GroupCard groupId={groupId} />
             </div>
             {/* <GroupMissionCard groupId={groupId}/> */}
+            <div className="pb-[40px]"></div>
             <div className="flex items-center justify-center w-screen max-w-[400px]">
                 <div className="flex justify-between w-9xl">
                     <IconVerticalButton title="멤버 초대하기" onClick={handleGruopClick} imglink={People}/>
