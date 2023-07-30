@@ -4,18 +4,18 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-    const {isLogin, userLogin, userLogout} = UserStore();
+    const {isLoggedIn, login, logout} = UserStore();
     const router = useRouter();
 
     useEffect(()=>{
-        if(!isLogin){
-            router.replace('/')
+        if(!isLoggedIn){
+            router.replace('/login')
         }
-    },[isLogin])
+    },[isLoggedIn])
 
     return (
         <div>
-            <button onClick={userLogout}>로그아웃</button>
+            <button onClick={logout}>로그아웃</button>
         </div>
     );
 };

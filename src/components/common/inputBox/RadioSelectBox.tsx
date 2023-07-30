@@ -18,7 +18,7 @@ const RadioSelectBox: React.FC<RadioSelectBoxProps> = ({
 }) => {
 
   return (
-    <div className='flex items-center justify-center w-screen' >
+    <div className='flex items-center justify-center w-screen max-w-[400px]' >
         <div className="flex items-center justify-between w-9xl text-[16px] rounded-xl h-[60px] mt-[10px] pl-[14px] bg-white text-SystemGray2">
             {label}
             <input
