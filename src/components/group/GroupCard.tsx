@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image';
-import nextButton from 'next/types';
 import { nextIcon } from '@/constant/icon';
 
 interface GroupCardProps {

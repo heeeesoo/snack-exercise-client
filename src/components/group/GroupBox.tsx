@@ -1,6 +1,7 @@
 'use client';
 import GroupMissionCard from "./GroupMissionCard";
 import GroupCard from "./GroupCard";
+import GroupMemRanking from "./GroupMemRanking";
 import getGroup from "@/utils/getGroup";
 import { use } from "react";
 import { useRouter } from 'next/navigation';
@@ -88,6 +89,10 @@ export default function GroupBox({
                     <IconVerticalButton title="멤버 초대하기" onClick={handleGruopClick} imglink={People}/>
                     <IconVerticalButton title="독촉하기" onClick={handleClick} imglink={Mail}/>
                 </div>
+            </div>
+            <div className="pb-[40px]" />
+            <div className="mx-m_5">
+                <GroupMemRanking groupId={groupId} />
             </div>
         </div>
     )
