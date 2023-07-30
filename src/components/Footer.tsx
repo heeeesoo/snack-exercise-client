@@ -9,8 +9,8 @@ import useGetFromStore from "@/store/ZustandHook";
 
 const Footer = () => {
     const pathname = usePathname();
-    const {isLogin, userLogin, userLogout} = UserStore();
-    const login = useGetFromStore(UserStore, (state) => state.isLogin);
+    const {isLoggedIn, login, logout} = UserStore();
+    const loginStore = useGetFromStore(UserStore, (state) => state.isLoggedIn);
 
     return (
         <div>
