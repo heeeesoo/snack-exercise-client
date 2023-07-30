@@ -39,7 +39,8 @@ module.exports = {
         'exercise-example': "url('/imageEx/mission.svg')",
       },
       spacing: {
-        '9xl': '85%',
+        '9xl': '90%',
+        'm_5': '5%'
       },
     },
   },

@@ -18,32 +18,19 @@ import GroupNav from "@/components/group/GroupNav";
 export default function Group() {
     // const groups = use(getPosts());
     const {arrGroup, setGroup, removeGroup} = GroupStore();
-    const [id, setId] = useState(1);
-
-    const [data, setData] = useState([]);
+    const [gruopId, setGroupId] = useState<number>(1);
     const [mounted, setMounted] = useState<boolean>(false);
 
-    // html 매칭 문제 해결
     useEffect(() => {
+        // html 매칭 문제 해결
+        console.log('hey')
         setMounted(true);
-        setId(arrGroup[0]?.id);
+        setGroupId(arrGroup[0]?.id);
     }, []);
 
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const groups = await getAllGroups();
-    //             setData(groups);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
-
     const handleIdChange = (newId : number) => {
-        setId(newId);
+        setGroupId(newId);
     };
 
     
@@ -51,13 +38,12 @@ export default function Group() {
     return (
         mounted &&
         <div className="flex flex-col items-center">
-            
             {/* <GroupNav handleIdChange={handleIdChange}/> */}
-            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto ml-[20px] no-scrollbar">
+            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto ml-[10%] no-scrollbar">
                 <section className="flex flex-row h-[36px]">
                     {arrGroup.map((group : any) => {
                         return (
-                            <div key={group.id} className={`${group.id === id ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center`}>
+                            <div key={group.id} className={`${group.id === gruopId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center`}>
                                 <button onClick={() => handleIdChange(group.id)}>{group.name}</button>
                             </div>
                         )
@@ -65,11 +51,7 @@ export default function Group() {
                 </section>
             </div>
             <div>
-                <div className="overflow-visible">
-
-                    <GroupBox groupId={id}/>
-                </div>
-
+                <GroupBox groupId={gruopId}/>
             </div>
         </div>
     );
