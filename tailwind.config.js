@@ -16,6 +16,7 @@ module.exports = {
         grayScreen: '#FAFAFF',
         SystemBrand: '#3A81F7',
         SystemSecondaryBrand: '#EBF2FE',
+        SystemGray9: '#BBBBCB',
         SystemGray7: '#FAFAFF',
         SystemGray6: '#F5F5FF',
         SystemGray5: '#DDDDED',
@@ -23,6 +24,7 @@ module.exports = {
         SystemGray3: '#9999A9',
         SystemGray2: '#666676',
         SystemGray1: '#212131',
+        SystemDarkBlue: '#212131',
         SystemPurple: '#3A42F7',
         SystemLightPurple: '#EBECFE',
         SystemRed: '#F73A3A',
@@ -37,7 +39,8 @@ module.exports = {
         'exercise-example': "url('/imageEx/mission.svg')",
       },
       spacing: {
-        '9xl': '85%',
+        '9xl': '90%',
+        'm_5': '5%'
       },
     },
   },
