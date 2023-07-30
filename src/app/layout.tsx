@@ -9,7 +9,7 @@ import useUserStore from '@/store/UserStore'
 const inter = Inter({ subsets: ['latin'], preload: true })
 
 export const metadata = {
-  title: 'Snack Exercise',
+  title: 'SnackPot',
   description: 'snack exercise app',
 }
 
@@ -24,8 +24,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+          <link
+              rel="manifest"
+              href="/manifest.json"
+          />
+      </head>
       <body className={inter.className}>
-
         <div className='flex flex-col items-center justify-center bg-grayScreen w-screen max-w-[400px] min-h-screen m-auto no-scrollbar'>
           <div className='sticky top-0 w-full max-w-[400px]'>
             <Header/>
