@@ -10,6 +10,7 @@ import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
 
 import UserStore from "@/store/UserStore";
+import { Carousel } from 'flowbite-react';
 
 async function getData() {
     const res = await fetch('https://api.example.com/...')
@@ -62,9 +63,9 @@ const Page = () => {
     
     return (
         <div className="flex flex-col items-center">
-            <div className="text-SystemGray4 text-[14px] font-normal pb-[32px]">
+            {/* <div className="text-SystemGray4 text-[14px] font-normal pb-[32px]">
                 가입된 그룹이 없습니다
-            </div>
+            </div> */}
             <div className="text-[20px] font-bold w-9xl pb-[16px]">
                 그룹 가이드
             </div>

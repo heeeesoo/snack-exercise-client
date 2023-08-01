@@ -30,7 +30,7 @@ export default function InputBox({ title, subtitle, name, label, register, error
                     required: `${label} is required`,
                 })}
                 defaultValue={defaultValue}
-                className="rounded-xl h-[60px] pl-[20px] w-[150px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
+                className="focus:outline-none rounded-xl h-[60px] pl-[20px] w-[300px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
                 placeholder={placeholder}
                 type={type}
                 min={min}

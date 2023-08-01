@@ -12,10 +12,17 @@ const Footer = () => {
     const {isLoggedIn, login, logout} = UserStore();
     const loginStore = useGetFromStore(UserStore, (state) => state.isLoggedIn);
 
+    const pathnames = [
+        '/login',
+        '/group/create',
+        '/signup',
+        '/login/loading'
+    ];
+
     return (
         <div>
         {
-            pathname === '/login' || pathname === '/group/create' ?
+            pathnames.includes(pathname) ?
             null
             :
             <div className="flex items-center h-[60px] w-full px-[10px] bg-white">

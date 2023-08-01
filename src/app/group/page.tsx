@@ -18,8 +18,8 @@ import GroupNav from "@/components/group/GroupNav";
 export default function Group() {
     // const groups = use(getPosts());
     const {arrGroup, setGroup, removeGroup} = GroupStore();
-    const [gruopId, setGroupId] = useState<number>(1);
-    const [gruopName, setGroupName] = useState<string>('');
+    const [ groupId, setGroupId] = useState<number>(1);
+    const [groupName, setGroupName] = useState<string>('');
     const [mounted, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
@@ -46,7 +46,7 @@ export default function Group() {
                 <section className="flex flex-row h-[36px] ml-[5%]">
                     {arrGroup.map((group : any) => {
                         return (
-                            <div key={group.id} className={`${group.id === gruopId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center`}>
+                            <div key={group.id} className={`${group.id === groupId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center`}>
                                 <button onClick={() => handleIdChange(group.id ,group.name)}>{group.name}</button>
                             </div>
                         )
@@ -54,7 +54,7 @@ export default function Group() {
                 </section>
             </div>
             <div>
-                <GroupBox groupId={gruopId} groupName={gruopName}/>
+                <GroupBox groupId={groupId} groupName={groupName}/>
             </div>
         </div>
     );

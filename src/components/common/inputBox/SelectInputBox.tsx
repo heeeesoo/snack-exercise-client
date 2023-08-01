@@ -27,7 +27,7 @@ export default function SelectInputBox({ title, subtitle, name, label, register,
                     required: `${label} is required`,
                 })}
                 defaultValue={defaultValue}
-                className="rounded-xl h-[60px] pl-[20px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
+                className="focus:outline-none rounded-xl h-[60px] pl-[20px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
                 placeholder={placeholder}
             />
             {unit && <span className='flex items-center pr-[20px] text-SystemGray3'>{unit}</span>}

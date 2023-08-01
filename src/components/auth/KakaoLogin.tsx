@@ -17,13 +17,13 @@ const KakaoLogin = () => {
     const kakaoURL2=`http://dev-api.snackexercise.com/oauth2/authorization/kakao`;
 
     const handleClick = () => {
-        router.replace('/');
+        // 로그인 성공하면 user login 상태 true로 변경
+        // login();
+
+        // router.replace('/');
 
         // 서버 자체 토큰 받아오는 redirect url
-        // router.replace(kakaoURL2);
-
-        // 로그인 성공하면 user login 상태 true로 변경
-        login();
+        router.replace(kakaoURL2);
 
         // 사용자가 참여하고 있는 group id, name 받아옴
         const newArray = [{id: 2, name: '운동하자'}, {id: 3, name: '스낵 운동'},{id: 4, name: '오하이'}, {id: 5, name: '화이팅'},{id: 6, name: '운동운동'}, {id: 7, name: '스낵팟'}]
