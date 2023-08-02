@@ -24,8 +24,8 @@ export default function SignUp() {
 
     const onSubmit = async (data: FormData) => {
         try {
-            // const apiUrl = `${SERVER_URL}api/sign-up`;
-            const apiUrl = `https://dev-api.snackexercise.com/api/sign-up`;
+            const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/sign-up`;
+            // const apiUrl = `/api/sign-up`; 
         
             const formDataToSend = {
                 nickname: data.nickname,
@@ -36,11 +36,16 @@ export default function SignUp() {
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
+                    "Accept": "application/json",
+                    // 'Access-Control-Allow-Origin': 'https://dev-api.snackexercise.com'
                 },
                 body: JSON.stringify(formDataToSend),
+                credentials: 'include',
             });
-        
+
+            console.log(response);
+
             if (!response.ok) {
                 throw new Error('Failed to submit form data');
             }
