@@ -16,7 +16,8 @@ const Footer = () => {
         '/login',
         '/group/create',
         '/signup',
-        '/login/loading'
+        '/login/loading',
+        '/code'
     ];
 
     return (

@@ -25,9 +25,10 @@ const MissionCard = ({
     }
 
     return (
-        <div className={`flex flex-col pt-[200px] items-center justify-evenly h-[320px] w-9xl bg-[url("/imageEx/mission2.svg")] bg-cover bg-center rounded-[16px]`}>
-            <BlurTitleButton title={title} subtitle={subtitle} onClick={handleBlurTitleButtonClick}/>
-        </div>
+        // <div className={`flex flex-col pt-[200px] items-center justify-evenly h-[320px] w-9xl bg-[url("/imageEx/mission2.svg")] bg-cover bg-center rounded-[16px]`}>
+        //     <BlurTitleButton title={title} subtitle={subtitle} onClick={handleBlurTitleButtonClick}/>
+        // </div>
+        <BlurTitleButton title={title} subtitle={subtitle} onClick={handleBlurTitleButtonClick}/>
     );
 };
 

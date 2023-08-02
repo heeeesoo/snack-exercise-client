@@ -31,8 +31,8 @@ const Page = () => {
     const {isLoggedIn, login, logout} = UserStore();
     
     const router = useRouter();
-    const handleClick = () => {
-        console.log('!')
+    const handleCodeClick = () => {
+        router.replace('/code');
     }
     const handleGruopClick = () => {
         router.push('/group/create');
@@ -75,7 +75,7 @@ const Page = () => {
             <div className="pb-[40px]"></div>
             <div className="flex justify-between w-9xl">
                 <IconVerticalButton title="그룹 만들기" onClick={handleGruopClick} imglink={People}/>
-                <IconVerticalButton title="초대 코드" onClick={handleClick} imglink={Mail}/>
+                <IconVerticalButton title="초대 코드" onClick={handleCodeClick} imglink={Mail}/>
             </div>
             <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
                 랜덤으로 운동 미션 받기

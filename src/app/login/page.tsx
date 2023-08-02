@@ -12,6 +12,9 @@ export default function Page() {
 
   return (
     <div className='flex flex-col items-center w-full'>
+      <div className="text-[20px] font-bold w-9xl pb-[5px]">
+        랜덤으로 운동 미션 받기
+      </div>
       <MissionCard title= "3분 동안 스쿼트" subtitle='미션 수행하기'/>
       <div className='py-2'></div>
       <IconHorizontalButton title='랜덤 스낵 운동 받기' onClick={handleClick}/>

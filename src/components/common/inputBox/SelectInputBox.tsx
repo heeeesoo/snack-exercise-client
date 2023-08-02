@@ -17,7 +17,7 @@ interface SelectInputBoxProps {
 export default function SelectInputBox({ title, subtitle, name, label, register, error, defaultValue, placeholder, unit } : SelectInputBoxProps){
     return (
       <div className="flex flex-col w-9xl text-[16px] text-SystemGray2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between pb-[3px]">
                 <label htmlFor={name}>{title}</label>
                 <div className="text-SystemBrand text-[12px]">{subtitle}</div>
             </div>
