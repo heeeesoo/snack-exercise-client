@@ -19,16 +19,11 @@ const Test = () => {
               headers: {
                   'Content-Type': 'application/json',
                   "Accept": "application/json",
-
                   'Authorization': token
-                  // 'Access-Control-Allow-Origin': 'https://dev-api.snackexercise.com'
               },
-              // body: JSON.stringify(formDataToSend),
-              // credentials: 'include',
           });
     
     
-            // Parse the response body as text (string)
             if (!response.ok) {
               throw new Error('Failed to submit form data');
             }
@@ -36,15 +31,11 @@ const Test = () => {
             const responseData = await response.json();
             console.log('Server response:', responseData);
     
-            // Update the state with the received string
-            // setStringData(data);
           } catch (error) {
-            // Handle any errors that occurred during the fetch
             console.error('Fetch error:', error);
           }
         };
     
-        // Call the async function to fetch data when the component mounts
         fetchData();
       }, []);
 

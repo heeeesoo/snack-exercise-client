@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
 import ActionSheet from "@/components/common/ActionSheet";
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import TokenStore from "@/store/TokenStore";
 
 interface FormData {
     name: string;
@@ -27,11 +28,11 @@ interface FormData {
 
 const GroupCreate = () => {
     const router = useRouter();
-    const SERVER_URL= process.env.NEXT_PUBLIC_SERVER_URL;
     const wholeRef = useRef<HTMLInputElement>(null);
     const [modalcolorOpen, setModalColorOpen] = useState<boolean>(false);
     const [modalalarmOpen, setModalAlarmOpen] = useState<boolean>(false);
     const [showOtherInput, setShowOtherInput] = useState(false);
+    const {token, setToken, setMemberId} = TokenStore();
     const {
         register,
         handleSubmit,
@@ -60,12 +61,11 @@ const GroupCreate = () => {
     const onSubmit = async (data: FormData) => {
         try {
             console.log(data);
-            // const apiUrl = `${SERVER_URL}api/exgroups`;
-            const apiUrl = `https://dev-api.snackexercise.com/api/exgroups`;
+            const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/groups`;
         
             const formDataToSend = {
                 name: data.name,
-                emozi: 'default',
+                emozi: '😠',
                 color: data.colorOption,
                 description: 'default',
                 maxMemberNum: data.maxMemberNum,
@@ -79,7 +79,7 @@ const GroupCreate = () => {
             };
 
             const testData = {
-                name: "string",
+                name: "스낵스낵",
                 emozi: "string",
                 color: "string",
                 description: "string",
@@ -98,7 +98,8 @@ const GroupCreate = () => {
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': token
                 },
                 body: JSON.stringify(testData),
             });
