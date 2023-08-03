@@ -28,7 +28,7 @@ const TokenStore = create<State & Actions>()(
           set({ memberId: newMemberId });
         },
       }),
-      { name: "global", storage: createJSONStorage(() => sessionStorage) }
+      { name: "user", storage: createJSONStorage(() => sessionStorage) }
     )
 );
 

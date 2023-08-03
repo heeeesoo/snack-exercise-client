@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+ 
 
 export default function NameLogin() {
     const route = useRouter();
@@ -28,7 +29,6 @@ export default function NameLogin() {
                             name: "signup"
                         },
                     }}
-                    as="/signup"
                     className='flex justify-center px-[22px] items-center w-4/5 h-[56px] bg-SystemBrand rounded-[16px]'
                 >
                     <div className='font-semibold text-white'>
