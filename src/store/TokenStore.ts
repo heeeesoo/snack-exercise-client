@@ -9,11 +9,12 @@ type State = {
 type Actions = {
     setToken: (newToken: string) => void; 
     setMemberId: (newMemberId: number) => void;
+    removeTokenMemId: () => void;
 };
 
 const initialState: State = {
     token: '',
-    memberId: 0
+    memberId: -1
 };
   
 // token 저장
@@ -27,6 +28,7 @@ const TokenStore = create<State & Actions>()(
         setMemberId: (newMemberId: number) => {
           set({ memberId: newMemberId });
         },
+        removeTokenMemId: () => set({ token: '' , memberId: -1 })
       }),
       { name: "user", storage: createJSONStorage(() => sessionStorage) }
     )

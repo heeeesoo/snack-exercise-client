@@ -1,10 +1,12 @@
 'use client'
 import UserStore from "@/store/UserStore";
+import TokenStore from "@/store/TokenStore";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
     const {isLoggedIn, login, logout} = UserStore();
+    const {removeTokenMemId} = TokenStore();
     const router = useRouter();
 
     useEffect(()=>{
@@ -13,9 +15,14 @@ const Page = () => {
         }
     },[isLoggedIn])
 
+    const handleClick = () => {
+        logout();
+        removeTokenMemId();
+    }
+
     return (
         <div>
-            <button onClick={logout}>로그아웃</button>
+            <button onClick={handleClick}>로그아웃</button>
         </div>
     );
 };

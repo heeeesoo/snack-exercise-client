@@ -1,25 +1,48 @@
 'use client';
-import GroupMissionCard from "./GroupMissionCard";
 import GroupCard from "./GroupCard";
 import GroupMemRanking from "./GroupMemRanking";
 import getGroup from "@/utils/getGroup";
-import { use } from "react";
 import { useRouter } from 'next/navigation';
 import { IconVerticalButton } from "@/components/common/Button";
 import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
 import { useState, useEffect } from 'react'
+import getDataClient from "@/utils/getDataClient";
+import TokenStore from "@/store/TokenStore";
 
 interface GroupBoxProps {
     groupId : number;
     groupName: string;
+    currentMissionMemberId: null|number;
 }
 
+interface GroupType {
+    id: number; // 그룹 Id
+    name: string; // 그룹명
+    emozi: string; // 그룹이모지
+    color: string; // 그룹 색
+    description: string; // 그룹 설명
+    maxMemberNum: number; // 최대 참여 인원 수
+    goalRelayNum: number; // 목표 릴레이 횟수
+    startTime: string; // 시작 시간
+    endTime: string; // 종료 시간
+    existDays: number; // 목표 릴레이 기간
+    startDate: string | null; // 시작 날짜
+    endDate: string | null; // 종료 날짜
+    penalty: string; // 벌칙
+    code: string; // 초대 코드
+    checkIntervalTime: number; // 독촉 검사 시간 간격
+    checkMaxNum: number; // 하루 독촉 검사 최대 횟수
+}
 export default function GroupBox({
     groupId,
-    groupName
+    groupName,
+    currentMissionMemberId
 } : GroupBoxProps) {
     const router = useRouter();
+    const {memberId} = TokenStore();
+
+    console.log('mission:',memberId, currentMissionMemberId)
 
     const handleClick = () => {
         console.log('!')
@@ -28,69 +51,60 @@ export default function GroupBox({
         router.push('/group/create');
     }
 
-    // data fetch -> swr 바꿔야 함
-    // /api/exgroups/{groupId}
-    // const [data, setData] = useState<any>(null)
-    // const [isLoading, setLoading] = useState(true)
+    const [groupData, setGroupData] = useState<GroupType>()
+    const [isLoading, setLoading] = useState(true)
     
-    // useEffect(() => {
-    //     fetch('https://jsonplaceholder.typicode.com/users')
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         setData(data)
-    //         const fakeData = {
-    //             "success": true,
-    //             "code": 0,
-    //             "result": {
-    //               "data": {
-    //                 "id": 2,
-    //                 "name": "운동하자",
-    //                 "emozi": "",
-    //                 "color": "#101010",
-    //                 "description": "저희 그룹은 2주동안 매일매일 운동하는 것을 목표로합니다.",
-    //                 "maxMemberNum": 6,
-    //                 "goalRelayNum": 14,
-    //                 "startTime": "09:00:00",
-    //                 "endTime": "18:00:00",
-    //                 "existDays": 14,
-    //                 "startDate": null,
-    //                 "endDate": null,
-    //                 "penalty": "꼴등이 1등한테 스벅 깊티 쏘기\n",
-    //                 "code": "105236",
-    //                 "checkIntervalTime": 10,
-    //                 "checkMaxNum": 2
-    //               }
-    //             }
-    //         }
-    //         setData(fakeData)
-    //         setLoading(false)
-    //     })
-    // }, [])
+    useEffect(() => {
+        const fetchMyGroupData = async () => {
+            try {
+                  const result = await getDataClient(`/api/groups/${groupId}`);
+                  console.log(result);
+                  setGroupData(result.result.data)
+              } catch (error) {
+                  console.error('Error in fetchData:', error);
+              }
+        };
+
+        if (groupId !== -1) {
+            fetchMyGroupData();
+            setLoading(false);
+        }
+    }, [groupId])
     
-    // if (isLoading) return <p>Loading...</p>
-    // if (!data) return <p>No profile data</p>
+    if (isLoading) return <p>Loading...</p>
+    if (!groupData) return <p>No profile data</p>
 
     return (
         <div className="flex flex-col w-screen max-w-[400px]">
             <div className="flex items-center mx-m_5 pt-[32px] pb-[16px] justify-between">
                 <div className="font-bold text-[20px]">
-                   {/* {data.result.data.name} */}
-                   {groupName}
+                   {groupData.name}
                 </div>
                 <button className="text-SystemGray4 text-[14px]"> 멤버 상세정보 ＞</button>
             </div>
+
             <div className="mx-m_5">
-                <GroupCard groupId={groupId} />
+                {
+                    memberId === currentMissionMemberId ?
+                    <div>
+                        미션 중
+                    </div>
+                    :
+                    <GroupCard groupId={groupId} />
+                }
             </div>
-            {/* <GroupMissionCard groupId={groupId}/> */}
+
             <div className="pb-[40px]"></div>
+            
             <div className="flex items-center justify-center w-screen max-w-[400px]">
                 <div className="flex justify-between w-9xl">
                     <IconVerticalButton title="멤버 초대하기" onClick={handleGruopClick} imglink={People}/>
                     <IconVerticalButton title="독촉하기" onClick={handleClick} imglink={Mail}/>
                 </div>
             </div>
+
             <div className="pb-[40px]" />
+
             <div className="mx-m_5">
                 <GroupMemRanking groupId={groupId} />
             </div>
