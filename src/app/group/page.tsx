@@ -1,7 +1,7 @@
 'use client'
 import GroupBox from "@/components/group/GroupBox";
 import { useState, useEffect } from "react";
-import getDataClient from "@/utils/getDataClient";
+import {getDataClient} from "@/utils/getDataClient";
 
 interface GroupType {
     groupId: number;
@@ -19,8 +19,9 @@ export default function Group() {
     useEffect(() => {
         const fetchMyGroupListData = async () => {
           try {
-                const result = await getDataClient('/api/groups');
-                setGroupMyList(result.result.data);
+                const result = await getDataClient('/groups');
+                console.log(result);
+                result.result.data && setGroupMyList(result.result.data);
             } catch (error) {
                 console.error('Error in fetchData:', error);
             }
@@ -47,7 +48,7 @@ export default function Group() {
             <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
                 <section className="flex flex-row h-[36px] ml-[5%]">
                     {
-                        groupMyList!.length > 0 ?
+                        groupMyList && groupMyList.length > 0 ?
                         groupMyList?.map((group : GroupType) => {
                             return (
                                 <div key={group.groupId} className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center`}>
@@ -56,15 +57,25 @@ export default function Group() {
                             )
                         })
                         :
-                        <div>
-                            참여하고 있는 그룹이 없습니다.
-                        </div>
+                        null
                     }
                 </section>
             </div>
-            <div>
-                <GroupBox groupId={groupSelectedId} groupName={groupSelectedName} currentMissionMemberId={groupCurMissionId}/>
-            </div>
+            {
+                groupMyList && groupMyList.length > 0 ?   
+                <div>
+                    <GroupBox groupId={groupSelectedId} groupName={groupSelectedName} currentMissionMemberId={groupCurMissionId}/>
+                </div>
+                :
+                <div className="flex h-[50vh] flex-col items-center justify-center">
+                    <div className="text-[100px]">
+                        🥹
+                    </div>
+                    <div className="text-SystemGray2">
+                        참여하고 있는 그룹이 없습니다
+                    </div>
+                </div>
+            }
         </div>
     );
 };

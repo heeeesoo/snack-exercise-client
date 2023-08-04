@@ -68,29 +68,29 @@ const GroupCreate = () => {
                 emozi: '😠',
                 color: data.colorOption,
                 description: 'default',
-                maxMemberNum: data.maxMemberNum,
-                goalRelayNum: data.goalRelayNum,
+                maxMemberNum: parseInt(data.maxMemberNum.toString()),
+                goalRelayNum: parseInt(data.goalRelayNum.toString()),
                 startTime: parseInt(data.startTime)<10 ? `0${data.startTime}:00:00` : `${data.startTime}:00:00`,
-                endTime: parseInt(data.endTime)<10 ? `0${data.startTime}:00:00` : `${data.startTime}:00:00`,
+                endTime: parseInt(data.endTime)<10 ? `0${data.endTime}:00:00` : `${data.endTime}:00:00`,
                 penalty: data.penaltyOption === "other" ? data.otherValue : data.penaltyOption,
-                checkIntervalTime: data.intervalOption,
-                checkMaxNum: data.checkMaxNum,
-                existDays: data.existDays
+                checkIntervalTime: parseInt(data.intervalOption, 10),
+                checkMaxNum: parseInt(data.checkMaxNum.toString()),
+                existDays: parseInt(data.existDays.toString())
             };
 
             const testData = {
-                name: "스낵스낵",
-                emozi: "string",
-                color: "string",
-                description: "string",
-                maxMemberNum: 0,
-                goalRelayNum: 0,
-                startTime: "04:48:02",
-                endTime: "04:48:02",
-                penalty: "string",
-                missionIntervalTime: 0,
-                checkIntervalTime: 0,
-                checkMaxNum: 0
+                "name": "string",
+                "emozi": "string",
+                "color": "string",
+                "description": "string",
+                "maxMemberNum": 0,
+                "goalRelayNum": 0,
+                "startTime": "16:13:54",
+                "endTime": "16:13:54",
+                "penalty": "string",
+                "checkIntervalTime": 0,
+                "checkMaxNum": 0,
+                "existDays": 0
             }
 
             console.log(formDataToSend)

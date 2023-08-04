@@ -1,5 +1,5 @@
 'use client';
-import GroupCard from "./GroupCard";
+import GroupMissionFlowCard from "./GroupMissionFlowCard";
 import GroupMemRanking from "./GroupMemRanking";
 import getGroup from "@/utils/getGroup";
 import { useRouter } from 'next/navigation';
@@ -7,7 +7,7 @@ import { IconVerticalButton } from "@/components/common/Button";
 import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
 import { useState, useEffect } from 'react'
-import getDataClient from "@/utils/getDataClient";
+import {getDataClient} from "@/utils/getDataClient";
 import TokenStore from "@/store/TokenStore";
 
 interface GroupBoxProps {
@@ -34,6 +34,7 @@ interface GroupType {
     checkIntervalTime: number; // 독촉 검사 시간 간격
     checkMaxNum: number; // 하루 독촉 검사 최대 횟수
 }
+
 export default function GroupBox({
     groupId,
     groupName,
@@ -42,13 +43,11 @@ export default function GroupBox({
     const router = useRouter();
     const {memberId} = TokenStore();
 
-    console.log('mission:',memberId, currentMissionMemberId)
-
     const handleClick = () => {
         console.log('!')
     }
     const handleGruopClick = () => {
-        router.push('/group/create');
+        router.replace('/code');
     }
 
     const [groupData, setGroupData] = useState<GroupType>()
@@ -57,7 +56,7 @@ export default function GroupBox({
     useEffect(() => {
         const fetchMyGroupData = async () => {
             try {
-                  const result = await getDataClient(`/api/groups/${groupId}`);
+                  const result = await getDataClient(`/groups/${groupId}`);
                   console.log(result);
                   setGroupData(result.result.data)
               } catch (error) {
@@ -90,7 +89,7 @@ export default function GroupBox({
                         미션 중
                     </div>
                     :
-                    <GroupCard groupId={groupId} />
+                    <GroupMissionFlowCard groupId={groupId} />
                 }
             </div>
 

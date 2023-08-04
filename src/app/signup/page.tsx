@@ -21,7 +21,6 @@ export default function SignUp() {
     const {isLoggedIn, login, logout} = UserStore();
     const {token, setToken, setMemberId} = TokenStore();
     const router = useRouter();
-    const pathname = usePathname()
     const searchParams = useSearchParams()
 
     const onSubmit = async (data: FormData) => {

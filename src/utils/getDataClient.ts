@@ -1,6 +1,6 @@
 import TokenStore from "@/store/TokenStore";
 
-const getDataClient = async (url : string) => {
+export const getDataClient = async (url : string) => {
     const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`;
     try {
         const response = await fetch(apiUrl, {
@@ -19,5 +19,4 @@ const getDataClient = async (url : string) => {
     }
   };
   
-  export default getDataClient;
 

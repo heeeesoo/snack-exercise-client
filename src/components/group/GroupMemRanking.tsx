@@ -1,5 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
+import TokenStore from '@/store/TokenStore';
+import { getDataClient } from '@/utils/getDataClient';
 
 interface GroupMemRankingProps {
   groupId : number;
@@ -8,12 +10,31 @@ interface GroupMemRankingProps {
 export default function GroupMemRanking({
   groupId
 } : GroupMemRankingProps) {
-  const [data, setData] = useState<any>(null)
-  const [isLoading, setLoading] = useState(true)
+  const [data, setData] = useState<any>(null);
+  const [isLoading, setLoading] = useState(true);
+
+  const getFormattedDate = (): string => {
+    const today = new Date();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+  
+    return `${month}월 ${day}일`;
+  };  
 
   // /exgroups/{exgroupId}/missions/rank
   // 당일 미션 랭킹 조회
   useEffect(() => {
+    const fetchMemRanking = async () => {
+      try {
+            const result = await getDataClient(`/groups/${groupId}/missions/rank?filter=today`);
+            console.log(result);
+            // setData(result.result.data)
+        } catch (error) {
+            console.error('Error in fetchData:', error);
+        }
+    };
+    fetchMemRanking();
+    setLoading(false);
     fetch('https://jsonplaceholder.typicode.com/users')
     .then((res) => res.json())
     .then((data) => {
@@ -50,12 +71,12 @@ if (!data) return <p>No profile data</p>
 
   return (
     <div>
-      <div className='flex items-center'>
+      <div className='flex items-center pb-[10px]'>
         <div className='font-bold text-[20px]'>
           개인 랭킹 
         </div>
         <div className='text-SystemGray3 ml-[12px]'>
-          7월 30일
+          {getFormattedDate()}
         </div>
       </div>
       <div>
