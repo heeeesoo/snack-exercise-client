@@ -66,7 +66,8 @@ const GroupCreate = () => {
             const formDataToSend = {
                 name: data.name,
                 emozi: '😠',
-                color: data.colorOption,
+                // color: data.colorOption,
+                color: '#3A81F7',
                 description: 'default',
                 maxMemberNum: parseInt(data.maxMemberNum.toString()),
                 goalRelayNum: parseInt(data.goalRelayNum.toString()),
@@ -110,8 +111,8 @@ const GroupCreate = () => {
         
             const responseData = await response.json();
             console.log('Server response:', responseData);
-            alert('Form data submitted successfully!');
-            router.push('/group/');
+            alert('그룹이 생성되었습니다!');
+            router.replace('/group/');
             } catch (error) {
             console.error('Error while submitting form data:', error);
             alert('Failed to submit form data. Please try again.');
@@ -192,10 +193,10 @@ const GroupCreate = () => {
 
     return (
         <div ref={wholeRef}>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center pt-[15px]">
                 <InputBox title="그룹명을 입력해주세요" label="name" name="name" register={register} error={errors.name?.message} defaultValue="스낵스낵" placeholder="그룹명"/>
-                <div className="mb-[40px]"></div>
-                <SelectBox name="color" value={watchRadioColorOption} title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor}/>
+                {/* <div className="mb-[40px]"></div> */}
+                {/* <SelectBox name="color" value={watchRadioColorOption} title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor}/>
                 <ActionSheet open={modalcolorOpen} onClose={handleCloseModalColor}>
                     {radioColorOptions.map((option) => (
                         <div key={option.value}>
@@ -215,7 +216,7 @@ const GroupCreate = () => {
                         />
                         </div>
                     ))}
-                </ActionSheet>
+                </ActionSheet> */}
                 <div className="mb-[40px]"></div>
                 <InputBox title="제한 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명" type="number"/>
                 <div className="mb-[40px]"></div>

@@ -49,7 +49,7 @@ export default function GroupBox({
         console.log('!')
     }
     const handleGruopClick = () => {
-        router.replace('/code');
+        router.push('/code');
     }
 
     const [groupData, setGroupData] = useState<GroupType>()
@@ -122,11 +122,9 @@ export default function GroupBox({
                     <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest}/>
                     :
                     memberId === currentMissionMemberId ?
-                    <div>
-                        미션 중
-                    </div>
+                    <GroupMissionFlowCard groupId={groupId} missionOrder={true}/>
                     :
-                    <GroupMissionFlowCard groupId={groupId} />
+                    <GroupMissionFlowCard groupId={groupId} missionOrder={false}/>
                 }
             </div>
 

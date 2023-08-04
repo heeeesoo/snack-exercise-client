@@ -20,7 +20,7 @@ export default function Group() {
         const fetchMyGroupListData = async () => {
           try {
                 const result = await getDataClient('/groups');
-                console.log(result);
+                console.log('mygrouplist:',result);
                 result.result.data && setGroupMyList(result.result.data);
             } catch (error) {
                 console.error('Error in fetchData:', error);
@@ -44,7 +44,7 @@ export default function Group() {
     };
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pt-[15px]">
             <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
                 <section className="flex flex-row h-[36px] ml-[5%]">
                     {

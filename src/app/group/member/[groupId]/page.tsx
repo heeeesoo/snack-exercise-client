@@ -25,7 +25,7 @@ export default function GroupMemberInfo({ params }: { params: { groupId: string 
     if (!data) return <p>No profile data</p>
 
     return (
-        <div>
+        <div className="pt-[15px]">
             {
                 data && data.length > 0 ?
                 data.map((member : any) => {

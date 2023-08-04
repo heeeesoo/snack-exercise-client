@@ -32,7 +32,7 @@ const Page = () => {
     
     const router = useRouter();
     const handleCodeClick = () => {
-        router.replace('/code');
+        router.push('/code');
     }
     const handleGruopClick = () => {
         router.push('/group/create');
@@ -45,27 +45,8 @@ const Page = () => {
         }
     },[])
 
-    // const [data, setData] = useState(null);
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //     const response = await fetch('https://dev-api.snackexercise.com/api/exgroups/2');
-    //     const json = await response.json();
-    //     setData(json);
-    //     console.log(data, json);
-    //     }
-    //     fetchData();
-    // }, []);
-
-    // if (!data) {
-    //     return <div>Loading data...</div>;
-    // }
-    
     return (
-        <div className="flex flex-col items-center">
-            {/* <div className="text-SystemGray4 text-[14px] font-normal pb-[32px]">
-                가입된 그룹이 없습니다
-            </div> */}
+        <div className="flex flex-col items-center pt-[15px]">
             <div className="text-[20px] font-bold w-9xl pb-[16px]">
                 그룹 가이드
             </div>
@@ -80,7 +61,7 @@ const Page = () => {
             <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
                 랜덤으로 운동 미션 받기
             </div>
-            <MissionCard title="3분 동안 스쿼트" subtitle='미션 수행하기' />
+            <MissionCard />
         </div>
     );
 };

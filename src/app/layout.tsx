@@ -35,7 +35,7 @@ export default function RootLayout({
           <div className='sticky top-0 w-full max-w-[400px] shadow-sm'>
             <Header/>
           </div>
-          <main className='w-screen max-w-[400px] min-h-[90vh] py-[20px] m-auto overflow-y-scroll no-scrollbar'>
+          <main className='w-screen max-w-[400px] min-h-[90vh] m-auto overflow-y-scroll no-scrollbar'>
             {children}
           </main>
           <div className='sticky bottom-0 w-full'>

@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image';
 import { nextIcon } from '@/constant/icon';
 import {getDataClient} from "@/utils/getDataClient";
+import GroupMissionCard from './GroupMissionCard';
 
 interface GroupCardProps {
     groupId : number;
+    missionOrder: boolean;
 }
 
 interface MissionFlowType {
@@ -24,7 +26,8 @@ interface MissionFlowResType {
 
 // useEffect hook data fetch group mission card
 export default function GroupMissionFlowCard({
-    groupId
+    groupId,
+    missionOrder
 } : GroupCardProps) {
     const [data, setData] = useState<MissionFlowResType>()
     const [isLoading, setLoading] = useState(true)
@@ -32,14 +35,11 @@ export default function GroupMissionFlowCard({
     const calculateRemainingDays = (endDateString: string, startDateString: string): number => {
         const endDate = new Date(endDateString);
       
-        // 오늘 날짜를 얻어 startDate에 할당합니다.
         const today = new Date();
         const startDate = new Date(startDateString || today.toISOString().slice(0, 10));
       
-        // 남은 날짜를 밀리초로 계산합니다.
         const remainingTime = endDate.getTime() - startDate.getTime();
       
-        // 밀리초를 일 단위로 변환합니다. (1일 = 24시간 * 60분 * 60초 * 1000밀리초)
         const remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
       
         return remainingDays;
@@ -53,8 +53,6 @@ export default function GroupMissionFlowCard({
         return `${month}월 ${day}일`;
     };
 
-
-    // /exgroups/{exgroupId}/missions
     useEffect(() => {
         const fetchMissionFlow = async () => {
             try {
@@ -75,7 +73,7 @@ export default function GroupMissionFlowCard({
 
     return (
         <div>
-            <div className='bg-white h-[240px] flex flex-col px-[20px] py-[20px] rounded-[16px]'>
+            <div className='bg-white h-[240px] flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between'>
                 <div className='flex items-center justify-between'>
                     <div className='font-bold text-[20px]'>
                         {getFormattedDate()}
@@ -98,6 +96,10 @@ export default function GroupMissionFlowCard({
                 </div>
                 <div className='flex pt-[20px]'>
                     {
+                        missionOrder ?
+                        <GroupMissionCard groupId={groupId} finishedRelayCount={data.finishedRelayCount} />
+                        :
+                        data.missionFlow.length > 0 ?
                         data.missionFlow.map((mission : any) => {
                             return(
                                 <div key={mission.startAt} className='flex w-[80px]'>
@@ -129,6 +131,10 @@ export default function GroupMissionFlowCard({
                                 </div>
                             )
                         })
+                        :
+                        <div>
+                            미션 기록이 없습니다
+                        </div>
                     }
                 </div>
             </div>
