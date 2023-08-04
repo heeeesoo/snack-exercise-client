@@ -67,7 +67,7 @@ export default function GroupMissionFlowCard({
         };
         fetchMissionFlow();
         setLoading(false);
-    }, [])
+    }, [groupId])
     
     if (isLoading) return <p>Loading...</p>
     if (!data) return <p>No profile data</p>
@@ -105,7 +105,7 @@ export default function GroupMissionFlowCard({
                                         <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
                                             {
                                                 mission.profileImage === null ?
-                                                '😀'
+                                                '🫥'
                                                 :
                                                 mission.profileImage    
                                             }

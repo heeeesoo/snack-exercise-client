@@ -63,7 +63,7 @@ export function BlurTitleButton({
     onClick
 } : BlurTitleButtonProps){
     return(
-        <button onClick={onClick} className="flex justify-between items-center px-[20px] w-9xl bg-white h-[68px] rounded-[12px]">
+        <button onClick={onClick} className="flex justify-between items-center px-[20px] w-full bg-white h-[68px] rounded-[12px]">
             <div className="flex flex-col items-start">
                 <div className="text-[20px] font-bold">
                     {title}

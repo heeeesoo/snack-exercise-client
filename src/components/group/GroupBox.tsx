@@ -9,6 +9,8 @@ import { Mail } from "@/constant/icon";
 import { useState, useEffect } from 'react'
 import {getDataClient} from "@/utils/getDataClient";
 import TokenStore from "@/store/TokenStore";
+import { BlurTitleButton } from "@/components/common/Button";
+import Link from "next/link";
 
 interface GroupBoxProps {
     groupId : number;
@@ -69,6 +71,30 @@ export default function GroupBox({
             setLoading(false);
         }
     }, [groupId])
+
+    const handlePatchRequest = async () => {
+        const patchUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/groups/${groupId}/initiation`;
+    
+        try {
+          const response = await fetch(patchUrl, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': TokenStore.getState().token
+            },
+          });
+    
+          if (!response.ok) {
+            throw new Error('Failed to update data');
+          }
+    
+          const updatedData = await response.json();
+          console.log(updatedData);
+          window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    };
     
     if (isLoading) return <p>Loading...</p>
     if (!groupData) return <p>No profile data</p>
@@ -79,11 +105,22 @@ export default function GroupBox({
                 <div className="font-bold text-[20px]">
                    {groupData.name}
                 </div>
-                <button className="text-SystemGray4 text-[14px]"> 멤버 상세정보 ＞</button>
+                <Link
+                    href={{
+                        pathname: `/group/member/${groupId}`,
+                    }}
+                >
+                    <div className='text-SystemGray4 text-[14px]'>
+                        멤버 상세정보 ＞
+                    </div>
+                </Link>
             </div>
 
             <div className="mx-m_5">
                 {
+                    groupData.startDate === null ?
+                    <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest}/>
+                    :
                     memberId === currentMissionMemberId ?
                     <div>
                         미션 중

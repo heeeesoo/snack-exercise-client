@@ -61,7 +61,7 @@ const GroupCreate = () => {
     const onSubmit = async (data: FormData) => {
         try {
             console.log(data);
-            const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/groups`;
+            const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/groups`;
         
             const formDataToSend = {
                 name: data.name,
@@ -101,7 +101,7 @@ const GroupCreate = () => {
                     'Content-Type': 'application/json',
                     'Authorization': token
                 },
-                body: JSON.stringify(testData),
+                body: JSON.stringify(formDataToSend),
             });
         
             if (!response.ok) {

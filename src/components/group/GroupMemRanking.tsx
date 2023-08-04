@@ -10,6 +10,7 @@ interface GroupMemRankingProps {
 export default function GroupMemRanking({
   groupId
 } : GroupMemRankingProps) {
+  const rankIcon = ['🥇', '🥈', '🥉']
   const [data, setData] = useState<any>(null);
   const [isLoading, setLoading] = useState(true);
 
@@ -26,48 +27,19 @@ export default function GroupMemRanking({
   useEffect(() => {
     const fetchMemRanking = async () => {
       try {
-            const result = await getDataClient(`/groups/${groupId}/missions/rank?filter=today`);
-            console.log(result);
-            // setData(result.result.data)
+            const response = await getDataClient(`/groups/${groupId}/missions/rank?filter=today`);
+            setData(response.result.data)
+            console.log(response.result.data);
         } catch (error) {
             console.error('Error in fetchData:', error);
         }
     };
     fetchMemRanking();
     setLoading(false);
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then((res) => res.json())
-    .then((data) => {
-        setData(data)
-        const fakeData = {
-          data: [
-            {
-              "nickname": "한유진",
-              "profileImage": "🥹",
-              "avgMissionExecutionTime": 0,
-              "missionCount": 0
-            },
-            {
-              "nickname": "김민정",
-              "profileImage": "🥰",
-              "avgMissionExecutionTime": 0,
-              "missionCount": 0
-            },
-            {
-              "nickname": "오진서",
-              "profileImage": "😝",
-              "avgMissionExecutionTime": 0,
-              "missionCount": 0
-            },
-          ],
-        }
-        setData(fakeData)
-        setLoading(false)
-    })
-}, [])
+  }, [groupId])
 
-if (isLoading) return <p>Loading...</p>
-if (!data) return <p>No profile data</p>
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>No profile data</p>
 
   return (
     <div>
@@ -81,24 +53,45 @@ if (!data) return <p>No profile data</p>
       </div>
       <div>
         {
-          data.data.map((member : any) => {
+          data.length > 0 ?
+          data.map((member : any, idx: number) => {
             return(
-              <div key={member.nickname} className='bg-white mb-[12px] h-[92px] rounded-[16px] flex items-center px-[20px]'>
-                <div className='text-[40px]'>
-                  {member.profileImage}
+              <div key={member.nickname} className='bg-white mb-[12px] h-[92px] rounded-[16px] flex items-center justify-between px-[20px]'>
+                <div className='flex items-center justify-center'>
+                  <div className='text-[40px]'>
+                    {
+                      member.profileImage === null ?
+                      '🫥'  
+                      :
+                      member.profileImage
+                    }
+                  </div>
+                  <div className='flex flex-col pl-[16px]'>
+                    <div className='text-SystemGray1'>
+                      {member.nickname}
+                    </div>
+                    <div className='text-[12px] text-SystemGray3'>
+                      {member.avgMissionExecutionTime}분
+                    </div>
+                  </div>
                 </div>
-                <div className='flex flex-col pl-[16px]'>
-                  <div className='text-SystemGray1'>
-                    {member.nickname}
-                  </div>
-                  <div className='text-[12px] text-SystemGray3'>
-                    00:27
-                    {/* {member.avgMissionExecutionTime} */}
-                  </div>
+                <div className='flex items-center justify-center w-[40px] text-[40px]'>
+                  {
+                    idx<3 ?
+                    rankIcon[idx]
+                    :
+                    <div className='text-[30px]'>
+                      {idx+1}
+                    </div>
+                  }
                 </div>
               </div>
             )
           })
+          :
+          <div>
+            미션을 수행해주세요!
+          </div>
         }
     </div>
     </div>
