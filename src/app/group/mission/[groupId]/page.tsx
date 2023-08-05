@@ -113,6 +113,7 @@ const Mission = () => {
                 :
                 <ProgressBar time={30} onComplete={handleProgressBarComplete} />
                 }
+                <div className="pb-[40px]" />
             </div>
         </div>
 

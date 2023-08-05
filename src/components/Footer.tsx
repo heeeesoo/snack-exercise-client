@@ -28,7 +28,7 @@ const Footer = () => {
             pathnames.some(path => pathname.includes(path)) ?
             null
             :
-            <div className="flex items-center h-[60px] w-full px-[10px] bg-white">
+            <div className="flex flex-col justify-center items-center h-[90px] w-full px-[10px] bg-white">
                 <div className="flex w-full justify-evenly">
                     {
                         NavLinks.map((link) => {
@@ -50,6 +50,7 @@ const Footer = () => {
                         })
                     }
                 </div>
+                <div className="pb-[30px]"/>
             </div>
         }
         </div>
