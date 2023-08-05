@@ -1,29 +1,76 @@
-import useSWR from 'swr'
+'use client'
+import {getDataClient} from "@/utils/getDataClient";
+import { useEffect, useState } from "react";
+import { BlurTitleButton } from "../common/Button";
+import Link from "next/link";
 
 interface GroupMissionCardProps {
     groupId : number;
+    finishedRelayCount: number;
 }
 
-const fetcher = async (url: string) => {
-    const response = await fetch(url);
-    return response.json();
-};
-  
+interface MissionResType {
+    missionId: number;
+    finishedRelayCount: number;
+    currentRoundPosition: number;
+    exercise: ExerciseType;
+}
 
-export default async function GroupMissionCard({
-    groupId
-} : GroupMissionCardProps) {
-    // const { data, error } = useSWR(
-    //     'https://jsonplaceholder.typicode.com/users',
-    //     fetcher
-    // );
+interface ExerciseType {
+    id: number;
+    name: string;
+    exerciseCategory: string;
+    videoLink: string;
+    description: string;
+    minPerKcal: number;
+}
 
-    // if (error) return <div>Failed to load</div>
-    // if (!data) return <div>Loading...</div>
+export default function GroupMissionCard({
+    groupId,
+    finishedRelayCount
+}:GroupMissionCardProps) {
+    const [data, setData] = useState<MissionResType>();
+    const [isLoading, setLoading] = useState(true);
+    const [isMission, setIsMission] = useState(true);
 
-    // console.log(data)
+    const handleClick = () => {
+        console.log('hi')
+    }
+
+    useEffect(() => {
+        const fetchMission = async () => {
+            try {
+                  const response = await getDataClient(`/missions/groups/${groupId}`);
+                  console.log('mission:',response.result);
+                  setData(response.result.data);
+                  if (response.result.message === "미션이 존재하지 않습니다."){
+                    setIsMission(false);
+                  }
+              } catch (error) {
+                  console.error('Error in fetchData:', error);
+              }
+        };
+        fetchMission();
+        setLoading(false);
+    }, [])
+    
+    if (isLoading) return <p>Loading...</p>
+    if (!isMission) return <p>미션 시간이 아닙니다</p>
+    if (!data) return <p>No profile data</p>
 
     return (
-        <div>GroupMissionCard {groupId}</div>
+        <Link
+            href={{
+                pathname: `/group/mission/${groupId}`,
+                query: {
+                    name: `${data.exercise.videoLink}`,
+                    id: `${data.missionId}`,
+                    random: false
+                },
+            }}
+            className='w-full'
+        >
+            <BlurTitleButton title={data.exercise.name} subtitle={`릴레이 ${finishedRelayCount}회차 ${data.currentRoundPosition}번째`} onClick={handleClick}/>
+        </Link>
     )
 }
