@@ -15,3 +15,4 @@ export const mission2 = "/imageEx/mission2.svg";
 export const nextIcon = "/icons/button/Next.svg";
 
 export const clap = "/icons/image/clap.svg";
+export const host = "/icons/image/host.svg";

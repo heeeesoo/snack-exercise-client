@@ -19,12 +19,13 @@ const Footer = () => {
         '/login/loading',
         '/code',
         '/group/mission/',
+        '/group/member'
     ];
 
     return (
         <div>
         {
-            pathnames.includes(pathname) || pathname.includes('/group/mission/') || pathname.includes('/code') ?
+            pathnames.some(path => pathname.includes(path)) ?
             null
             :
             <div className="flex items-center h-[60px] w-full px-[10px] bg-white">
