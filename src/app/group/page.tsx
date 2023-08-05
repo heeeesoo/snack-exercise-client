@@ -2,6 +2,7 @@
 import GroupBox from "@/components/group/GroupBox";
 import { useState, useEffect } from "react";
 import {getDataClient} from "@/utils/getDataClient";
+import TokenStore from "@/store/TokenStore";
 
 interface GroupType {
     groupId: number;
@@ -15,6 +16,7 @@ export default function Group() {
     const [groupSelectedName, setGroupSelectedName] = useState<string>('');
     const [groupCurMissionId, setGroupCurMissionId] = useState<number | null>(-1);
     const [groupMyList, setGroupMyList] = useState<GroupType[]>();
+    const {memberId} = TokenStore();
 
     useEffect(() => {
         const fetchMyGroupListData = async () => {
@@ -51,8 +53,11 @@ export default function Group() {
                         groupMyList && groupMyList.length > 0 ?
                         groupMyList?.map((group : GroupType) => {
                             return (
-                                <div key={group.groupId} className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[90px] h-[36px] flex items-center justify-center`}>
-                                    <button onClick={() => handleIdChange(group.groupId ,group.groupName, group.currentMissionMemberId)}>{group.groupName}</button>
+                                <div key={group.groupId} className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'}  mr-[8px] rounded-[16px] w-[90px] h-[36px] flex items-center justify-center relative`}>
+                                    <button onClick={() => handleIdChange(group.groupId, group.groupName, group.currentMissionMemberId)}>{group.groupName}</button>
+                                    {group.currentMissionMemberId === memberId && (
+                                        <div className="absolute top-0 right-0 flex items-center justify-center w-3 h-3 text-xs text-white bg-red-600 rounded-full"></div>
+                                    )}
                                 </div>
                             )
                         })
