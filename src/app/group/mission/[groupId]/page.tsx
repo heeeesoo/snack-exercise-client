@@ -2,6 +2,7 @@
 import YouTube, { YouTubeProps } from "react-youtube";
 import { usePathname, useSearchParams } from 'next/navigation';
 import { BasicButton } from "@/components/common/Button";
+import ProgressBar from "@/components/common/ProgressBar";
 
 const Mission = () => {
     const searchParams = useSearchParams()
@@ -19,7 +20,7 @@ const Mission = () => {
 
     const opts: YouTubeProps['opts'] = {
         height: '750', // 높이 100% 설정
-        width: '400',  // 너비 100% 설정
+        width: '100%',  // 너비 100% 설정
         playerVars: {
             autoplay: 1,
             controls: 1,
@@ -32,13 +33,15 @@ const Mission = () => {
     };
     
     return (
-        <div className="flex flex-col items-center w-screen max-w-[400px] h-[85vh] bg-black">
-            {/* <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} /> */}
-            <div className="">
+        <div className="grid grid-rows-[auto, 1fr, auto] items-start w-screen max-w-[400px] h-[85vh]">
+            <div className="w-screen max-w-[400px] h-[85vh]">
                 <YouTube videoId={videoId} opts={opts} />
             </div>
-            <div className="w-full max-w-[400px] flex justify-center items-center h-[150px] bg-white sticky bottom-0 " >
-                <BasicButton label="시작하기" onClick={handleClick} type="button"/>
+            <div className="w-screen max-w-[400px] flex flex-col justify-center items-center h-[20vh] sticky bottom-0 bg-grayScreen">
+
+                <ProgressBar time={3}/>
+                <div className="pb-[10px]" />
+                <BasicButton label="시작하기" onClick={handleClick} type="button" />
             </div>
         </div>
     );
