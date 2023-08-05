@@ -4,17 +4,20 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 type State = {
     token: string;
     memberId: number;
+    memberName: string;
 };
   
 type Actions = {
     setToken: (newToken: string) => void; 
     setMemberId: (newMemberId: number) => void;
+    setMemberName: (newMemberName: string) => void;
     removeTokenMemId: () => void;
 };
 
 const initialState: State = {
     token: '',
-    memberId: -1
+    memberId: -1,
+    memberName: ''
 };
   
 // token 저장
@@ -28,7 +31,10 @@ const TokenStore = create<State & Actions>()(
         setMemberId: (newMemberId: number) => {
           set({ memberId: newMemberId });
         },
-        removeTokenMemId: () => set({ token: '' , memberId: -1 })
+        setMemberName: (newMemberName: string) => {
+          set({ memberName: newMemberName });
+        },
+        removeTokenMemId: () => set({ token: '' , memberId: -1, memberName: '' })
       }),
       { name: "user", storage: createJSONStorage(() => sessionStorage) }
     )

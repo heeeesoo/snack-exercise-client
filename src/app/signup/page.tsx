@@ -19,7 +19,7 @@ export default function SignUp() {
     } = useForm<FormData>(); 
 
     const {isLoggedIn, login, logout} = UserStore();
-    const {token, setToken, setMemberId} = TokenStore();
+    const {token, setToken, setMemberId, setMemberName} = TokenStore();
     const router = useRouter();
     const searchParams = useSearchParams()
 
@@ -56,6 +56,7 @@ export default function SignUp() {
                 console.log('Server response:', responseData);
                 setToken(responseData.result.data.accessToken);
                 setMemberId(responseData.result.data.id);
+                setMemberName(data.nickname);
             }
         
             login();

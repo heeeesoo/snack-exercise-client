@@ -63,7 +63,9 @@ export default function GroupMissionCard({
             href={{
                 pathname: `/group/mission/${groupId}`,
                 query: {
-                    name: `${data.exercise.videoLink}`
+                    name: `${data.exercise.videoLink}`,
+                    id: `${data.missionId}`,
+                    random: false
                 },
             }}
             className='w-full'

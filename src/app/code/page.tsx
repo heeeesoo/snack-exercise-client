@@ -2,6 +2,8 @@
 import InputBox from "@/components/common/inputBox/InputBox"
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { BasicButton } from "@/components/common/Button";
+import TokenStore from "@/store/TokenStore";
+import { useRouter } from "next/navigation";
 
 interface FormData {
     code: string;
@@ -16,10 +18,11 @@ export default function Code() {
         setValue,
         watch
     } = useForm<FormData>(); 
+    const router = useRouter();
 
     const onSubmit = async (data: FormData) => {
         try {
-            const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/sign-up`;
+            const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/groups/join/code`;
             // const apiUrl = `/api/sign-up`; 
         
             const formDataToSend = {
@@ -33,9 +36,9 @@ export default function Code() {
                 headers: {
                     'Content-Type': 'application/json',
                     "Accept": "application/json",
+                    'Authorization': TokenStore.getState().token
                 },
                 body: JSON.stringify(formDataToSend),
-                credentials: 'include',
             });
 
             console.log(response);
@@ -46,7 +49,8 @@ export default function Code() {
         
             const responseData = await response.json();
             console.log('Server response:', responseData);
-            alert('Form data submitted successfully!');
+            alert('그룹이 가입되었습니다!');
+            router.replace('/group');
 
         } catch (error) {
             console.error('Error while submitting form data:', error);

@@ -9,6 +9,7 @@ interface MissionCardProps {
     imgLink?: string;
     groupname?: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    member?: boolean;
 }
 
 interface MissionType {
@@ -23,7 +24,8 @@ interface MissionType {
 const MissionCard = ({
     imgLink,
     groupname,
-    onClick
+    onClick,
+    member
 }:MissionCardProps) => {
     const [data, setData] = useState<MissionType>();
     const [isLoading, setLoading] = useState(true);
@@ -37,8 +39,8 @@ const MissionCard = ({
     useEffect(() => {
         const fetchMission = async () => {
             try {
-                    const exerciseId = Math.floor(Math.random() * 5) + 1;
-                    const response = await getDataClient(`/exercises/${exerciseId}`);
+                    const apiUrl = member ? '/missions/random/member' : `/missions/random/non-member`
+                    const response = await getDataClient(apiUrl);
                     console.log('mission:',response.result);
                     setData(response.result.data);
               } catch (error) {
@@ -58,9 +60,11 @@ const MissionCard = ({
         // </div>
         <Link
             href={{
-                pathname: `/group/mission/0`,
+                pathname: `/group/mission/0`, // random mission
                 query: {
-                    name: `${data.videoLink}`
+                    name: `${data.videoLink}`,
+                    id: `${data.id}`,
+                    random: true
                 },
             }}
             className='w-9xl'

@@ -44,22 +44,23 @@ export default function GroupBox({
 } : GroupBoxProps) {
     const router = useRouter();
     const {memberId} = TokenStore();
+    const [isLoading, setLoading] = useState(true)
+    const [groupData, setGroupData] = useState<GroupType>()
+    console.log('GroupBox:',memberId, currentMissionMemberId)
 
     const handleClick = () => {
         console.log('!')
     }
-    const handleGruopClick = () => {
-        router.push('/code');
+    const handleGroupClick = () => {
+        router.push(`/code/${groupData?.code}`);
     }
 
-    const [groupData, setGroupData] = useState<GroupType>()
-    const [isLoading, setLoading] = useState(true)
     
     useEffect(() => {
         const fetchMyGroupData = async () => {
             try {
                   const result = await getDataClient(`/groups/${groupId}`);
-                  console.log(result);
+                  console.log('group:',result);
                   setGroupData(result.result.data)
               } catch (error) {
                   console.error('Error in fetchData:', error);
@@ -132,7 +133,7 @@ export default function GroupBox({
             
             <div className="flex items-center justify-center w-screen max-w-[400px]">
                 <div className="flex justify-between w-9xl">
-                    <IconVerticalButton title="멤버 초대하기" onClick={handleGruopClick} imglink={People}/>
+                    <IconVerticalButton title="멤버 초대하기" onClick={handleGroupClick} imglink={People}/>
                     <IconVerticalButton title="독촉하기" onClick={handleClick} imglink={Mail}/>
                 </div>
             </div>

@@ -12,21 +12,6 @@ import { Mail } from "@/constant/icon";
 import UserStore from "@/store/UserStore";
 import { Carousel } from 'flowbite-react';
 
-async function getData() {
-    const res = await fetch('https://api.example.com/...')
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-   
-    // Recommendation: handle errors
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data')
-    }
-   
-    return res.json()
-}
-
-
 const Page = () => {
     const {isLoggedIn, login, logout} = UserStore();
     
@@ -61,7 +46,7 @@ const Page = () => {
             <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
                 랜덤으로 운동 미션 받기
             </div>
-            <MissionCard />
+            <MissionCard member={true}/>
         </div>
     );
 };
