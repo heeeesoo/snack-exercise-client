@@ -1,3 +1,5 @@
+import TokenStore from "@/store/TokenStore";
+
 interface DataType {
     id: number;
   }
@@ -8,8 +10,9 @@ interface DataType {
   }
   
   export default async function getGroup() {
+    console.log(TokenStore.getState().token)
     const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-    const apiUrl = `${SERVER_URL}/api/exgroups/2`;
+    const apiUrl = `https://jsonplaceholder.typicode.com/users`;
   
     const response: CustomResponse<DataType> = await fetch(apiUrl).then((res) => res.json());
     console.log(response);

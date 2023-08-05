@@ -20,7 +20,7 @@ const fetchLogin = async () => {
 
 const fetchAuthCode = async (AuthCode : string) => {
 
-    // Get data from the for`m.
+    // Get data from the form.
     const data = {
         AuthCode: AuthCode
     }
