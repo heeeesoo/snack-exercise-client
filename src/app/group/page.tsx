@@ -51,7 +51,7 @@ export default function Group() {
                         groupMyList && groupMyList.length > 0 ?
                         groupMyList?.map((group : GroupType) => {
                             return (
-                                <div key={group.groupId} className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[88px] h-[36px] flex items-center justify-center`}>
+                                <div key={group.groupId} className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9'} mr-[8px] rounded-[16px] w-[90px] h-[36px] flex items-center justify-center`}>
                                     <button onClick={() => handleIdChange(group.groupId ,group.groupName, group.currentMissionMemberId)}>{group.groupName}</button>
                                 </div>
                             )
