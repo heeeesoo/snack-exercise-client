@@ -52,16 +52,39 @@ const Mission = () => {
         }
     };
     
-    // useEffect(() => {
-    //     console.log('hi')
-    // },[progressComplete])
-
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
         event.target.pauseVideo();
     }
 
-    const handleClick = () => {
+    const handleStartClick = async () => {
         setMissionStart(true);
+
+        const postUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start`; 
+
+        const reqDataToSend = {
+            missionId: idParamValue,
+        }
+    
+        try {
+            const response = await fetch(postUrl, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': TokenStore.getState().token
+                },
+                body: JSON.stringify(reqDataToSend),
+            });
+        
+            if (!response.ok) {
+                throw new Error('Failed to update data');
+            }
+        
+            const responseData = await response.json();
+            console.log('mission start:', responseData);
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     const opts: YouTubeProps['opts'] = {
@@ -86,10 +109,11 @@ const Mission = () => {
             <div className="w-screen max-w-[400px] flex flex-col justify-center items-center h-[15vh] sticky bottom-0 bg-grayScreen z-10">
                 {
                 !missionStart ?
-                <BasicButton label="30초 운동 시작하기" onClick={handleClick} type="button" />
+                <BasicButton label="30초 운동 시작하기" onClick={handleStartClick} type="button" />
                 :
                 <ProgressBar time={30} onComplete={handleProgressBarComplete} />
                 }
+                <div className="pb-[40px]" />
             </div>
         </div>
 
