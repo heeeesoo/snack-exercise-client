@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
 import ActionSheet from "@/components/common/ActionSheet";
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import TokenStore from "@/store/TokenStore";
 
 interface FormData {
     name: string;
@@ -27,11 +28,11 @@ interface FormData {
 
 const GroupCreate = () => {
     const router = useRouter();
-    const SERVER_URL= process.env.NEXT_PUBLIC_SERVER_URL;
     const wholeRef = useRef<HTMLInputElement>(null);
     const [modalcolorOpen, setModalColorOpen] = useState<boolean>(false);
     const [modalalarmOpen, setModalAlarmOpen] = useState<boolean>(false);
     const [showOtherInput, setShowOtherInput] = useState(false);
+    const {token, setToken, setMemberId} = TokenStore();
     const {
         register,
         handleSubmit,
@@ -60,37 +61,37 @@ const GroupCreate = () => {
     const onSubmit = async (data: FormData) => {
         try {
             console.log(data);
-            // const apiUrl = `${SERVER_URL}api/exgroups`;
-            const apiUrl = `https://dev-api.snackexercise.com/api/exgroups`;
+            const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/groups`;
         
             const formDataToSend = {
                 name: data.name,
-                emozi: 'default',
-                color: data.colorOption,
+                emozi: '😠',
+                // color: data.colorOption,
+                color: '#3A81F7',
                 description: 'default',
-                maxMemberNum: data.maxMemberNum,
-                goalRelayNum: data.goalRelayNum,
+                maxMemberNum: parseInt(data.maxMemberNum.toString()),
+                goalRelayNum: parseInt(data.goalRelayNum.toString()),
                 startTime: parseInt(data.startTime)<10 ? `0${data.startTime}:00:00` : `${data.startTime}:00:00`,
-                endTime: parseInt(data.endTime)<10 ? `0${data.startTime}:00:00` : `${data.startTime}:00:00`,
+                endTime: parseInt(data.endTime)<10 ? `0${data.endTime}:00:00` : `${data.endTime}:00:00`,
                 penalty: data.penaltyOption === "other" ? data.otherValue : data.penaltyOption,
-                checkIntervalTime: data.intervalOption,
-                checkMaxNum: data.checkMaxNum,
-                existDays: data.existDays
+                checkIntervalTime: parseInt(data.intervalOption, 10),
+                checkMaxNum: parseInt(data.checkMaxNum.toString()),
+                existDays: parseInt(data.existDays.toString())
             };
 
             const testData = {
-                name: "string",
-                emozi: "string",
-                color: "string",
-                description: "string",
-                maxMemberNum: 0,
-                goalRelayNum: 0,
-                startTime: "04:48:02",
-                endTime: "04:48:02",
-                penalty: "string",
-                missionIntervalTime: 0,
-                checkIntervalTime: 0,
-                checkMaxNum: 0
+                "name": "string",
+                "emozi": "string",
+                "color": "string",
+                "description": "string",
+                "maxMemberNum": 0,
+                "goalRelayNum": 0,
+                "startTime": "16:13:54",
+                "endTime": "16:13:54",
+                "penalty": "string",
+                "checkIntervalTime": 0,
+                "checkMaxNum": 0,
+                "existDays": 0
             }
 
             console.log(formDataToSend)
@@ -98,9 +99,10 @@ const GroupCreate = () => {
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': token
                 },
-                body: JSON.stringify(testData),
+                body: JSON.stringify(formDataToSend),
             });
         
             if (!response.ok) {
@@ -109,8 +111,8 @@ const GroupCreate = () => {
         
             const responseData = await response.json();
             console.log('Server response:', responseData);
-            alert('Form data submitted successfully!');
-            router.push('/group/');
+            alert('그룹이 생성되었습니다!');
+            router.replace('/group/');
             } catch (error) {
             console.error('Error while submitting form data:', error);
             alert('Failed to submit form data. Please try again.');
@@ -191,10 +193,10 @@ const GroupCreate = () => {
 
     return (
         <div ref={wholeRef}>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center pt-[15px]">
                 <InputBox title="그룹명을 입력해주세요" label="name" name="name" register={register} error={errors.name?.message} defaultValue="스낵스낵" placeholder="그룹명"/>
-                <div className="mb-[40px]"></div>
-                <SelectBox name="color" value={watchRadioColorOption} title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor}/>
+                {/* <div className="mb-[40px]"></div> */}
+                {/* <SelectBox name="color" value={watchRadioColorOption} title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor}/>
                 <ActionSheet open={modalcolorOpen} onClose={handleCloseModalColor}>
                     {radioColorOptions.map((option) => (
                         <div key={option.value}>
@@ -214,7 +216,7 @@ const GroupCreate = () => {
                         />
                         </div>
                     ))}
-                </ActionSheet>
+                </ActionSheet> */}
                 <div className="mb-[40px]"></div>
                 <InputBox title="제한 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명" type="number"/>
                 <div className="mb-[40px]"></div>

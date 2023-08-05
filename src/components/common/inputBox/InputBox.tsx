@@ -20,17 +20,17 @@ interface CustomFormInputProps {
 export default function InputBox({ title, subtitle, name, label, register, error, defaultValue, placeholder, unit, type, min, max } : CustomFormInputProps){
     return (
       <div className="flex flex-col w-9xl text-[16px] text-SystemGray2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between pb-[3px]">
                 <label htmlFor={name}>{title}</label>
                 <div className="text-SystemBrand text-[12px]">{subtitle}</div>
             </div>
         <div className='flex justify-between w-full bg-white rounded-xl'>
             <input
                 {...register(name, {
-                    required: `${label} is required`,
+                    required: `${label}`,
                 })}
                 defaultValue={defaultValue}
-                className="rounded-xl h-[60px] pl-[20px] w-[150px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
+                className="focus:outline-none rounded-xl h-[60px] pl-[20px] w-[300px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
                 placeholder={placeholder}
                 type={type}
                 min={min}
@@ -39,7 +39,7 @@ export default function InputBox({ title, subtitle, name, label, register, error
             {unit && <span className='flex items-center pr-[20px] text-SystemGray3'>{unit}</span>}
         </div>
         <div className='text-red-500 text-[12px]'>
-            {error && <span>X {error}</span>}
+            {error && <span>{error}</span>}
         </div>
       </div>
     );

@@ -15,7 +15,7 @@ export default function SelectBox({
  } : SelectBoxProps) {
     return (
         <div className="flex flex-col w-9xl text-[16px] text-SystemGray2" onClick={onOpen}>
-            <div className="flex ">
+            <div className="flex pb-[3px]">
                 <label htmlFor={name}>{title}</label>
                 <div>{subtitle}</div>
             </div>
