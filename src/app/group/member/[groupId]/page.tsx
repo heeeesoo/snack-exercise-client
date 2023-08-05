@@ -1,6 +1,8 @@
 'use client'
 import {getDataClient} from "@/utils/getDataClient";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { host } from "@/constant/icon";
 
 export default function GroupMemberInfo({ params }: { params: { groupId: string } }) {
 
@@ -25,14 +27,32 @@ export default function GroupMemberInfo({ params }: { params: { groupId: string 
     if (!data) return <p>No profile data</p>
 
     return (
-        <div className="pt-[15px]">
+        <div className="flex flex-col justify-center items-center pt-[15px]">
             {
                 data && data.length > 0 ?
                 data.map((member : any) => {
                     return(
-                        <div key={member.nickname}>
-                            {member.nickname}
-                            {member.joinType}
+                        <div key={member.nickname} className="w-9xl pb-[10px] h-[76px] flex items-center justify-between">
+                            <div className="flex items-center">
+                                <div className="text-[44px] pr-[16px]">
+                                    🫥
+                                </div>
+                                <div className="text-[16px] font-semibold">
+                                    {member.nickname}
+                                </div>
+                            </div>
+                            <div>
+                                {member.joinType === 'HOST' ? 
+                                <Image 
+                                src={host}
+                                width={65}
+                                height={28}
+                                alt="host"
+                                />
+                                :
+                                null
+                                }
+                            </div>
                         </div>
                     )
                 })
