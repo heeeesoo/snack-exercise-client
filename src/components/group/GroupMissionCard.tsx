@@ -70,7 +70,7 @@ export default function GroupMissionCard({
             }}
             className='w-full'
         >
-            <BlurTitleButton title={data.exercise.name} subtitle={`릴레이 ${finishedRelayCount === null ? 1 : finishedRelayCount+1}회차 ${data.currentRoundPosition}번째`} onClick={handleClick}/>
+            <BlurTitleButton title={data.exercise.name} subtitle={`릴레이 ${finishedRelayCount === null ? 1 : finishedRelayCount}회차 ${data.currentRoundPosition}번째`} onClick={handleClick}/>
         </Link>
     )
 }
