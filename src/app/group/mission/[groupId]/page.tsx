@@ -20,7 +20,7 @@ const Mission = () => {
     const handleProgressBarComplete = async () => {
         setProgressComplete(true);
 
-        const postUrl =  randomValue ?
+        const postUrl =  randomValue==='true' ?
         `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/random/${idParamValue}/finish` 
         :
         `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/${idParamValue}/finish`;
