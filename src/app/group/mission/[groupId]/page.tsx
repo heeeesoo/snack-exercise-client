@@ -98,6 +98,7 @@ const Mission = () => {
             rel: 0,
             loop: 1,
             playlist: videoId, 
+            mute: 1, // 음소거 설정
         },
     };
     
