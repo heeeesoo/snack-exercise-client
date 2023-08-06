@@ -100,37 +100,43 @@ export default function GroupMissionFlowCard({
                         <GroupMissionCard groupId={groupId} finishedRelayCount={data.finishedRelayCount} />
                         :
                         data.missionFlow.length > 0 ?
-                        data.missionFlow.map((mission : any) => {
-                            return(
-                                <div key={mission.startAt} className='flex w-[80px]'>
-                                    <div className='flex flex-col'>
-                                        <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
-                                            {
-                                                mission.profileImage === null ?
-                                                '🫥'
-                                                :
-                                                mission.profileImage    
-                                            }
-                                        </div>      
-                                        <div className='flex items-center justify-center text-[12px] text-SystemGray2 pt-[8px]'>
-                                            {mission.memberName}
-                                        </div>
-                                        <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
-                                            {mission.startAt.substring(11, 16)}~
-                                        </div>      
-                                        <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
-                                            ~{
-                                                mission.endAt === null ?
-                                                '진행중'
-                                                :
-                                                mission.endAt.substring(11, 16)
-                                            }
-                                        </div>
-                                    </div>
-                                    <Image src={nextIcon} width={6.5} height={12} alt='next'/>
-                                </div>
-                            )
-                        })
+                        <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
+                        {/* //     <section className="flex flex-row h-[36px] ml-[5%]"> */}
+                                {
+                                    data.missionFlow.map((mission : any) => {
+                                        return(
+                                            <div key={mission.startAt} className='flex w-[80px] pr-[13px]'>
+                                                <div className='flex flex-col'>
+                                                    <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
+                                                        {
+                                                            mission.profileImage === null ?
+                                                            '🫥'
+                                                            :
+                                                            mission.profileImage    
+                                                        }
+                                                    </div>      
+                                                    <div className='flex items-center justify-center text-[12px] text-SystemGray2 pt-[8px]'>
+                                                        {mission.memberName}
+                                                    </div>
+                                                    <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
+                                                        {mission.startAt.substring(11, 16)}~
+                                                    </div>      
+                                                    <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
+                                                        ~{
+                                                            mission.endAt === null ?
+                                                            '진행중'
+                                                            :
+                                                            mission.endAt.substring(11, 16)
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <Image src={nextIcon} width={6.5} height={12} alt='next'/>
+                                            </div>
+                                        )
+                                    })
+                                }
+                        {/* </section> */}
+                        </div>
                         :
                         <div>
                             미션 기록이 없습니다
