@@ -8,7 +8,7 @@ export default function NameLogin() {
 
     
     const handleClick = () => {
-        route.replace('/signup')
+        route.push('/signup')
     }
 
     return (
