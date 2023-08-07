@@ -18,12 +18,34 @@ const Header = () => {
             {
                 pathname === '/signup' ? 
                     `${searchParams}` === 'name=signup' ?
-                    <div className="font-bold text-[20px]">
-                        회원 가입
+                    <div className="flex flex-row items-center justify-between w-9xl">
+                        <div className="w-[24px]" onClick={handleClick}>
+                            <Image 
+                            src={Back}
+                            width={24}
+                            height={24}
+                            alt="back"
+                            />
+                        </div>
+                        <div className="font-bold text-[20px]">
+                            회원 가입
+                        </div>
+                        <div className="w-[24px]"></div>
                     </div>
                     :
-                    <div className="font-bold text-[20px]">
-                        로그인
+                    <div className="flex flex-row items-center justify-between w-9xl">
+                        <div className="w-[24px]" onClick={handleClick}>
+                            <Image 
+                            src={Back}
+                            width={24}
+                            height={24}
+                            alt="back"
+                            />
+                        </div>
+                        <div className="font-bold text-[20px]">
+                            로그인
+                        </div>
+                        <div className="w-[24px]"></div>
                     </div>
                 :
                 <div className="flex flex-row items-center justify-between w-9xl">
