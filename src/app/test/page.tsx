@@ -1,49 +1,49 @@
 'use client'
 import { useEffect, useState } from "react";
+import PushNotificationLayout from "@/components/push/PushNotificationLayout";
+// import firebase from 'firebase'; 
 
-import TokenStore from "@/store/TokenStore";
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCj8cmzn94XS6HfqVXvMnmRvSH66LcrblQ",
+//   authDomain: "snackpot-2aff6.firebaseapp.com",
+//   projectId: "snackpot-2aff6",
+//   storageBucket: "snackpot-2aff6.appspot.com",
+//   messagingSenderId: "772201837506",
+//   appId: "1:772201837506:web:0085abde733e5281e89c5b",
+//   measurementId: "G-LMYXYKQNXN"
+// };
+
+// firebase.initializeApp(firebaseConfig);
+// const messaging = firebase.messaging();
+
+// messaging
+//   .requestPermission()
+//   .then(() => {
+//     console.log("허가");
+//     return messaging.getToken(); //등록 토큰 받기
+//   })
+//   .then(function (token) {
+//     console.log(token); //토큰 출력
+//   })
+//   .catch(function (error) {
+//     console.log("FCM Error : ", error);
+//   });
+
+//   messaging.onMessage((payload) => {
+//   console.log(payload.notification.title);
+//   console.log(payload.notification.body);
+// });
+
+
+
 const Test = () => {
-    const [stringData, setStringData] = useState('');
-    const {token, setToken, setMemberId} = TokenStore();
-
-    useEffect(() => {
-        // Define the API endpoint URL
-        const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/groups`;
-    
-        // Create an async function to fetch the data
-        const fetchData = async () => {
-          try {
-            // Make the GET request using Fetch API
-            const response: any = await fetch(apiUrl, {
-              method: 'GET',
-              headers: {
-                  'Content-Type': 'application/json',
-                  "Accept": "application/json",
-                  'Authorization': token
-              },
-          });
-    
-    
-            if (!response.ok) {
-              throw new Error('Failed to submit form data');
-            }
-      
-            const responseData = await response.json();
-            console.log('Server response:', responseData);
-    
-          } catch (error) {
-            console.error('Fetch error:', error);
-          }
-        };
-    
-        fetchData();
-      }, []);
 
     return (
-        <div>
-            test
-            {stringData}
-        </div>
+        <PushNotificationLayout>
+          <div>
+              test
+          </div>
+        </PushNotificationLayout>
     );
 };
 

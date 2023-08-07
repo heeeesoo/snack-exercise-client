@@ -5,13 +5,49 @@ import { BasicButton } from "@/components/common/Button";
 import UserStore from '@/store/UserStore';
 import { useRouter } from "next/navigation";
 import TokenStore from "@/store/TokenStore";
-import { usePathname, useSearchParams } from 'next/navigation'
- 
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect } from "react";
+import { firebaseCloudMessaging } from "@/utils/firebase";
+import firebase from "firebase/app";
+import "firebase/messaging";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCj8cmzn94XS6HfqVXvMnmRvSH66LcrblQ",
+    authDomain: "snackpot-2aff6.firebaseapp.com",
+    projectId: "snackpot-2aff6",
+    storageBucket: "snackpot-2aff6.appspot.com",
+    messagingSenderId: "772201837506",
+    appId: "1:772201837506:web:0085abde733e5281e89c5b",
+    measurementId: "G-LMYXYKQNXN"
+};
+
 interface FormData {
     nickname: string;
 }
 
 export default function SignUp() {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    
+    const getToken = async() => {
+        const messaging = firebase.messaging();
+        const token = await messaging.getToken({
+        vapidKey: 'BCBh3ZRUXHGlkwPGgpM7CyVLQAWSEBsamHEB18XRuZ0pRj2-5jFSJjD-ik01e4syF1V7nfDOjLJy9t9yfu7y9Vc',
+    });
+    
+    return token;
+    }
+    
+    useEffect(() => {
+        async function getMessageToken() {
+          const token = await getToken();
+          console.log('fcm token:',token);
+        }
+        getMessageToken();
+    }, []);
+
+
     const {
         register,
         handleSubmit,

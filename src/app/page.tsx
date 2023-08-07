@@ -10,7 +10,6 @@ import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
 
 import UserStore from "@/store/UserStore";
-import { Carousel } from 'flowbite-react';
 
 const Page = () => {
     const {isLoggedIn, login, logout} = UserStore();
