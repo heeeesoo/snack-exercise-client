@@ -13,8 +13,8 @@ import TokenStore from "@/store/TokenStore";
 interface FormData {
     name: string;
     maxMemberNum: number;
-    existDays: number;
-    goalRelayNum: number;
+    existDays: number; // 목표 릴레이 기간
+    goalRelayNum: number; // 목표 릴레이 횟수
     startTime: string;
     endTime: string;
     penalty: string;
@@ -56,6 +56,10 @@ const GroupCreate = () => {
     const radioIntervalOptions = [
         { label: '5분', value: '5분' },
         { label: '10분', value: '10분' },
+        { label: '15분', value: '15분' },
+        { label: '30분', value: '30분' },
+        { label: '60분', value: '60분' },
+        { label: '120분', value: '120분' },
     ];
 
     const onSubmit = async (data: FormData) => {
@@ -79,21 +83,6 @@ const GroupCreate = () => {
                 existDays: parseInt(data.existDays.toString())
             };
 
-            const testData = {
-                "name": "string",
-                "emozi": "string",
-                "color": "string",
-                "description": "string",
-                "maxMemberNum": 0,
-                "goalRelayNum": 0,
-                "startTime": "16:13:54",
-                "endTime": "16:13:54",
-                "penalty": "string",
-                "checkIntervalTime": 0,
-                "checkMaxNum": 0,
-                "existDays": 0
-            }
-
             console.log(formDataToSend)
         
             const response = await fetch(apiUrl, {
@@ -113,9 +102,10 @@ const GroupCreate = () => {
             console.log('Server response:', responseData);
             alert('그룹이 생성되었습니다!');
             router.replace('/group/');
+
             } catch (error) {
-            console.error('Error while submitting form data:', error);
-            alert('Failed to submit form data. Please try again.');
+                console.error('Error while submitting form data:', error);
+                alert('Failed to submit form data. Please try again.');
         }
     };
 
@@ -134,6 +124,10 @@ const GroupCreate = () => {
 
     const watchRadioColorOption = watch('colorOption');
     const watchRadioIntervalOption = watch('intervalOption');
+    const watchExistDays = watch('existDays');
+    const watchgoalRelayNum = watch('goalRelayNum');
+    const watchstartTime = watch('startTime');
+    const watchendTime = watch('endTime');
 
     const handleOpenModalColor = () => {
         setModalColorOpen(true);
@@ -194,7 +188,7 @@ const GroupCreate = () => {
     return (
         <div ref={wholeRef} className="pb-[40px]">
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center pt-[15px]">
-                <InputBox title="그룹명을 입력해주세요" label="name" name="name" register={register} error={errors.name?.message} defaultValue="스낵스낵" placeholder="그룹명"/>
+                <InputBox title="그룹명을 입력해주세요" label="name" name="name" register={register} error={errors.name?.message} placeholder="그룹명" maxLength={6}/>
                 {/* <div className="mb-[40px]"></div> */}
                 {/* <SelectBox name="color" value={watchRadioColorOption} title="그룹 색상을 선택해주세요" onOpen={handleOpenModalColor}/>
                 <ActionSheet open={modalcolorOpen} onClose={handleCloseModalColor}>
@@ -218,17 +212,27 @@ const GroupCreate = () => {
                     ))}
                 </ActionSheet> */}
                 <div className="mb-[40px]"></div>
-                <InputBox title="제한 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명" type="number"/>
+                <InputBox title="그룹 입장 가능 최대 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명" type="number" minValue={1} maxValue={6} integerOnly={true}/>
                 <div className="mb-[40px]"></div>
-                <InputBox title="목표 릴레이 기간은 입력해주세요" placeholder="목표 릴레이 기간" label="existDays" name="existDays" register={register} error={errors.existDays?.message} defaultValue={14} unit="일" type="number"/>
+                <div className="whitespace-normal w-9xl text-[14px] text-SystemGray2 pb-[10px]">
+                    <span className="text-SystemBrand">{watchExistDays}일</span> 동안 <span className="text-SystemBrand">{watchgoalRelayNum}번</span>의 릴레이를 수행합니다. 
+                    <br />
+                    그룹원이 모두 미션을 수행해야 릴레이 1회입니다.
+                </div>
+                <hr className="pb-[5px] pt-[3px] w-9xl"/>
+                <InputBox title="목표 릴레이 기간을 입력해주세요" placeholder="목표 릴레이 기간" label="existDays" name="existDays" register={register} error={errors.existDays?.message} defaultValue={5} unit="일" type="number" minValue={1} maxValue={90} integerOnly={true}/>
                 <div className="mb-[40px]"></div>
-                <InputBox  title="목표 릴레이 횟수를 입력해주세요" placeholder="목표 릴레이 횟수" label="goalRelayNum" name="goalRelayNum" register={register} error={errors.goalRelayNum?.message} defaultValue={14} unit="회" type="number"/>
+                <InputBox  title="기간 내 목표 릴레이 횟수를 입력해주세요" placeholder="목표 릴레이 횟수" label="goalRelayNum" name="goalRelayNum" register={register} error={errors.goalRelayNum?.message} defaultValue={5} unit="회" type="number" minValue={1} maxValue={50} integerOnly={true}/>
                 <div className="mb-[40px]"></div>
-                <InputBox  title="시작 시간을 입력해주세요" placeholder="시작 시간" label="startTime" name="startTime" register={register} error={errors.startTime?.message} defaultValue={9} unit="시" type="number" min={0} max={24} />
+                <div className="whitespace-normal w-9xl text-[14px] text-SystemGray2 pb-[10px]">
+                    <span className="text-SystemBrand">{watchstartTime}시</span>부터 <span className="text-SystemBrand">{watchendTime}시</span>사이에만 알림이 울립니다.
+                </div>
+                <hr className="pb-[5px] pt-[3px] w-9xl"/>
+                <InputBox  title="매일 미션이 시작되는 시간을 알려주세요" placeholder="시작 시간" label="startTime" name="startTime" register={register} error={errors.startTime?.message} defaultValue={9} unit="시" type="number" minValue={0} maxValue={23} integerOnly={true}/>
                 <div className="mb-[40px]"></div>
-                <InputBox  title="끝 시간을 입력해주세요" placeholder="끝 시간" label="endTime" name="endTime" register={register} error={errors.endTime?.message} defaultValue={23} unit="시"  type="number" min={0} max={24} />
+                <InputBox  title="매일 미션이 끝나는 시간을 알려주세요" placeholder="끝 시간" label="endTime" name="endTime" register={register} error={errors.endTime?.message} defaultValue={23} unit="시"  type="number" minValue={0} maxValue={23} integerOnly={true}/>
                 <hr className="w-4/5 duration-500 my-[40px] border-1 border-[#EEEEFE] cursor-pointer"/>
-                <div className="flex flex-col w-4/5">
+                <div className="flex flex-col w-9xl">
                     <div className="text-left text-SystemGray2 text-[16px]">
                         벌칙을 선택해주세요
                     </div>
@@ -285,7 +289,7 @@ const GroupCreate = () => {
                     ))}
                 </ActionSheet>
                 <div className="mb-[40px]"></div>
-                <InputBox title="미션 독촉 알림 최대 횟수를 입력해주세요" label="checkMaxNum" name="checkMaxNum" register={register} error={errors.checkMaxNum?.message} defaultValue={3} placeholder="미션 독촉 알림 최대 횟수" unit="번"/>
+                <InputBox title="미션 독촉 알림 최대 횟수를 입력해주세요" label="checkMaxNum" name="checkMaxNum" register={register} error={errors.checkMaxNum?.message} defaultValue={3} placeholder="미션 독촉 알림 최대 횟수" unit="번" type="number" minValue={0} maxValue={10} integerOnly={true}/>
                 <div className="mb-[40px]"></div>
                 <BasicButton type="submit" label="그룹 만들기" />
             </form>
