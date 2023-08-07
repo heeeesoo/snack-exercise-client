@@ -20,7 +20,7 @@ const Mission = () => {
     const handleProgressBarComplete = async () => {
         setProgressComplete(true);
 
-        const postUrl =  randomValue ?
+        const postUrl =  randomValue==='true' ?
         `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/random/${idParamValue}/finish` 
         :
         `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/${idParamValue}/finish`;
@@ -98,6 +98,7 @@ const Mission = () => {
             rel: 0,
             loop: 1,
             playlist: videoId, 
+            mute: 1, // 음소거 설정
         },
     };
     

@@ -8,11 +8,11 @@ export default function NameLogin() {
 
     
     const handleClick = () => {
-        route.replace('/signup')
+        route.push('/signup')
     }
 
     return (
-        <div className='flex flex-col items-center justify-center bg-white h-[200px] rounded-[36px]'>
+        <div className='flex flex-col items-center justify-center bg-white h-[230px] rounded-[36px] pb-[40px]'>
             <div className='font-normal text-[14px] text-SystemGray3 pb-[16px]'>
                 스낵을 100% 활용해보세요!
             </div>
