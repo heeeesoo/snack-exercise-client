@@ -6,19 +6,18 @@ import UserStore from '@/store/UserStore';
 import { useRouter } from "next/navigation";
 import TokenStore from "@/store/TokenStore";
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from "react";
-import { firebaseCloudMessaging } from "@/utils/firebase";
+import { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/messaging";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCj8cmzn94XS6HfqVXvMnmRvSH66LcrblQ",
-    authDomain: "snackpot-2aff6.firebaseapp.com",
-    projectId: "snackpot-2aff6",
-    storageBucket: "snackpot-2aff6.appspot.com",
-    messagingSenderId: "772201837506",
-    appId: "1:772201837506:web:0085abde733e5281e89c5b",
-    measurementId: "G-LMYXYKQNXN"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 interface FormData {
@@ -26,6 +25,7 @@ interface FormData {
 }
 
 export default function SignUp() {
+    const [fcmToken, setFcmToken] = useState<string>('');
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
@@ -33,7 +33,7 @@ export default function SignUp() {
     const getToken = async() => {
         const messaging = firebase.messaging();
         const token = await messaging.getToken({
-        vapidKey: 'BCBh3ZRUXHGlkwPGgpM7CyVLQAWSEBsamHEB18XRuZ0pRj2-5jFSJjD-ik01e4syF1V7nfDOjLJy9t9yfu7y9Vc',
+        vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
     });
     
     return token;
@@ -41,8 +41,9 @@ export default function SignUp() {
     
     useEffect(() => {
         async function getMessageToken() {
-          const token = await getToken();
-          console.log('fcm token:',token);
+            const token = await getToken();
+            console.log('fcm token:',token);
+            setFcmToken(token);
         }
         getMessageToken();
     }, []);
@@ -65,6 +66,7 @@ export default function SignUp() {
         
             const formDataToSend = {
                 nickname: data.nickname,
+                fcmToken: fcmToken
             };
 
             console.log(formDataToSend)
