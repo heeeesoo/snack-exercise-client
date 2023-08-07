@@ -5,13 +5,50 @@ import { BasicButton } from "@/components/common/Button";
 import UserStore from '@/store/UserStore';
 import { useRouter } from "next/navigation";
 import TokenStore from "@/store/TokenStore";
-import { usePathname, useSearchParams } from 'next/navigation'
- 
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from "react";
+import firebase from "firebase/app";
+import "firebase/messaging";
+
+const firebaseConfig = {
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+};
+
 interface FormData {
     nickname: string;
 }
 
 export default function SignUp() {
+    const [fcmToken, setFcmToken] = useState<string>('')
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    
+    const getToken = async() => {
+        const messaging = firebase.messaging();
+        const token = await messaging.getToken({
+        vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
+    });
+    
+    return token;
+    }
+    
+    useEffect(() => {
+        async function getMessageToken() {
+            const token = await getToken();
+            console.log('fcm token:',token);
+            setFcmToken(token);
+        }
+        getMessageToken();
+    }, []);
+
+
     const {
         register,
         handleSubmit,
@@ -29,6 +66,7 @@ export default function SignUp() {
         
             const formDataToSend = {
                 nickname: data.nickname,
+                fcmToken: fcmToken
             };
 
             console.log(formDataToSend)
