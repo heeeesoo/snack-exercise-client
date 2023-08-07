@@ -21,7 +21,7 @@ const UserStore = create<State & Actions>()(
             login: () => set({ isLoggedIn: true }),
             logout: () => set({ isLoggedIn: false }),
         }),
-        {name : "global", storage: createJSONStorage(() => sessionStorage)}
+        {name : "global", storage: createJSONStorage(() => localStorage)}
     )
 );
 
