@@ -25,7 +25,7 @@ interface FormData {
 }
 
 export default function SignUp() {
-    const [fcmToken, setFcmToken] = useState<string>('');
+    const [fcmToken, setFcmToken] = useState<string>('')
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
