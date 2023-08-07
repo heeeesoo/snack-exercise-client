@@ -192,7 +192,7 @@ const GroupCreate = () => {
 
 
     return (
-        <div ref={wholeRef}>
+        <div ref={wholeRef} className="pb-[40px]">
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center pt-[15px]">
                 <InputBox title="그룹명을 입력해주세요" label="name" name="name" register={register} error={errors.name?.message} defaultValue="스낵스낵" placeholder="그룹명"/>
                 {/* <div className="mb-[40px]"></div> */}
