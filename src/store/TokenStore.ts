@@ -36,7 +36,7 @@ const TokenStore = create<State & Actions>()(
         },
         removeTokenMemId: () => set({ token: '' , memberId: -1, memberName: '' })
       }),
-      { name: "user", storage: createJSONStorage(() => sessionStorage) }
+      { name: "user", storage: createJSONStorage(() => localStorage) }
     )
 );
 
