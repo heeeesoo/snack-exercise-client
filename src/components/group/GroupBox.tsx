@@ -35,6 +35,7 @@ interface GroupType {
     code: string; // 초대 코드
     checkIntervalTime: number; // 독촉 검사 시간 간격
     checkMaxNum: number; // 하루 독촉 검사 최대 횟수
+    hostMemberId: number; // host인 멤버 아이디
 }
 
 export default function GroupBox({
@@ -48,11 +49,38 @@ export default function GroupBox({
     const [groupData, setGroupData] = useState<GroupType>()
     console.log('GroupBox:',memberId, currentMissionMemberId)
 
-    const handleClick = () => {
-        console.log('!')
-    }
     const handleGroupClick = () => {
         router.push(`/code/${groupData?.code}`);
+    }
+
+    const handleAlarmClick = async () => {
+
+        const postUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/alarm/reminder`; 
+
+        const reqDataToSend = {
+            groupId: groupId,
+        }
+    
+        try {
+            const response = await fetch(postUrl, {
+                method: 'PATCH',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': TokenStore.getState().token
+                },
+                body: JSON.stringify(reqDataToSend),
+            });
+        
+            if (!response.ok) {
+                throw new Error('Failed to update data');
+            }
+        
+            const responseData = await response.json();
+            console.log('alarm remider:', responseData);
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     
@@ -120,7 +148,12 @@ export default function GroupBox({
             <div className="mx-m_5">
                 {
                     groupData.startDate === null ?
-                    <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest}/>
+                    groupData.hostMemberId === memberId ?
+                        <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest}/>
+                        :
+                        <div>
+                            릴레이 시작 전입니다.
+                        </div>
                     :
                     memberId === currentMissionMemberId ?
                     <GroupMissionFlowCard groupId={groupId} missionOrder={true}/>
@@ -134,7 +167,7 @@ export default function GroupBox({
             <div className="flex items-center justify-center w-screen max-w-[400px]">
                 <div className="flex justify-between w-9xl">
                     <IconVerticalButton title="멤버 초대하기" onClick={handleGroupClick} imglink={People}/>
-                    <IconVerticalButton title="독촉하기" onClick={handleClick} imglink={Mail}/>
+                    <IconVerticalButton title="콕 찌르기" onClick={handleAlarmClick} imglink={Mail}/>
                 </div>
             </div>
 
