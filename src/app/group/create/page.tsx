@@ -214,7 +214,7 @@ const GroupCreate = () => {
                 <div className="mb-[40px]"></div>
                 <InputBox title="그룹 입장 가능 최대 인원수를 입력해주세요" subtitle="제한 6명" label="name" name="maxMemberNum" register={register} error={errors.maxMemberNum?.message} defaultValue={6} placeholder="그룹명" unit="명" type="number" minValue={1} maxValue={6} integerOnly={true}/>
                 <div className="mb-[40px]"></div>
-                <div className="whitespace-normal w-9xl text-[14px] text-SystemGray2 pb-[10px]">
+                <div className="whitespace-normal w-9xl text-[14px] text-SystemGray3 pb-[10px]">
                     <span className="text-SystemBrand">{watchExistDays}일</span> 동안 <span className="text-SystemBrand">{watchgoalRelayNum}번</span>의 릴레이를 수행합니다. 
                     <br />
                     그룹원이 모두 미션을 수행해야 릴레이 1회입니다.
@@ -224,7 +224,7 @@ const GroupCreate = () => {
                 <div className="mb-[40px]"></div>
                 <InputBox  title="기간 내 목표 릴레이 횟수를 입력해주세요" placeholder="목표 릴레이 횟수" label="goalRelayNum" name="goalRelayNum" register={register} error={errors.goalRelayNum?.message} defaultValue={5} unit="회" type="number" minValue={1} maxValue={50} integerOnly={true}/>
                 <div className="mb-[40px]"></div>
-                <div className="whitespace-normal w-9xl text-[14px] text-SystemGray2 pb-[10px]">
+                <div className="whitespace-normal w-9xl text-[14px] text-SystemGray3 pb-[10px]">
                     <span className="text-SystemBrand">{watchstartTime}시</span>부터 <span className="text-SystemBrand">{watchendTime}시</span>사이에만 알림이 울립니다.
                 </div>
                 <hr className="pb-[5px] pt-[3px] w-9xl"/>
@@ -236,8 +236,9 @@ const GroupCreate = () => {
                     <div className="text-left text-SystemGray2 text-[16px]">
                         벌칙을 선택해주세요
                     </div>
-                    <div className="text-SystemGray3 text-[12px]">
-                        미션 기간이 끝나고난 후 미션 할당 받고 수행까지의 시간이 
+                    <div className="text-SystemGray3 text-[14px]">
+                        미션 기간이 끝나고난 후, 미션 할당 받고 수행까지의 시간이 
+                        <br />
                         평균적으로 가장 오래 걸린 사람이 벌칙을 받습니다.
                     </div>
                 </div>
