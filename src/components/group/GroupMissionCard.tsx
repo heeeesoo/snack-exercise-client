@@ -59,6 +59,7 @@ export default function GroupMissionCard({
     if (!data) return <p>No profile data</p>
 
     return (
+        // 회원 릴레이 운동 미션
         <Link
             href={{
                 pathname: `/group/mission/${groupId}`,

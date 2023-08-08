@@ -16,7 +16,7 @@ interface BasicButtonProps {
 interface BlurTitleButtonProps {
     title: string;
     subtitle: string;
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface IconHorizontalButtonProps {

@@ -58,6 +58,7 @@ const MissionCard = ({
         // <div className={`flex flex-col pt-[200px] items-center justify-evenly h-[320px] w-9xl bg-[url("/imageEx/mission2.svg")] bg-cover bg-center rounded-[16px]`}>
         //     <BlurTitleButton title={title} subtitle={subtitle} onClick={handleBlurTitleButtonClick}/>
         // </div>
+        // 회원, 랜덤 운동 미션 
         <Link
             href={{
                 pathname: `/group/mission/0`, // random mission
