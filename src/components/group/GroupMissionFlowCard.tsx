@@ -8,6 +8,7 @@ import GroupMissionCard from './GroupMissionCard';
 interface GroupCardProps {
     groupId : number;
     missionOrder: boolean;
+    goalRelayNum: number;
 }
 
 interface MissionFlowType {
@@ -27,7 +28,8 @@ interface MissionFlowResType {
 // useEffect hook data fetch group mission card
 export default function GroupMissionFlowCard({
     groupId,
-    missionOrder
+    missionOrder,
+    goalRelayNum
 } : GroupCardProps) {
     const [data, setData] = useState<MissionFlowResType>()
     const [isLoading, setLoading] = useState(true)
@@ -90,7 +92,9 @@ export default function GroupMissionFlowCard({
                             }
                         </div>
                         <div>
-                            현재 완료한 릴레이 횟수 {data.finishedRelayCount}회
+                            {/* 현재 완료한 릴레이 횟수 {data.finishedRelayCount}회 */}
+                            릴레이 횟수 {' '}
+                            {data.finishedRelayCount === null ? `0/${goalRelayNum}회` : `${data.finishedRelayCount}/${goalRelayNum}`}
                         </div>
                     </div>
                 </div>

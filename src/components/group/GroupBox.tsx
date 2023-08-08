@@ -144,7 +144,6 @@ export default function GroupBox({
                     </div>
                 </Link>
             </div>
-
             <div className="mx-m_5">
                 {
                     groupData.startDate === null ?
@@ -156,23 +155,19 @@ export default function GroupBox({
                         </div>
                     :
                     memberId === currentMissionMemberId ?
-                    <GroupMissionFlowCard groupId={groupId} missionOrder={true}/>
+                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={true}/>
                     :
-                    <GroupMissionFlowCard groupId={groupId} missionOrder={false}/>
+                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={false}/>
                 }
             </div>
-
             <div className="pb-[40px]"></div>
-            
             <div className="flex items-center justify-center w-screen max-w-[400px]">
                 <div className="flex justify-between w-9xl">
                     <IconVerticalButton title="멤버 초대하기" onClick={handleGroupClick} imglink={People}/>
                     <IconVerticalButton title="콕 찌르기" onClick={handleAlarmClick} imglink={Mail}/>
                 </div>
             </div>
-
             <div className="pb-[40px]" />
-
             <div className="mx-m_5">
                 <GroupMemRanking groupId={groupId} />
             </div>

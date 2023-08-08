@@ -5,6 +5,7 @@ import { BasicButton } from "@/components/common/Button";
 import ProgressBar from "@/components/common/ProgressBar";
 import { useEffect, useRef, useState } from "react";
 import TokenStore from "@/store/TokenStore";
+import Image from "next/image";
 
 const Mission = () => {
     const searchParams = useSearchParams();
@@ -12,19 +13,15 @@ const Mission = () => {
     const urlParams = new URLSearchParams(decodeURIComponent(`${searchParams}`));
     const nameParamValue : any = urlParams.get("name");
     const idParamValue : string | null = urlParams.get("id");
-    const randomValue : string | null  = urlParams.get('random');
-    // const videoId = nameParamValue.split("shorts/")[1];
+    const randomValue : string | null  = urlParams.get('random'); // 회원, 랜덤 운동일 때 'true'
     const [missionStart, setMissionStart] = useState(false);
-    const [progressComplete, setProgressComplete] = useState(false);
     const countRef = useRef<number>(0);
+    // const videoId = nameParamValue.split("shorts/")[1];
 
     const handleProgressBarComplete = async () => {
-        // setProgressComplete(prev => !prev);
         countRef.current += 1;
 
-
         if (countRef.current === 1) {
-            console.log('heyheyheyhye')
             const postUrl =  randomValue==='true' ?
             `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/random/${idParamValue}/finish` 
             :
@@ -59,40 +56,46 @@ const Mission = () => {
 
     };
     
-    const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-        event.target.pauseVideo();
-    }
-
+    
     const handleStartClick = async () => {
         setMissionStart(true);
+        console.log('??:',randomValue?.toString());
 
-        const postUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start`; 
-
+        const postUrl =  randomValue==='true' ?
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start?random=true` 
+            :
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start?random=false`;
+        
         const reqDataToSend = {
             missionId: idParamValue,
         }
-    
+        
         try {
             const response = await fetch(postUrl, {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json',
-                'Authorization': TokenStore.getState().token
+                    'Content-Type': 'application/json',
+                    'Authorization': TokenStore.getState().token
                 },
                 body: JSON.stringify(reqDataToSend),
             });
-        
+            
             if (!response.ok) {
                 throw new Error('Failed to update data');
             }
-        
+            
             const responseData = await response.json();
             console.log('mission start:', responseData);
         } catch (error) {
             console.log(error);
         }
-
+        
     }
+    
+    // YouTube API
+    // const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    //     event.target.pauseVideo();
+    // }
 
     // const opts: YouTubeProps['opts'] = {
     //     height: '650', // 높이 100% 설정
