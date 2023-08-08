@@ -104,7 +104,7 @@ export default function GroupMissionFlowCard({
                             {
                                 data.missionFlow.map((mission : any) => {
                                     return(
-                                        <div key={mission.startAt} className='flex w-[80px] pr-[13px]'>
+                                        <div key={mission.startAt} className='flex w-[80px] pr-[20px]'>
                                             <div className='flex flex-col'>
                                                 <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
                                                     {
