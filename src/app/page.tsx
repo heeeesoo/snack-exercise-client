@@ -42,10 +42,10 @@ const Page = () => {
                 <IconVerticalButton title="그룹 만들기" onClick={handleGruopClick} imglink={People}/>
                 <IconVerticalButton title="초대 코드" onClick={handleCodeClick} imglink={Mail}/>
             </div>
-            <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
+            {/* <div className="text-[20px] font-bold w-9xl pb-[16px] pt-[40px]">
                 랜덤으로 운동 미션 받기
             </div>
-            <MissionCard member={true}/>
+            <MissionCard member={true}/> */}
         </div>
     );
 };
