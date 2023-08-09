@@ -150,8 +150,13 @@ export default function GroupBox({
                     groupData.hostMemberId === memberId ?
                         <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest}/>
                         :
-                        <div>
-                            릴레이 시작 전입니다.
+                        <div className="bg-white  h-[70px] rounded-[12px] flex flex-col items-start justify-center px-[10px] text-SystemGray2">
+                            <div className="font-bold text-[20px]">
+                                릴레이 시작 대기 중입니다
+                            </div>
+                            <div className="text-[12px] font-medium">
+                            방장이 시작하기 전까지 기다려주세요🏃
+                            </div>
                         </div>
                     :
                     memberId === currentMissionMemberId ?
