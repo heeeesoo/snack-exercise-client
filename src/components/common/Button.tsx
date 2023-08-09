@@ -30,6 +30,12 @@ interface IconVerticalButtonProps {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+interface RoundButtonProps {
+    label: string;
+    type: "button" | "submit" | "reset" | undefined;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 
 export function Button({ 
     label,
@@ -125,4 +131,16 @@ export function IconVerticalButton({
             </div>
         </button>
     )
+}
+
+export function RoundButton({ 
+    label,
+    type,
+    onClick
+ } : RoundButtonProps) {
+    return (
+        <button type={type} onClick={onClick} className=" font-bold leading-10 text-center text-white rounded-[100px] w-[150px] h-[150px] bg-SystemBrand text-[20px]">
+            {label}
+        </button> 
+    );
 }
