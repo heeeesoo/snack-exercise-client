@@ -99,7 +99,7 @@ export default function InputBox({
                     defaultValue={defaultValue}
                     className="focus:outline-none rounded-xl h-[60px] pl-[20px] w-[300px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"
                     placeholder={placeholder}
-                    type={inputType}
+                    // type={inputType}
                     min={min}
                     max={max}
                 />

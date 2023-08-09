@@ -87,6 +87,7 @@ export default function SignUp() {
                 const errorResponseData = await response.json();
                 alert(errorResponseData.result.message);
                 // throw new Error(`${error}`)
+                return;
             } else {
                 const responseData = await response.json();
                 console.log('Server response:', responseData);
