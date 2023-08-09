@@ -36,7 +36,7 @@ export default function SignUp() {
         vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
     });
     
-    return token;
+        return token;
     }
     
     useEffect(() => {
@@ -84,20 +84,19 @@ export default function SignUp() {
             console.log(response);
 
             if (!response.ok) {
-                if (response.status === 404){
-                    setError('가입되어 있지 않은 사용자입니다.');
-                }
-                throw new Error(`${error}`)
+                const errorResponseData = await response.json();
+                alert(errorResponseData.result.message);
+                // throw new Error(`${error}`)
             } else {
                 const responseData = await response.json();
                 console.log('Server response:', responseData);
                 setToken(responseData.result.data.accessToken);
                 setMemberId(responseData.result.data.id);
                 setMemberName(data.nickname);
+                login();
+                router.replace('/');
             }
         
-            login();
-            router.replace('/');
 
         } catch (error) {
             console.error('Error while submitting form data:', error);

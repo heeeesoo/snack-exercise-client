@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import {getDataClient} from "@/utils/getDataClient";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import SkeletonLine from "../skeleton/SkeletonLine";
 
 interface MissionCardProps {
     imgLink?: string;
@@ -51,8 +52,8 @@ const MissionCard = ({
         setLoading(false);
     }, [])
 
-    if (isLoading) return <p>Loading...</p>
-    if (!data) return <p>No profile data</p>
+    if (isLoading) return <SkeletonLine width={'60px'} height={'15px'} />
+    if (!data) return <SkeletonLine width={'60px'} height={'15px'} />
 
     return (
         // <div className={`flex flex-col pt-[200px] items-center justify-evenly h-[320px] w-9xl bg-[url("/imageEx/mission2.svg")] bg-cover bg-center rounded-[16px]`}>
