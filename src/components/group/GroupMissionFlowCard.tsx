@@ -113,7 +113,7 @@ export default function GroupMissionFlowCard({
                                                 <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
                                                     {
                                                         mission.profileImage === null ?
-                                                        '🫥'
+                                                        '😀'
                                                         :
                                                         mission.profileImage    
                                                     }

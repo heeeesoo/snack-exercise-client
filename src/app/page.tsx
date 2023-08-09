@@ -13,8 +13,8 @@ import UserStore from "@/store/UserStore";
 
 const Page = () => {
     const {isLoggedIn, login, logout} = UserStore();
-    
     const router = useRouter();
+
     const handleCodeClick = () => {
         router.push('/code');
     }
@@ -22,6 +22,7 @@ const Page = () => {
         router.push('/group/create');
     }
 
+    
     useEffect(()=>{
       if(!isLoggedIn){
         console.log(isLoggedIn);
@@ -47,7 +48,7 @@ const Page = () => {
             </div>
             <MissionCard member={true}/> */}
         </div>
-    );
+    )
 };
 
 export default Page;
