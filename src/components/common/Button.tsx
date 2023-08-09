@@ -17,6 +17,7 @@ interface BlurTitleButtonProps {
     title: string;
     subtitle: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    bgColor? : string;
 }
 
 interface IconHorizontalButtonProps {
@@ -66,10 +67,11 @@ export function BasicButton({
 export function BlurTitleButton({
     title,
     subtitle,
-    onClick
+    onClick,
+    bgColor
 } : BlurTitleButtonProps){
     return(
-        <button onClick={onClick} className="flex justify-between items-center px-[20px] w-full bg-white h-[68px] rounded-[12px]">
+        <button onClick={onClick} className={`flex justify-between items-center px-[20px] w-full h-[68px] rounded-[12px] bg-${bgColor}`}>
             <div className="flex flex-col items-start">
                 <div className="text-[20px] font-bold">
                     {title}
@@ -117,7 +119,7 @@ export function IconVerticalButton({
     onClick
 } : IconVerticalButtonProps){
     return(
-        <button onClick={onClick} className="flex flex-col justify-around px-[20px] items-center w-[48%] bg-white rounded-[12px] h-[170px]">
+        <button onClick={onClick} className="flex flex-col justify-around px-[20px] items-center w-[48%] bg-white rounded-[12px] h-[170px] hover:bg-SystemGray6 active:bg-SystemGray6">
             <div className="text-[16px] font-bold mr-auto whitespace-pre-line">
                 {title}
             </div>
