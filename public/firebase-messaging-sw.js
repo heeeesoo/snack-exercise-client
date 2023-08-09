@@ -21,18 +21,18 @@ firebase.initializeApp({
 // messages.
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage((payload) => {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    // Customize notification here
-    const notificationTitle = 'Background Message Title';
-    const notificationOptions = {
-      body: 'Background Message body.',
-      icon: '/vercel.svg'
-    };
+// messaging.onBackgroundMessage((payload) => {
+//     console.log('[firebase-messaging-sw.js] Received background message ', payload);
+//     // Customize notification here
+//     const notificationTitle = 'Background Message Title';
+//     const notificationOptions = {
+//       body: 'Background Message body.',
+//       icon: '/vercel.svg'
+//     };
   
-    self.registration.showNotification(notificationTitle,
-      notificationOptions);
-});
+//     self.registration.showNotification(notificationTitle,
+//       notificationOptions);
+// });
 
 //백그라운드 서비스워커 설정
 // messaging.onBackgroundMessage(messaging, (payload) => {

@@ -89,7 +89,7 @@ export default function GroupMemRanking({
             )
           })
           :
-          <div>
+          <div className='bg-white h-[70px] rounded-[12px] flex items-center justify-start font-semibold px-[10px] text-SystemGray2'>
             미션을 수행해주세요!
           </div>
         }
