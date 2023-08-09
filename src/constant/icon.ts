@@ -18,3 +18,5 @@ export const clap = "/icons/image/clap.svg";
 export const host = "/icons/image/host.svg";
 
 export const Back = "/icons/button/Back.svg";
+
+export const LogoMedium = "/logo/logo_medium.svg";

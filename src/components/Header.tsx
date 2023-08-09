@@ -13,9 +13,16 @@ const Header = () => {
         router.back();
     }
 
+    const pathnames = [
+        '/splash'
+    ];
+
     return (
-        <div className="flex flex-row items-center justify-center h-[60px] w-full bg-grayScreen">
+        <div className="flex flex-row items-center justify-center h-[60px] w-full bg-grayScreen shadow-sm">
             {
+                pathnames.some(path => pathname.includes(path)) ?
+                null
+                :
                 pathname === '/signup' ? 
                     `${searchParams}` === 'name=signup' ?
                     <div className="flex flex-row items-center justify-between w-9xl">
