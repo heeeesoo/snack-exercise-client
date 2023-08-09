@@ -19,10 +19,16 @@ interface CustomFormInputProps {
     minValue?: number;
     maxValue?: number;
     integerOnly?: boolean;
+    noSpecialChar?: boolean;
 }
 
 function isInteger(value: any): boolean {
     return Number.isInteger(Number(value));
+}
+
+function isValidInput(value: string): boolean {
+    const regex = /^[a-zA-Z0-9\u3131-\uD79D]+$/; // 알파벳, 숫자, 한글의 정규식
+    return regex.test(value);
 }
 
 export default function InputBox({
@@ -42,6 +48,7 @@ export default function InputBox({
     minValue,
     maxValue,
     integerOnly = false,
+    noSpecialChar = false,
 }: CustomFormInputProps) {
     const maxLengthValidation = maxLength ? {
         value: maxLength,
@@ -66,6 +73,13 @@ export default function InputBox({
         },
     } : undefined;
 
+    const validateSpecial = noSpecialChar ? {
+        validate: {
+            isValidInput: (value: any) => isValidInput(value) || '알파벳, 숫자, 한글만 입력 가능합니다.',
+        },
+    } : undefined;
+
+
     return (
         <div className="flex flex-col w-9xl text-[16px] text-SystemGray2">
             <div className="flex items-center justify-between pb-[3px]">
@@ -80,6 +94,7 @@ export default function InputBox({
                         min: minValidation,
                         max: maxValidation,
                         ...validateInteger,
+                        ...validateSpecial
                     })}
                     defaultValue={defaultValue}
                     className="focus:outline-none rounded-xl h-[60px] pl-[20px] w-[300px] text-SystemGray1 placeholder-SystemGray4 outline-grayScreen"

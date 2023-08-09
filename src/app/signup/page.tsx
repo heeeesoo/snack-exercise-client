@@ -106,9 +106,9 @@ export default function SignUp() {
     };
 
     return (
-        <div className="relative flex flex-col">
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-between min-h-[85vh]">
-                <InputBox title="이름을 입력해주세요" label="nickname" name="nickname" register={register} error={errors.nickname?.message} maxLength={6}/>
+        <div className="relative flex flex-col pt-[30px]">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-between min-h-[80vh]">
+                <InputBox title="이름을 입력해주세요" label="nickname" name="nickname" register={register} error={errors.nickname?.message} maxLength={6} placeholder="이름 (최대 6자)" noSpecialChar={true}/>
                 <BasicButton type="submit" label="확인"/>
             </form>
         </div>
