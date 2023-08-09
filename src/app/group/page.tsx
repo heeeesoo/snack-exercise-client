@@ -46,17 +46,17 @@ export default function Group() {
     };
 
     return (
-        <div className="flex flex-col items-center pt-[15px]">
-            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
+        <div className="flex flex-col items-center py-[20px]">
+            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto no-scrollbar">
                 <section className="flex flex-row h-[36px] ml-[5%]">
                     {
                         groupMyList && groupMyList.length > 0 ?
                         groupMyList?.map((group : GroupType) => {
                             return (
-                                <div key={group.groupId} className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9 border-[1px] border-SystemGray9'}  mr-[8px] rounded-[16px] w-[90px] h-[36px] flex items-center justify-center relative`}>
+                                <div key={group.groupId} className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9 '}  mr-[8px] rounded-[16px] w-[90px] h-[36px] flex items-center justify-center relative`}>
                                     <button onClick={() => handleIdChange(group.groupId, group.groupName, group.currentMissionMemberId)}>{group.groupName}</button>
                                     {group.currentMissionMemberId === memberId && (
-                                        <div className="absolute top-0 right-0 flex items-center justify-center w-3 h-3 text-xs text-white bg-red-600 rounded-full"></div>
+                                        <div className="absolute top-0 right-0 flex items-center justify-center w-3 h-3 text-xs text-white rounded-full bg-SystemRed"></div>
                                     )}
                                 </div>
                             )

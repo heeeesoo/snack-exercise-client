@@ -71,7 +71,7 @@ export default function GroupMissionCard({
             }}
             className='w-full'
         >
-            <BlurTitleButton title={data.exercise.name} subtitle={`릴레이 ${data.finishedRelayCount===null ? 1 : data.finishedRelayCount}회차 ${data.currentRoundPosition}번째`} onClick={handleClick}/>
+            <BlurTitleButton title={data.exercise.name} subtitle={`릴레이 ${data.finishedRelayCount===null ? 1 : data.finishedRelayCount}회차 ${data.currentRoundPosition}번째`} onClick={handleClick} bgColor="SystemGray6"/>
         </Link>
     )
 }

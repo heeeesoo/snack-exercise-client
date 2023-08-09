@@ -71,8 +71,8 @@ const MissionCard = ({
             }}
             className='w-9xl'
         >
-            <BlurTitleButton title={data.name} subtitle={data.description} onClick={handleBlurTitleButtonClick}/>
-        </Link>
+            <BlurTitleButton title={data.name} subtitle={data.description} onClick={handleBlurTitleButtonClick} bgColor="white"/>
+        </Link> 
     );
 };
 
