@@ -61,7 +61,7 @@ export default function GroupMemRanking({
                   <div className='text-[40px]'>
                     {
                       member.profileImage === null ?
-                      '🫥'  
+                      '😀'  
                       :
                       member.profileImage
                     }

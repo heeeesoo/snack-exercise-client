@@ -19,7 +19,8 @@ const Footer = () => {
         '/login/loading',
         '/code',
         '/group/mission/',
-        '/group/member'
+        '/group/member',
+        '/splash'
     ];
 
     return (
