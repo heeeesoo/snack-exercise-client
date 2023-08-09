@@ -2,15 +2,13 @@
 import Image from "next/image"
 import { LogoMedium } from "@/constant/icon"
 import { useEffect, useState } from 'react'
-import { useRouter } from "next/navigation";
 
-
-export default function Splash() {
-    const router = useRouter();
+export default function SplashScreen() {
+    const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-        router.replace('/')
+        setIsVisible(false);
         }, 3000);
 
         return () => {

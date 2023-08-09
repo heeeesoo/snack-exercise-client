@@ -24,9 +24,9 @@ const Page = () => {
     return (
         <div className="flex flex-col justify-center items-center h-[70vh]">
             <div className="text-[100px]">
-                🫥
+                😀
             </div>
-            <div className="font-bold text-[28px] pb-[150px]">
+            <div className="font-bold text-[28px] pb-[100px]">
                 {memberName}
             </div>
             <BasicButton onClick={handleClick} label="로그아웃" type="button"/>

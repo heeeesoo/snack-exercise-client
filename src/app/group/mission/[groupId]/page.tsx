@@ -6,6 +6,8 @@ import ProgressBar from "@/components/common/ProgressBar";
 import { useEffect, useRef, useState } from "react";
 import TokenStore from "@/store/TokenStore";
 import Image from "next/image";
+import { RoundButton } from "@/components/common/Button";
+import Timer from "@/components/common/Timer";
 
 const Mission = () => {
     const searchParams = useSearchParams();
@@ -113,17 +115,23 @@ const Mission = () => {
     // };
     
     return (
-        <div className="grid grid-rows-[auto, 1fr, auto] items-start w-screen max-w-[400px] h-[93vh] relative">
-            <div className="w-screen max-w-[400px] h-[85vh] z-0 flex items-center justify-center">
+        <div className="flex flex-col items-center w-screen max-w-[400px] h-[93vh]">
+            <div className="w-screen max-w-[400px] flex items-center justify-center h-[50vh]">
                 {/* <YouTube videoId={videoId} opts={opts} /> */}
                 <img src={nameParamValue} alt="loading..." />
             </div>
-            <div className="w-screen max-w-[400px] flex flex-col justify-center items-center h-[15vh] sticky bottom-0 bg-grayScreen z-10">
+            <div className="w-screen max-w-[400px] flex flex-col justify-center items-center bg-grayScreen h-[50vh]">
                 {
                 !missionStart ?
-                <BasicButton label="30초 운동 시작하기" onClick={handleStartClick} type="button" />
+                <div className="w-screen max-w-[400px] flex flex-col items-center justify-center">
+                    <div className="text-[20px] text-SystemGray2 pb-[20px]">
+                        30초 운동
+                    </div>
+                    <RoundButton label="시작하기" onClick={handleStartClick} type="button" />
+                </div>
                 :
-                <ProgressBar time={30} onComplete={handleProgressBarComplete} />
+                // <ProgressBar time={30} onComplete={handleProgressBarComplete} />
+                <Timer time={30} onComplete={handleProgressBarComplete} />
                 }
                 <div className="pb-[40px]" />
             </div>
