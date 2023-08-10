@@ -161,7 +161,11 @@ export default function GroupMissionFlowCard({
                                 미션 기록이 없습니다
                             </div>
                         :
-                        <div>dk</div>
+                        <div>
+                            그룹 시간은 {groupStartTime} ~ {groupEndTime}입니다! 
+                            <br />
+                            내일 만나요😀
+                        </div>
                     }
                 </div>
             </div>
