@@ -9,6 +9,8 @@ interface GroupCardProps {
     groupId : number;
     missionOrder: boolean;
     goalRelayNum: number;
+    groupStartTime: string;
+    groupEndTime: string;
 }
 
 interface MissionFlowType {
@@ -23,16 +25,20 @@ interface MissionFlowResType {
     missionFlow: MissionFlowType[];
     finishedRelayCount: number;
     exgroupEndDate: string;
+    
 }
 
 // useEffect hook data fetch group mission card
 export default function GroupMissionFlowCard({
     groupId,
     missionOrder,
-    goalRelayNum
+    goalRelayNum,
+    groupStartTime,
+    groupEndTime
 } : GroupCardProps) {
     const [data, setData] = useState<MissionFlowResType>()
     const [isLoading, setLoading] = useState(true)
+    console.log(groupId, groupStartTime, groupEndTime);
 
     const calculateRemainingDays = (endDateString: string, startDateString: string): number => {
         const endDate = new Date(endDateString);
@@ -54,6 +60,16 @@ export default function GroupMissionFlowCard({
       
         return `${month}월 ${day}일`;
     };
+
+    // 현재 시각이 startTime ~ endTime 사이인지 확인
+    function isTimeInRange(startTime : string, endTime : string) {
+        const currentTime = new Date();
+        const formattedStartTime = new Date(currentTime.toDateString() + ' ' + startTime);
+        const formattedEndTime = new Date(currentTime.toDateString() + ' ' + endTime);
+        
+        return currentTime >= formattedStartTime && currentTime <= formattedEndTime;
+    }
+    
 
     useEffect(() => {
         const fetchMissionFlow = async () => {
@@ -100,49 +116,52 @@ export default function GroupMissionFlowCard({
                 </div>
                 <div className='flex pt-[20px]'>
                     {
-                        missionOrder ?
-                        <GroupMissionCard groupId={groupId} finishedRelayCount={data.finishedRelayCount} />
-                        :
-                        data.missionFlow.length > 0 ?
-                        <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
-                            {
-                                data.missionFlow.map((mission : any) => {
-                                    return(
-                                        <div key={mission.startAt} className='flex w-[80px] pr-[20px]'>
-                                            <div className='flex flex-col'>
-                                                <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
-                                                    {
-                                                        mission.profileImage === null ?
-                                                        '😀'
-                                                        :
-                                                        mission.profileImage    
-                                                    }
-                                                </div>      
-                                                <div className='flex items-center justify-center text-[12px] text-SystemGray2 pt-[8px]'>
-                                                    {mission.memberName}
+                        isTimeInRange(groupStartTime, groupEndTime) ?
+                            missionOrder ?
+                            <GroupMissionCard groupId={groupId} finishedRelayCount={data.finishedRelayCount} />
+                            :
+                            data.missionFlow.length > 0 ?
+                            <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
+                                {
+                                    data.missionFlow.map((mission : any) => {
+                                        return(
+                                            <div key={mission.startAt} className='flex w-[80px] pr-[20px]'>
+                                                <div className='flex flex-col'>
+                                                    <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
+                                                        {
+                                                            mission.profileImage === null ?
+                                                            '😀'
+                                                            :
+                                                            mission.profileImage    
+                                                        }
+                                                    </div>      
+                                                    <div className='flex items-center justify-center text-[12px] text-SystemGray2 pt-[8px]'>
+                                                        {mission.memberName}
+                                                    </div>
+                                                    <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
+                                                        {mission.startAt.substring(11, 16)}~
+                                                    </div>      
+                                                    <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
+                                                        ~{
+                                                            mission.endAt === null ?
+                                                            '진행중'
+                                                            :
+                                                            mission.endAt.substring(11, 16)
+                                                        }
+                                                    </div>
                                                 </div>
-                                                <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
-                                                    {mission.startAt.substring(11, 16)}~
-                                                </div>      
-                                                <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
-                                                    ~{
-                                                        mission.endAt === null ?
-                                                        '진행중'
-                                                        :
-                                                        mission.endAt.substring(11, 16)
-                                                    }
-                                                </div>
+                                                <Image src={nextIcon} width={6.5} height={12} alt='next'/>
                                             </div>
-                                            <Image src={nextIcon} width={6.5} height={12} alt='next'/>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            :
+                            <div>
+                                미션 기록이 없습니다
+                            </div>
                         :
-                        <div>
-                            미션 기록이 없습니다
-                        </div>
+                        <div>dk</div>
                     }
                 </div>
             </div>

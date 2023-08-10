@@ -5,6 +5,7 @@ import { IconVerticalButton } from "@/components/common/Button";
 import GuideSwiper from "@/components/card/GuideSwiper";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
+import DefaultCarousel from "@/components/common/DefaultCarousel";
 
 import { People } from "@/constant/icon";
 import { Mail } from "@/constant/icon";
@@ -35,8 +36,9 @@ const Page = () => {
             <div className="text-[20px] font-bold w-9xl pb-[16px]">
                 그룹 가이드
             </div>
-            <div className="flex items-center">
+            <div className="flex flex-col items-center">
                 <GuideSwiper />
+                {/* <DefaultCarousel /> */}
             </div>
             <div className="pb-[40px]"></div>
             <div className="flex justify-between w-9xl">

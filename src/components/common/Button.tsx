@@ -78,9 +78,9 @@ export function BlurTitleButton({
     bgColor
 } : BlurTitleButtonProps){
     return(
-        <button onClick={onClick} className={`flex justify-between items-center px-[20px] w-full h-[68px] rounded-[12px] bg-${bgColor}`}>
+        <button onClick={onClick} className={`border border-gray-200 shadow flex justify-between items-center px-[20px] w-full h-[90px] rounded-[12px] bg-${bgColor}`}>
             <div className="flex flex-col items-start">
-                <div className="text-[20px] font-bold">
+                <div className="text-[18px] font-bold text-left">
                     {title}
                 </div>
                 <div className="text-[12px] font-medium">

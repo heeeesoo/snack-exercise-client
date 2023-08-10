@@ -160,9 +160,9 @@ export default function GroupBox({
                         </div>
                     :
                     memberId === currentMissionMemberId ?
-                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={true}/>
+                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={true} groupStartTime={groupData.startTime} groupEndTime={groupData.endTime}/>
                     :
-                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={false}/>
+                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={false} groupStartTime={groupData.startTime} groupEndTime={groupData.endTime}/>
                 }
             </div>
             <div className="pb-[40px]"></div>
