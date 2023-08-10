@@ -115,7 +115,7 @@ const Mission = () => {
     // };
     
     return (
-        <div className="flex flex-col items-center w-screen max-w-[400px] h-[93vh]">
+        <div className="flex flex-col items-center w-screen max-w-[400px] h-[93vh] bg-white">
             <div className="w-screen max-w-[400px] flex items-center justify-center h-[50vh]">
                 {/* <YouTube videoId={videoId} opts={opts} /> */}
                 <img src={nameParamValue} alt="loading..." />

@@ -75,7 +75,7 @@ export default function GroupMissionFlowCard({
 
     return (
         <div>
-            <div className='bg-white h-[240px] flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between'>
+            <div className='bg-white h-[240px] flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between border border-gray-200 shadow'>
                 <div className='flex items-center justify-between'>
                     <div className='font-bold text-[20px]'>
                         {getFormattedDate()}

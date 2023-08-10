@@ -148,7 +148,7 @@ export default function GroupBox({
                 {
                     groupData.startDate === null ?
                     groupData.hostMemberId === memberId ?
-                        <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest}/>
+                        <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest} bgColor="white"/>
                         :
                         <div className="bg-white  h-[70px] rounded-[12px] flex flex-col items-start justify-center px-[10px] text-SystemGray2">
                             <div className="font-bold text-[20px]">

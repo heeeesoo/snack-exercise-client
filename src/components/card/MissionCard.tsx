@@ -1,5 +1,5 @@
 'use client'
-import { BlurTitleButton } from "../common/Button";
+import { BlurTitleButton, MiissionButton } from "../common/Button";
 import { useRouter } from "next/navigation";
 import {getDataClient} from "@/utils/getDataClient";
 import { useEffect, useState } from "react";
@@ -71,7 +71,7 @@ const MissionCard = ({
             }}
             className='w-9xl'
         >
-            <BlurTitleButton title={data.name} subtitle={data.description} onClick={handleBlurTitleButtonClick} bgColor="white"/>
+            <MiissionButton title={data.name} subtitle={data.description} onClick={handleBlurTitleButtonClick} bgColor="white"/>
         </Link> 
     );
 };
