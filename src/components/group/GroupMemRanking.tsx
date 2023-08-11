@@ -56,12 +56,12 @@ export default function GroupMemRanking({
           data.length > 0 ?
           data.map((member : any, idx: number) => {
             return(
-              <div key={member.nickname} className='bg-white mb-[12px] h-[92px] rounded-[16px] flex items-center justify-between px-[20px]'>
+              <div key={member.nickname} className='border border-gray-200 shadow bg-white mb-[12px] h-[92px] rounded-[16px] flex items-center justify-between px-[20px]'>
                 <div className='flex items-center justify-center'>
                   <div className='text-[40px]'>
                     {
                       member.profileImage === null ?
-                      '🫥'  
+                      '😀'  
                       :
                       member.profileImage
                     }
@@ -89,7 +89,7 @@ export default function GroupMemRanking({
             )
           })
           :
-          <div>
+          <div className='border border-gray-200 shadow bg-white h-[70px] rounded-[12px] flex items-center justify-center font-bold px-[10px] text-SystemGray3'>
             미션을 수행해주세요!
           </div>
         }

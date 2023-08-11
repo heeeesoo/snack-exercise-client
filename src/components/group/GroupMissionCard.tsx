@@ -1,7 +1,7 @@
 'use client'
 import {getDataClient} from "@/utils/getDataClient";
 import { useEffect, useState } from "react";
-import { BlurTitleButton } from "../common/Button";
+import { BlurTitleButton, MiissionButton } from "../common/Button";
 import Link from "next/link";
 
 interface GroupMissionCardProps {
@@ -64,14 +64,15 @@ export default function GroupMissionCard({
             href={{
                 pathname: `/group/mission/${groupId}`,
                 query: {
-                    name: `${data.exercise.videoLink}`,
+                    link: `${data.exercise.videoLink}`,
                     id: `${data.missionId}`,
-                    random: false
+                    random: false,
+                    name: `${data.exercise.name}`,
                 },
             }}
             className='w-full'
         >
-            <BlurTitleButton title={data.exercise.name} subtitle={`릴레이 ${data.finishedRelayCount===null ? 1 : data.finishedRelayCount}회차 ${data.currentRoundPosition}번째`} onClick={handleClick}/>
+            <MiissionButton title={data.exercise.name} subtitle={`릴레이 ${data.finishedRelayCount===null ? 1 : data.finishedRelayCount}회차 ${data.currentRoundPosition}번째`} onClick={handleClick} bgColor="SystemGray6"/>
         </Link>
     )
 }

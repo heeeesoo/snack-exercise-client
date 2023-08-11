@@ -9,8 +9,10 @@ import { Mail } from "@/constant/icon";
 import { useState, useEffect } from 'react'
 import {getDataClient} from "@/utils/getDataClient";
 import TokenStore from "@/store/TokenStore";
-import { BlurTitleButton } from "@/components/common/Button";
+import { BlurTitleButton, MiissionButton } from "@/components/common/Button";
 import Link from "next/link";
+import { Alert } from 'flowbite-react';
+import SkeletonLine from "@/components/loading/SkeletonLine";
 
 interface GroupBoxProps {
     groupId : number;
@@ -77,6 +79,7 @@ export default function GroupBox({
         
             const responseData = await response.json();
             console.log('alarm remider:', responseData);
+            alert('콕 찌르기 성공!');
         } catch (error) {
             console.log(error);
         }
@@ -125,8 +128,8 @@ export default function GroupBox({
         }
     };
     
-    if (isLoading) return <p>Loading...</p>
-    if (!groupData) return <p>No profile data</p>
+    if (isLoading) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
+    if (!groupData) return <div>No profile data</div>
 
     return (
         <div className="flex flex-col w-screen max-w-[400px]">
@@ -144,20 +147,30 @@ export default function GroupBox({
                     </div>
                 </Link>
             </div>
-            <div className="mx-m_5">
+            <div className="flex flex-col items-center justify-center">
                 {
                     groupData.startDate === null ?
                     groupData.hostMemberId === memberId ?
-                        <BlurTitleButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest}/>
-                        :
-                        <div>
-                            릴레이 시작 전입니다.
+                        <div className="flex items-center justify-center w-9xl">
+                            <MiissionButton title="릴레이 시작하기" subtitle="함께 하는 운동" onClick={handlePatchRequest} bgColor="white"/>
                         </div>
+                        :
+                        <div className="flex items-center justify-center w-9xl">
+                            <MiissionButton title="릴레이 시작 대기 중입니다" subtitle="방장이 시작하기 전까지 기다려주세요" bgColor="white"/>
+                        </div>
+                        // <div className="bg-white w-9xl h-[70px] rounded-[12px] flex flex-col items-start justify-center px-[10px] text-SystemGray2 border-gray-200 shadow">
+                        //     <div className="font-bold text-[20px]">
+                        //         릴레이 시작 대기 중입니다
+                        //     </div>
+                        //     <div className="text-[12px] font-medium">
+                        //     방장이 시작하기 전까지 기다려주세요🏃
+                        //     </div>
+                        // </div>
                     :
                     memberId === currentMissionMemberId ?
-                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={true}/>
+                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={true} groupStartTime={groupData.startTime} groupEndTime={groupData.endTime}/>
                     :
-                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={false}/>
+                    <GroupMissionFlowCard groupId={groupId} goalRelayNum={groupData.goalRelayNum} missionOrder={false} groupStartTime={groupData.startTime} groupEndTime={groupData.endTime}/>
                 }
             </div>
             <div className="pb-[40px]"></div>

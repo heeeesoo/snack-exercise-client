@@ -6,17 +6,20 @@ import ProgressBar from "@/components/common/ProgressBar";
 import { useEffect, useRef, useState } from "react";
 import TokenStore from "@/store/TokenStore";
 import Image from "next/image";
+import { RoundButton } from "@/components/common/Button";
+import Timer from "@/components/common/Timer";
 
 const Mission = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const urlParams = new URLSearchParams(decodeURIComponent(`${searchParams}`));
-    const nameParamValue : any = urlParams.get("name");
+    const linkParamValue : any = urlParams.get("link");
     const idParamValue : string | null = urlParams.get("id");
     const randomValue : string | null  = urlParams.get('random'); // 회원, 랜덤 운동일 때 'true'
+    const nameValue : string | null  = urlParams.get('name'); // 회원, 랜덤 운동일 때 'true'
     const [missionStart, setMissionStart] = useState(false);
     const countRef = useRef<number>(0);
-    // const videoId = nameParamValue.split("shorts/")[1];
+    // const videoId = linkParamValue.split("shorts/")[1];
 
     const handleProgressBarComplete = async () => {
         countRef.current += 1;
@@ -91,6 +94,30 @@ const Mission = () => {
         }
         
     }
+
+    // 미션 시작 시 모바일 화면 안꺼지게
+    useEffect(() => {
+        let wakeLock: WakeLockSentinel | null = null;
+
+        if (missionStart) {
+            // Request a wake lock to prevent the screen from turning off
+            navigator.wakeLock.request("screen")
+                .then((lock) => {
+                    wakeLock = lock;
+                })
+                .catch((error) => {
+                    console.error("Failed to request wake lock:", error);
+                });
+        }
+
+        // Cleanup function
+        return () => {
+            // Release the wake lock when the component is unmounted or mission is complete
+            if (wakeLock) {
+                wakeLock.release();
+            }
+        };
+    }, [missionStart]);
     
     // YouTube API
     // const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -113,17 +140,26 @@ const Mission = () => {
     // };
     
     return (
-        <div className="grid grid-rows-[auto, 1fr, auto] items-start w-screen max-w-[400px] h-[93vh] relative">
-            <div className="w-screen max-w-[400px] h-[85vh] z-0 flex items-center justify-center">
+        <div className="flex flex-col items-center w-screen max-w-[400px] h-[93vh] bg-white">
+            <div className="w-screen max-w-[400px] flex items-center justify-center h-[50vh]">
                 {/* <YouTube videoId={videoId} opts={opts} /> */}
-                <img src={nameParamValue} alt="loading..." />
+                <img src={linkParamValue} alt="loading..." />
             </div>
-            <div className="w-screen max-w-[400px] flex flex-col justify-center items-center h-[15vh] sticky bottom-0 bg-grayScreen z-10">
+            <div className="w-screen max-w-[400px] flex flex-col justify-center items-center bg-grayScreen h-[50vh]">
+                <div className="pb-[20px] text-[20px] font-bold">
+                    {nameValue}
+                </div>
                 {
-                !missionStart ?
-                <BasicButton label="30초 운동 시작하기" onClick={handleStartClick} type="button" />
-                :
-                <ProgressBar time={30} onComplete={handleProgressBarComplete} />
+                    !missionStart ?
+                    <div className="w-screen max-w-[400px] flex flex-col items-center justify-center">
+                        {/* <div className="text-[20px] text-SystemGray2 pb-[20px]">
+                            30초 운동
+                        </div> */}
+                        <RoundButton label={`시작하기`} onClick={handleStartClick} type="button" />
+                    </div>
+                    :
+                    // <ProgressBar time={30} onComplete={handleProgressBarComplete} />
+                    <Timer time={30} onComplete={handleProgressBarComplete} />
                 }
                 <div className="pb-[40px]" />
             </div>
