@@ -37,7 +37,7 @@ const Timer = ({
     };
 
     return (
-        <div className="timer font-bold leading-10 text-center flex items-center justify-center text-white rounded-[100px] w-[150px] h-[150px] bg-SystemBrand text-[30px] ">
+        <div className="timer font-bold leading-10 text-center flex items-center justify-center text-white border-[4px] border-gray-200 shadow rounded-[100px] w-[200px] h-[200px] bg-SystemBrand text-[30px] ">
             <p>{formatTime(currentTime)}</p>
         </div>
     );
