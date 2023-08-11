@@ -31,8 +31,8 @@ export default function RootLayout({
           />
       </head>
       <body className={inter.className}>
-        <div className='flex flex-col justify-start bg-grayScreen w-screen max-w-[400px] min-h-screen m-auto no-scrollbar'>
-          <div className='sticky top-0 w-full max-w-[400px]'>
+        <div className='flex flex-col justify-start bg-grayScreen w-screen max-w-[480px] min-h-screen m-auto no-scrollbar'>
+          <div className='sticky top-0 w-full max-w-[480px]'>
             <Header/>
           </div>
           <main className='w-screen max-w-[400px] min-h-[90vh] m-auto overflow-y-scroll no-scrollbar'>

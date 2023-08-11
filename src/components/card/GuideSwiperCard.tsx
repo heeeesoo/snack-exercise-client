@@ -10,7 +10,7 @@ const GuideSwiperCard = ({
     num
 } : GuideSwiperCardProps) => {
     return (
-        <div className="flex flex-col bg-white w-[100%] h-[130px] rounded-[16px] px-[20px] py-[20px]">
+        <div className="flex flex-col bg-white w-[100%] h-[150px] rounded-[16px] px-[20px] py-[20px] border border-gray-200 shadow ">
             <div className="flex justify-between">
                 <div className="font-bold pb-[10px]">
                     {title}

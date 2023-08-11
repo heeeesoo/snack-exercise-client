@@ -1,10 +1,10 @@
 'use client'
-import { BlurTitleButton } from "../common/Button";
+import { BlurTitleButton, MiissionButton } from "../common/Button";
 import { useRouter } from "next/navigation";
 import {getDataClient} from "@/utils/getDataClient";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import SkeletonLine from "../skeleton/SkeletonLine";
+import SkeletonLine from "../loading/SkeletonLine";
 
 interface MissionCardProps {
     imgLink?: string;
@@ -64,14 +64,15 @@ const MissionCard = ({
             href={{
                 pathname: `/group/mission/0`, // random mission
                 query: {
-                    name: `${data.videoLink}`,
+                    link: `${data.videoLink}`,
                     id: `${data.id}`,
-                    random: true
+                    random: true,
+                    name: `${data.name}`,
                 },
             }}
             className='w-9xl'
         >
-            <BlurTitleButton title={data.name} subtitle={data.description} onClick={handleBlurTitleButtonClick} bgColor="white"/>
+            <MiissionButton title={data.name} subtitle={data.description} onClick={handleBlurTitleButtonClick} bgColor="white"/>
         </Link> 
     );
 };

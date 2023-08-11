@@ -20,3 +20,9 @@ export const host = "/icons/image/host.svg";
 export const Back = "/icons/button/Back.svg";
 
 export const LogoMedium = "/logo/logo_medium.svg";
+
+export const exercise1 = "/icons/image/exercise1.png"; // 상체 운동
+export const exercise2 = "/icons/image/exercise2.png"; // 전신 운동
+export const exercise3 = "/icons/image/exercise3.png"; // 전신 운동2
+
+export const nogroup = "/icons/image/nogroup.png"; 
