@@ -91,7 +91,7 @@ export default function GroupMissionFlowCard({
 
     return (
         <div className='flex flex-col items-center w-full'>
-            <div className={`bg-white ${missionOrder ? 'h-[360px]' : 'h-[260px]'} w-9xl flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between`}>
+            <div className={`bg-white ${missionOrder && isTimeInRange(groupStartTime, groupEndTime) ? 'h-[360px]' : 'h-[270px]'} w-9xl flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between border border-gray-200 shadow`}>
                 <div className='flex items-center justify-between'>
                     <div className='font-bold text-[20px]'>
                         {getFormattedDate()}
@@ -165,10 +165,24 @@ export default function GroupMissionFlowCard({
                                 미션 기록이 없습니다
                             </div>
                         :
-                        <div>
-                            그룹 시간은 {groupStartTime} ~ {groupEndTime}입니다! 
+                        <div className='flex flex-col items-center w-full text-center'>
+                            <div className='font-bold text-[20px]'>
+                                그룹 시간은 
+                            </div>
                             <br />
-                            내일 만나요😀
+                            <div className='flex'>
+                                <div className='w-[80px] rounded-lg text-white bg-SystemBrand'>{groupStartTime}</div> 
+                                <div className='px-[3px]'>~</div> 
+                                <div className='w-[80px] rounded-lg text-white bg-SystemBrand'>{groupEndTime}</div>
+                            </div>
+                            <br />
+                            <div className='font-bold text-[20px]'>
+                            입니다
+                            </div>
+                            <br />
+                            <div className='font-bold text-[16px]'>
+                            🏃내일 만나요🏃
+                            </div>
                         </div>
                     }
                 </div>

@@ -11,6 +11,7 @@ import {getDataClient} from "@/utils/getDataClient";
 import TokenStore from "@/store/TokenStore";
 import { BlurTitleButton, MiissionButton } from "@/components/common/Button";
 import Link from "next/link";
+import { Alert } from 'flowbite-react';
 
 interface GroupBoxProps {
     groupId : number;
@@ -77,6 +78,7 @@ export default function GroupBox({
         
             const responseData = await response.json();
             console.log('alarm remider:', responseData);
+            alert('콕 찌르기 성공!');
         } catch (error) {
             console.log(error);
         }
