@@ -35,7 +35,7 @@ export default function GroupMemberInfo({ params }: { params: { groupId: string 
                         <div key={member.nickname} className="w-9xl pb-[10px] h-[76px] flex items-center justify-between">
                             <div className="flex items-center">
                                 <div className="text-[44px] pr-[16px]">
-                                    🫥
+                                    😀
                                 </div>
                                 <div className="text-[16px] font-semibold">
                                     {member.nickname}
