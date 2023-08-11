@@ -52,8 +52,8 @@ const MissionCard = ({
         setLoading(false);
     }, [])
 
-    if (isLoading) return <SkeletonLine width={'60px'} height={'15px'} />
-    if (!data) return <SkeletonLine width={'60px'} height={'15px'} />
+    if (isLoading) return <div>loading...</div>
+    if (!data) return <div>loading...</div>
 
     return (
         // <div className={`flex flex-col pt-[200px] items-center justify-evenly h-[320px] w-9xl bg-[url("/imageEx/mission2.svg")] bg-cover bg-center rounded-[16px]`}>
