@@ -90,8 +90,8 @@ export default function GroupMissionFlowCard({
 
 
     return (
-        <div>
-            <div className='bg-white h-[240px] flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between border border-gray-200 shadow'>
+        <div className='flex flex-col items-center w-full'>
+            <div className='bg-white h-[320px] w-9xl flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between '>
                 <div className='flex items-center justify-between'>
                     <div className='font-bold text-[20px]'>
                         {getFormattedDate()}
@@ -125,9 +125,9 @@ export default function GroupMissionFlowCard({
                                 {
                                     data.missionFlow.map((mission : any) => {
                                         return(
-                                            <div key={mission.startAt} className='flex w-[80px] pr-[20px]'>
-                                                <div className='flex flex-col'>
-                                                    <div className='flex items-center justify-center w-[55px] h-[55px] text-[55px]'>
+                                            <div key={mission.startAt} className='flex flex-row justify-between items-stretch w-[90px] pr-[20px]'>
+                                                <div className='flex flex-col items-center justify-center'>
+                                                    <div className='flex items-center justify-center w-[80px] h-[55px] text-[55px]'>
                                                         {
                                                             mission.profileImage === null ?
                                                             '😀'
@@ -138,19 +138,23 @@ export default function GroupMissionFlowCard({
                                                     <div className='flex items-center justify-center text-[12px] text-SystemGray2 pt-[8px]'>
                                                         {mission.memberName}
                                                     </div>
-                                                    <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
-                                                        {mission.startAt.substring(11, 16)}~
+                                                    <div className='flex items-center justify-center w-[65px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
+                                                        {mission.startAt.substring(11, 16)} ~
                                                     </div>      
-                                                    <div className='flex items-center justify-center w-[55px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 bg-SystemGray6'>
-                                                        ~{
+                                                    <div className={`flex items-center justify-center w-[65px] h-[24px] mt-[8px] text-[12px] rounded-[14px] text-SystemGray2 ${mission.endAt === null ?' bg-SystemBrand' : 'bg-SystemGray6'}`}>
+                                                        {
                                                             mission.endAt === null ?
-                                                            '진행중'
+                                                            <div className='text-white'>
+                                                                ~ 진행중
+                                                            </div>
                                                             :
-                                                            mission.endAt.substring(11, 16)
+                                                            <div>
+                                                            ~ {mission.endAt.substring(11, 16)}
+                                                            </div>
                                                         }
                                                     </div>
                                                 </div>
-                                                <Image src={nextIcon} width={6.5} height={12} alt='next'/>
+                                                <Image src={nextIcon} width={52} height={96} alt='next'/>
                                             </div>
                                         )
                                     })

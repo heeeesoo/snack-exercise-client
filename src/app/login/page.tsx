@@ -12,7 +12,7 @@ export default function Page() {
 
   return (
     <div className='flex flex-col items-center w-full'>
-      <div className="text-[20px] font-bold w-9xl pb-[5px]">
+      <div className="text-[20px] font-bold w-9xl pb-[15px]">
         랜덤으로 운동 미션 받기
       </div>
       <MissionCard member={false} />

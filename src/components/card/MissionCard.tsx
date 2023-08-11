@@ -64,9 +64,10 @@ const MissionCard = ({
             href={{
                 pathname: `/group/mission/0`, // random mission
                 query: {
-                    name: `${data.videoLink}`,
+                    link: `${data.videoLink}`,
                     id: `${data.id}`,
-                    random: true
+                    random: true,
+                    name: `${data.name}`,
                 },
             }}
             className='w-9xl'

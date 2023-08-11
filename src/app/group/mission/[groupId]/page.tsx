@@ -13,12 +13,13 @@ const Mission = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const urlParams = new URLSearchParams(decodeURIComponent(`${searchParams}`));
-    const nameParamValue : any = urlParams.get("name");
+    const linkParamValue : any = urlParams.get("link");
     const idParamValue : string | null = urlParams.get("id");
     const randomValue : string | null  = urlParams.get('random'); // 회원, 랜덤 운동일 때 'true'
+    const nameValue : string | null  = urlParams.get('name'); // 회원, 랜덤 운동일 때 'true'
     const [missionStart, setMissionStart] = useState(false);
     const countRef = useRef<number>(0);
-    // const videoId = nameParamValue.split("shorts/")[1];
+    // const videoId = linkParamValue.split("shorts/")[1];
 
     const handleProgressBarComplete = async () => {
         countRef.current += 1;
@@ -118,20 +119,23 @@ const Mission = () => {
         <div className="flex flex-col items-center w-screen max-w-[400px] h-[93vh] bg-white">
             <div className="w-screen max-w-[400px] flex items-center justify-center h-[50vh]">
                 {/* <YouTube videoId={videoId} opts={opts} /> */}
-                <img src={nameParamValue} alt="loading..." />
+                <img src={linkParamValue} alt="loading..." />
             </div>
             <div className="w-screen max-w-[400px] flex flex-col justify-center items-center bg-grayScreen h-[50vh]">
-                {
-                !missionStart ?
-                <div className="w-screen max-w-[400px] flex flex-col items-center justify-center">
-                    <div className="text-[20px] text-SystemGray2 pb-[20px]">
-                        30초 운동
-                    </div>
-                    <RoundButton label="시작하기" onClick={handleStartClick} type="button" />
+                <div className="pb-[20px] text-[20px] font-bold">
+                    {nameValue}
                 </div>
-                :
-                // <ProgressBar time={30} onComplete={handleProgressBarComplete} />
-                <Timer time={30} onComplete={handleProgressBarComplete} />
+                {
+                    !missionStart ?
+                    <div className="w-screen max-w-[400px] flex flex-col items-center justify-center">
+                        {/* <div className="text-[20px] text-SystemGray2 pb-[20px]">
+                            30초 운동
+                        </div> */}
+                        <RoundButton label={`시작하기`} onClick={handleStartClick} type="button" />
+                    </div>
+                    :
+                    // <ProgressBar time={30} onComplete={handleProgressBarComplete} />
+                    <Timer time={30} onComplete={handleProgressBarComplete} />
                 }
                 <div className="pb-[40px]" />
             </div>
