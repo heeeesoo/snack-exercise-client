@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import {getDataClient} from "@/utils/getDataClient";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import SkeletonLine from "../skeleton/SkeletonLine";
+import SkeletonLine from "../loading/SkeletonLine";
 
 interface MissionCardProps {
     imgLink?: string;

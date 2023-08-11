@@ -5,6 +5,7 @@ import {getDataClient} from "@/utils/getDataClient";
 import TokenStore from "@/store/TokenStore";
 import { nogroup } from "@/constant/icon";
 import Image from "next/image";
+import SkeletonLine from "@/components/loading/SkeletonLine";
 
 interface GroupType {
     groupId: number;
@@ -49,7 +50,7 @@ export default function Group() {
         setGroupCurMissionId(newCurId);
     };
 
-    if (loading) return <div>loading...</div>
+    if (loading) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
 
     return (
         <div className="flex flex-col items-center py-[20px]">

@@ -3,6 +3,8 @@ import {getDataClient} from "@/utils/getDataClient";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { nogroup } from "@/constant/icon";
+import { Spinner } from "flowbite-react";
+import SkeletonLine from "@/components/loading/SkeletonLine";
 
 interface GroupFinishType {
     endDate : string;
@@ -25,7 +27,7 @@ const Page = () => {
                 console.log('mygrouplist:',result);
                 result.result.data && setGroupFinishListh(result.result.data);
                 setIsFetch(true);
-                setLoading(false)
+                setLoading(false);
             } catch (error) {
                 console.error('Error in fetchData:', error);
             }
@@ -33,7 +35,7 @@ const Page = () => {
         fetchMyGroupListData();
     }, []);
 
-    if (loading) return <div>loading...</div>
+    if (loading) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
 
     return (
         <div className="flex flex-col items-center justify-start h-[80vh] w-screen max-w-[400px] pt-[20px]">
@@ -64,7 +66,7 @@ const Page = () => {
                             <Image src={nogroup} width={100} height={100} alt="nogroup" />
                         </div>
                         <div className="font-semibold text-SystemGray2">
-                            참여하고 있는 그룹이 없습니다
+                            완료된 그룹이 없습니다
                         </div>
                     </div>
                 // :
