@@ -12,6 +12,7 @@ import TokenStore from "@/store/TokenStore";
 import { BlurTitleButton, MiissionButton } from "@/components/common/Button";
 import Link from "next/link";
 import { Alert } from 'flowbite-react';
+import SkeletonLine from "@/components/loading/SkeletonLine";
 
 interface GroupBoxProps {
     groupId : number;
@@ -127,8 +128,8 @@ export default function GroupBox({
         }
     };
     
-    if (isLoading) return <p>Loading...</p>
-    if (!groupData) return <p>No profile data</p>
+    if (isLoading) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
+    if (!groupData) return <div>No profile data</div>
 
     return (
         <div className="flex flex-col w-screen max-w-[400px]">

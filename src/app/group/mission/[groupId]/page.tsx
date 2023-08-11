@@ -94,6 +94,30 @@ const Mission = () => {
         }
         
     }
+
+    // 미션 시작 시 모바일 화면 안꺼지게
+    useEffect(() => {
+        let wakeLock: WakeLockSentinel | null = null;
+
+        if (missionStart) {
+            // Request a wake lock to prevent the screen from turning off
+            navigator.wakeLock.request("screen")
+                .then((lock) => {
+                    wakeLock = lock;
+                })
+                .catch((error) => {
+                    console.error("Failed to request wake lock:", error);
+                });
+        }
+
+        // Cleanup function
+        return () => {
+            // Release the wake lock when the component is unmounted or mission is complete
+            if (wakeLock) {
+                wakeLock.release();
+            }
+        };
+    }, [missionStart]);
     
     // YouTube API
     // const onPlayerReady: YouTubeProps['onReady'] = (event) => {
