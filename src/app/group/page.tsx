@@ -3,6 +3,8 @@ import GroupBox from "@/components/group/GroupBox";
 import { useState, useEffect } from "react";
 import {getDataClient} from "@/utils/getDataClient";
 import TokenStore from "@/store/TokenStore";
+import { nogroup } from "@/constant/icon";
+import Image from "next/image";
 
 interface GroupType {
     groupId: number;
@@ -16,6 +18,7 @@ export default function Group() {
     const [groupSelectedName, setGroupSelectedName] = useState<string>('');
     const [groupCurMissionId, setGroupCurMissionId] = useState<number | null>(-1);
     const [groupMyList, setGroupMyList] = useState<GroupType[]>();
+    const [loading, setLoading] = useState(true);
     const {memberId} = TokenStore();
 
     useEffect(() => {
@@ -24,6 +27,7 @@ export default function Group() {
                 const result = await getDataClient('/groups');
                 console.log('mygrouplist:',result);
                 result.result.data && setGroupMyList(result.result.data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error in fetchData:', error);
             }
@@ -44,6 +48,8 @@ export default function Group() {
         setGroupSelectedName(newName);
         setGroupCurMissionId(newCurId);
     };
+
+    if (loading) return <div>loading...</div>
 
     return (
         <div className="flex flex-col items-center py-[20px]">
@@ -73,10 +79,10 @@ export default function Group() {
                 </div>
                 :
                 <div className="flex h-[50vh] flex-col items-center justify-center">
-                    <div className="text-[100px]">
-                        🥹
+                    <div className="text-[100px] pb-[20px]">
+                        <Image src={nogroup} width={100} height={100} alt="nogroup" />
                     </div>
-                    <div className="text-SystemGray2">
+                    <div className="font-semibold text-SystemGray2">
                         참여하고 있는 그룹이 없습니다
                     </div>
                 </div>

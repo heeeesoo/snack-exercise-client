@@ -91,7 +91,7 @@ export default function GroupMissionFlowCard({
 
     return (
         <div className='flex flex-col items-center w-full'>
-            <div className='bg-white h-[320px] w-9xl flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between '>
+            <div className={`bg-white ${missionOrder ? 'h-[360px]' : 'h-[260px]'} w-9xl flex flex-col px-[20px] py-[20px] rounded-[16px] justify-between`}>
                 <div className='flex items-center justify-between'>
                     <div className='font-bold text-[20px]'>
                         {getFormattedDate()}

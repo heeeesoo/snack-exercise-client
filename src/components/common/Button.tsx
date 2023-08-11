@@ -128,7 +128,7 @@ export function IconVerticalButton({
 } : IconVerticalButtonProps){
     return(
         <button onClick={onClick} className="border border-gray-200 shadow flex flex-col justify-around px-[20px] items-center w-[48%] bg-white rounded-[12px] h-[170px]">
-            <div className="text-[16px] font-bold mr-auto whitespace-pre-line">
+            <div className="text-[16px] text-left font-bold mr-auto whitespace-pre-line">
                 {title}
             </div>
             <div className="bg-SystemGray6 w-[60px] h-[60px] flex items-center justify-center rounded-[100px] ml-auto">
