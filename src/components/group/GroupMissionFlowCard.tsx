@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { nextIcon } from '@/constant/icon';
 import {getDataClient} from "@/utils/getDataClient";
 import GroupMissionCard from './GroupMissionCard';
+import SkeletonLineSmall from '../loading/SkeletonLineSmall';
 
 interface GroupCardProps {
     groupId : number;
@@ -85,8 +86,8 @@ export default function GroupMissionFlowCard({
         setLoading(false);
     }, [groupId])
     
-    if (isLoading) return <p>Loading...</p>
-    if (!data) return <p>No profile data</p>
+    if (isLoading) return (<SkeletonLineSmall />);
+    if (!data) return (<SkeletonLineSmall />);
 
 
     return (
@@ -181,7 +182,7 @@ export default function GroupMissionFlowCard({
                             </div>
                             <br />
                             <div className='font-bold text-[16px]'>
-                            🏃내일 만나요🏃
+                            🏃잠시 뒤에 만나요🏃
                             </div>
                         </div>
                     }
