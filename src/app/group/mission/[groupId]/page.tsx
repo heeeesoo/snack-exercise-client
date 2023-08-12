@@ -16,13 +16,18 @@ const Mission = () => {
     const linkParamValue : any = urlParams.get("link");
     const idParamValue : string | null = urlParams.get("id");
     const randomValue : string | null  = urlParams.get('random'); // 회원, 랜덤 운동일 때 'true'
-    const nameValue : string | null  = urlParams.get('name'); // 회원, 랜덤 운동일 때 'true'
+    const nameValue : string | null  = urlParams.get('name'); // 운동 이름
+    const memberValue : string | null  = urlParams.get('member'); // 회원 true, 비회원 false
     const [missionStart, setMissionStart] = useState(false);
     const countRef = useRef<number>(0);
     // const videoId = linkParamValue.split("shorts/")[1];
 
     const handleProgressBarComplete = async () => {
         countRef.current += 1;
+
+        if(memberValue === 'false') {
+            router.push('/group/mission/finish')
+        }
 
         if (countRef.current === 1) {
             const postUrl =  randomValue==='true' ?

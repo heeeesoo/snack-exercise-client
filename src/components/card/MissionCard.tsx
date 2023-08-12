@@ -68,6 +68,7 @@ const MissionCard = ({
                     id: `${data.id}`,
                     random: true,
                     name: `${data.name}`,
+                    member: `${member}`
                 },
             }}
             className='w-9xl'
