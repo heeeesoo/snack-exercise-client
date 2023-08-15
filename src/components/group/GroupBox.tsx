@@ -11,8 +11,8 @@ import {getDataClient} from "@/utils/getDataClient";
 import TokenStore from "@/store/TokenStore";
 import { BlurTitleButton, MiissionButton } from "@/components/common/Button";
 import Link from "next/link";
-import { Alert } from 'flowbite-react';
 import SkeletonLine from "@/components/loading/SkeletonLine";
+import { Flash, PersonAdd } from "@/constant/icon";
 
 interface GroupBoxProps {
     groupId : number;
@@ -176,8 +176,8 @@ export default function GroupBox({
             <div className="pb-[40px]"></div>
             <div className="flex items-center justify-center w-screen max-w-[400px]">
                 <div className="flex justify-between w-9xl">
-                    <IconVerticalButton title="멤버 초대하기" onClick={handleGroupClick} imglink={People}/>
-                    <IconVerticalButton title="콕 찌르기" onClick={handleAlarmClick} imglink={Mail}/>
+                    <IconVerticalButton title="멤버 초대하기" onClick={handleGroupClick} imglink={PersonAdd}/>
+                    <IconVerticalButton title="콕 찌르기" onClick={handleAlarmClick} imglink={Flash}/>
                 </div>
             </div>
             <div className="pb-[40px]" />
