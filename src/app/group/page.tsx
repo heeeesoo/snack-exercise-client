@@ -62,7 +62,7 @@ export default function Group() {
                             return (
                                 <button key={group.groupId} 
                                 onClick={() => handleIdChange(group.groupId, group.groupName, group.currentMissionMemberId)}
-                                className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9 border-[1px] border-SystemGray9'}  mr-[8px] rounded-[16px] w-[100px] h-[36px] flex items-center justify-center relative`}>
+                                className={`${group.groupId === groupSelectedId ? 'bg-SystemDarkBlue text-white' : 'text-SystemGray9 border-[1px] border-SystemGray9'}  mr-[8px] rounded-[16px] w-[100px] h-[36px] flex items-center justify-center sticky`}>
                                     <div >{group.groupName}</div>
                                     {group.currentMissionMemberId === memberId && (
                                         <div className="absolute top-0 right-0 flex items-center justify-center w-3 h-3 text-xs text-white rounded-full bg-SystemRed"></div>
