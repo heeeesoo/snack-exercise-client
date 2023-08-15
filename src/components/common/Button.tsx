@@ -172,7 +172,7 @@ export function MiissionButton({
 
     const randomImageNumber = getRandomImageNumber();
     return(
-        <button onClick={onClick} className="w-full p-6 bg-white border border-gray-200 rounded-[16px] shadow dark:bg-gray-800 dark:border-gray-700">
+        <button onClick={onClick} className="w-full p-6 bg-white border border-gray-200 rounded-[16px] shadow ">
             <div className="flex items-center justify-center pb-[10px]">
                 <Image
                     width={35}
