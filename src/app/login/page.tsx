@@ -10,6 +10,7 @@ export default function Page() {
     console.log('click');
   }
 
+
   return (
     <div className='flex flex-col items-center w-full'>
       <div className="text-[20px] font-bold w-9xl pb-[15px]">
