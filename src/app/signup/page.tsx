@@ -85,7 +85,11 @@ export default function SignUp() {
 
             if (!response.ok) {
                 const errorResponseData = await response.json();
-                alert(errorResponseData.result.message);
+                if (errorResponseData.code === -2100){
+                    alert('알림을 허용해주세요.')
+                } else {
+                    alert(errorResponseData.result.message);
+                }
                 // throw new Error(`${error}`)
                 return;
             } else {
