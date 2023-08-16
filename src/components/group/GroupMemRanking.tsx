@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import TokenStore from '@/store/TokenStore';
 import { getDataClient } from '@/utils/getDataClient';
+import SkeletonCard from '../loading/SkeletonCard';
 
 interface GroupMemRankingProps {
   groupId : number;
@@ -38,8 +39,8 @@ export default function GroupMemRanking({
     setLoading(false);
   }, [groupId])
 
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No profile data</p>
+  if (isLoading) return <div><SkeletonCard /></div>
+  if (!data) return <div><SkeletonCard /></div>
 
   return (
     <div>

@@ -129,7 +129,7 @@ export default function GroupBox({
     };
     
     if (isLoading) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
-    if (!groupData) return <div>No profile data</div>
+    if (!groupData) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
 
     return (
         <div className="flex flex-col w-screen max-w-[400px]">
