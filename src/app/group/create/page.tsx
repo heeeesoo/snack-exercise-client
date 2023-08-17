@@ -247,7 +247,7 @@ const GroupCreate = () => {
                     <Controller
                         name="penaltyOption"
                         control={control}
-                        defaultValue="아웃백 쏘기"
+                        defaultValue="밥 사기"
                         rules={{ required: 'Please select an option' }}
                         render={({ field }) => (
                         <RadioSelectBox

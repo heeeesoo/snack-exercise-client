@@ -126,14 +126,17 @@ export default function GroupMissionFlowCard({
                             data.missionFlow.length > 0 ?
                             <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">
                                 {
-                                    data.missionFlow.map((mission : any) => {
+                                    data.missionFlow.map((mission : any, index: number) => {
+                                        const isLastMission = index === data.missionFlow.length - 1;
                                         return(
                                             <div key={mission.startAt} className='flex flex-row justify-between items-stretch w-[90px] pr-[20px]'>
                                                 <div className='flex flex-col items-center justify-center'>
-                                                    <div className='flex items-center justify-center w-[80px] h-[55px] text-[55px]'>
+                                                    <div className='flex items-center justify-center w-[80px] h-[60px] text-[55px]'>
                                                         {
                                                             mission.profileImage === null ?
-                                                            '😀'
+                                                            <div className={`rounded-full w-[60px] h-[60px] flex justify-center items-center ${isLastMission ? ' border-2 border-SystemBrand' : ''} `}>
+                                                                😀
+                                                            </div>
                                                             :
                                                             mission.profileImage    
                                                         }
