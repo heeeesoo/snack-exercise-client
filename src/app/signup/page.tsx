@@ -11,13 +11,13 @@ import firebase from "firebase/app";
 import "firebase/messaging";
 
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+    apiKey: "AIzaSyCj8cmzn94XS6HfqVXvMnmRvSH66LcrblQ",
+    authDomain: "snackpot-2aff6.firebaseapp.com",
+    projectId: "snackpot-2aff6",
+    storageBucket: "snackpot-2aff6.appspot.com",
+    messagingSenderId: "772201837506",
+    appId: "1:772201837506:web:b594806bf50b8f72e89c5b",
+    measurementId: "G-RBMVKFLVBN"
 };
 
 interface FormData {
@@ -85,7 +85,11 @@ export default function SignUp() {
 
             if (!response.ok) {
                 const errorResponseData = await response.json();
-                alert(errorResponseData.result.message);
+                if (errorResponseData.code === -2100){
+                    alert('알림을 허용해주세요.')
+                } else {
+                    alert(errorResponseData.result.message);
+                }
                 // throw new Error(`${error}`)
                 return;
             } else {

@@ -10,17 +10,17 @@ const Timer = ({
     time,
     onComplete
 } : TimerType) => {
-    const [currentTime, setCurrentTime] = useState(0);
+    const [currentTime, setCurrentTime] = useState(time);
     const totalTime = time; // 주어진 시간
 
     useEffect(() => {
         let timer: NodeJS.Timeout; // 타이머 변수 정의
 
-        if (currentTime < totalTime) {
+        if (currentTime > 0) {
             timer = setInterval(() => {
-                setCurrentTime(prevTime => prevTime + 1);
+                setCurrentTime(prevTime => prevTime - 1);
             }, 1000);
-        } else if (currentTime >= totalTime && onComplete) {
+        } else if (currentTime <= 0 && onComplete) {
             console.log('mission complete!')
             onComplete(); // 시간이 다 되었을 때 함수 호출
         }
@@ -28,7 +28,7 @@ const Timer = ({
         return () => {
             clearInterval(timer); // 타이머 중지
         };
-    }, [currentTime, totalTime, onComplete]);
+    }, [currentTime, onComplete]);
 
     const formatTime = (timeInSeconds : number) => {
         const minutes = Math.floor(timeInSeconds / 60);

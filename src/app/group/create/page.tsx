@@ -43,8 +43,8 @@ const GroupCreate = () => {
     } = useForm<FormData>(); 
 
     const radioPenaltyOptions = [
-        { label: '아웃백 쏘기', value: '아웃백 쏘기' },
-        { label: '아이스크림 쏘기', value: '아이스크림 쏘기' },
+        { label: '밥 사기', value: '밥 사기' },
+        { label: '아이스크림 사기', value: '아이스크림 사기' },
         { label: '직접 입력', value: 'other', isOther: true },
     ];
 
@@ -247,7 +247,7 @@ const GroupCreate = () => {
                     <Controller
                         name="penaltyOption"
                         control={control}
-                        defaultValue="아웃백 쏘기"
+                        defaultValue="밥 사기"
                         rules={{ required: 'Please select an option' }}
                         render={({ field }) => (
                         <RadioSelectBox
