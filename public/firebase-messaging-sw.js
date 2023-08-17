@@ -13,8 +13,8 @@ firebase.initializeApp({
     projectId: "snackpot-2aff6",
     storageBucket: "snackpot-2aff6.appspot.com",
     messagingSenderId: "772201837506",
-    appId: "1:772201837506:web:0085abde733e5281e89c5b",
-    measurementId: "G-LMYXYKQNXN"
+    appId: "1:772201837506:web:b594806bf50b8f72e89c5b",
+    measurementId: "G-RBMVKFLVBN"
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background

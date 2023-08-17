@@ -3,6 +3,7 @@ import {getDataClient} from "@/utils/getDataClient";
 import { useEffect, useState } from "react";
 import { BlurTitleButton, MiissionButton } from "../common/Button";
 import Link from "next/link";
+import SkeletonCard from "../loading/SkeletonCard";
 
 interface GroupMissionCardProps {
     groupId : number;
@@ -54,9 +55,9 @@ export default function GroupMissionCard({
         setLoading(false);
     }, [groupId])
     
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <div><SkeletonCard/></div>
     if (!isMission) return <p>미션 시간이 아닙니다</p>
-    if (!data) return <p>No profile data</p>
+    if (!data) return <div><SkeletonCard/></div>
 
     return (
         // 회원 릴레이 운동 미션
