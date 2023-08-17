@@ -5,6 +5,7 @@ import { nextIcon } from '@/constant/icon';
 import {getDataClient} from "@/utils/getDataClient";
 import GroupMissionCard from './GroupMissionCard';
 import SkeletonLineSmall from '../loading/SkeletonLineSmall';
+import GroupMissionCard2 from './GroupMissionCard2';
 
 interface GroupCardProps {
     groupId : number;
@@ -119,7 +120,8 @@ export default function GroupMissionFlowCard({
                     {
                         isTimeInRange(groupStartTime, groupEndTime) ?
                             missionOrder ?
-                            <GroupMissionCard groupId={groupId} finishedRelayCount={data.finishedRelayCount} />
+                            // <GroupMissionCard groupId={groupId} finishedRelayCount={data.finishedRelayCount} />
+                            <GroupMissionCard2 groupId={groupId} finishedRelayCount={data.finishedRelayCount} />
                             :
                             data.missionFlow.length > 0 ?
                             <div className="flex flex-row overflow-auto w-screen max-w-[400px] h-auto  no-scrollbar">

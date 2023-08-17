@@ -18,6 +18,7 @@ const Mission = () => {
     const randomValue : string | null  = urlParams.get('random'); // 회원, 랜덤 운동일 때 'true'
     const nameValue : string | null  = urlParams.get('name'); // 운동 이름
     const memberValue : string | null  = urlParams.get('member'); // 회원 true, 비회원 false
+    const exerciseIdValue : string | null  = urlParams.get('exerciseId'); 
     const [missionStart, setMissionStart] = useState(false);
     const countRef = useRef<number>(0);
     // const videoId = linkParamValue.split("shorts/")[1];
@@ -69,14 +70,30 @@ const Mission = () => {
         setMissionStart(true);
         console.log('??:',randomValue?.toString());
 
+        // const postUrl =  randomValue==='true' ?
+        //     `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start?random=true` 
+        //     :
+        //     `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start?random=false`;
         const postUrl =  randomValue==='true' ?
             `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start?random=true` 
             :
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/missions/start?random=false`;
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/mvp/missions/start`;
         
-        const reqDataToSend = {
-            missionId: idParamValue,
-        }
+        // const reqDataToSend = {
+        //     missionId: idParamValue,
+        // }
+        const reqDataToSend = randomValue==='true' ? 
+            {
+                missionId: idParamValue,
+            }
+            :
+            {
+                missionId: idParamValue,
+                exerciseId: exerciseIdValue
+            }
+
+        console.log('start?:',idParamValue, exerciseIdValue);
+        console.log('reqDataToSend:',reqDataToSend);
         
         try {
             const response = await fetch(postUrl, {
@@ -89,6 +106,8 @@ const Mission = () => {
             });
             
             if (!response.ok) {
+                const responseErrorData = await response.json();
+                console.log('mission error:', responseErrorData)
                 throw new Error('Failed to update data');
             }
             

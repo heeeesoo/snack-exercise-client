@@ -23,9 +23,11 @@ const Page = () => {
 
     return (
         <div className="flex flex-col justify-center items-center h-[70vh]">
-            <div className="text-[100px]">
-                😀
-            </div>
+            {/* <div className="rounded-full w-[120px] h-[120px] flex items-center text-center justify-center border-4 bg-white border-SystemBrand"> */}
+                <div className="text-[100px] text-center flex justify-center items-center">
+                    😀
+                </div>
+            {/* </div> */}
             <div className="font-bold text-[28px] pb-[100px]">
                 {memberName}
             </div>
