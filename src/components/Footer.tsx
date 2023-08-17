@@ -26,7 +26,7 @@ const Footer = () => {
     return (
         <div>
         {
-            pathnames.some(path => pathname.includes(path)) ?
+            pathnames.some(path => pathname?.includes(path)) ?
             null
             :
             <div className="flex flex-col justify-center items-center h-[90px] w-full px-[10px] bg-white">

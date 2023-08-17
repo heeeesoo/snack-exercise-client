@@ -21,6 +21,7 @@ module.exports = withPWA({
     },
 });
 
+
 // Injected content via Sentry wizard below
 
 const { withSentryConfig } = require("@sentry/nextjs");
@@ -35,7 +36,7 @@ module.exports = withSentryConfig(
     silent: true,
 
     org: "snackpot",
-    project: "snackpot",
+    project: "javascript-nextjs",
   },
   {
     // For all available options, see:

@@ -70,7 +70,7 @@ export default function Home() {
 
         <p>
           Next, look for the error on the{" "}
-          <a href="https://snackpot.sentry.io/issues/?project=4505662122754048">Issues Page</a>.
+          <a href="https://snackpot.sentry.io/issues/?project=4505717715042304">Issues Page</a>.
         </p>
         <p style={{ marginTop: "24px" }}>
           For more information, see{" "}

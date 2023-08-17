@@ -18,9 +18,9 @@ const Header = () => {
     ];
 
     return (
-        <div className={`flex flex-row items-center justify-center h-[60px] w-full bg-grayScreen ${pathnames.some(path => pathname.includes(path)) ? null :'shadow-sm'}`}>
+        <div className={`flex flex-row items-center justify-center h-[60px] w-full bg-grayScreen ${pathnames.some(path => pathname?.includes(path)) ? null :'shadow-sm'}`}>
             {
-                pathnames.some(path => pathname.includes(path)) ?
+                pathnames.some(path => pathname?.includes(path)) ?
                 null
                 :
                 pathname === '/signup' ? 

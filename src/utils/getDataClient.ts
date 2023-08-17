@@ -1,4 +1,5 @@
 import TokenStore from "@/store/TokenStore";
+import { withSentry } from '@sentry/nextjs';
 
 export const getDataClient = async (url : string) => {
     const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`;
