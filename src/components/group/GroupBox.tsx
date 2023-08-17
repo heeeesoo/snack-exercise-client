@@ -57,6 +57,15 @@ export default function GroupBox({
 
     const handleAlarmClick = async () => {
 
+        if (currentMissionMemberId === TokenStore.getState().memberId) {
+            alert('현재 미션 순서입니다');
+            return;
+        }
+        else if(currentMissionMemberId  === null) {
+            alert('릴레이 시작 전입니다');
+            return;
+        }
+
         const postUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/alarm/reminder`; 
 
         const reqDataToSend = {
@@ -129,7 +138,7 @@ export default function GroupBox({
     };
     
     if (isLoading) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
-    if (!groupData) return <div>No profile data</div>
+    if (!groupData) return (<div className="pt-[20px] mx-[20px]"><SkeletonLine /></div>)
 
     return (
         <div className="flex flex-col w-screen max-w-[400px]">
